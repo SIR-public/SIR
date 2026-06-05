@@ -1,0 +1,428 @@
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Home</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+body {
+  margin:0px;
+  padding:0px;
+  color:#000000;
+  background-color:#CCCCFF;
+}
+#banner {
+  position:absolute;
+  overflow:hidden;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:80px;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:absolute;
+  top:81px;
+  left:0px;
+  width:230px;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+  border-bottom:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:absolute;
+  top:81px;
+  left:231px;
+  padding:0px 6px 2px 10px;
+}
+@media screen {
+  div#banner {
+    position:fixed;
+    right:0px;
+  }
+  div#nav {
+    position:fixed;
+    bottom:0px;
+    overflow:auto;
+    border-bottom:none;
+  }
+  div#content {
+    position:fixed;
+    right:0px;
+    bottom:0px;
+    overflow:auto;
+  }
+}
+</style>
+<style type="text/css">
+<!--
+table.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+/* Internet Explorer is retarded...
+   The "Tan" hack, only IE understands this selector. */
+* html #names {
+  text-align:center;
+}
+-->
+</style>
+</head>
+<body style=""><div id="content">
+<p>These pages provide information on and access to the
+Software-artifact Infrastructure Repository (SIR) for Experimentation.
+This repository provides Java, C, C++, and C# programs for use
+in experimentation with testing and analysis techniques,
+and materials facilitating that use.  Descriptions of the motivations,
+organization, and objectives of the repository can be found in the
+<a href="https://sir-public.github.io/SIR/emse-sir-05.pdf" rel="help" type="application/pdf">journal paper</a>.
+</p>
+
+<p style="color:navy">The repository is not being maintained,
+but users can still query/access the content.
+</p>
+
+<p>Use the links on the navigation bar at left to obtain materials.
+The &quot;Handbooks&quot; describe how objects are created and provide
+information on their use. The &quot;Download Objects&quot; page
+provides links to tar files containing actual objects.
+&quot;Biographies&quot; of the objects are available from the download
+page by clicking on program names. &quot;Tools&quot; are various scripts
+and programs that help process object materials.</p>
+
+<p>We have made these materials available to all who wish to access them. Choosing to access them implies that you agree
+to the terms in our SIR <a href="https://sir-public.github.io/SIR/sir-license.html">license</a>.</p>
+  
+<hr>
+<h3>Announcements</h3>
+
+<ul style="padding-bottom:1em">
+<li><b>9/6/2018</b> The Sofya tools
+<a href="https://sofyatool.github.io/SofyaTool/index.html" target="_blank">
+site</a> has moved to GitHub!  While still limited to Java 7
+and earlier, we no longer require login to users to request
+access.
+</li>
+<li><b>2/14/2014</b> The xml-security object has been updated to
+fix a problem with the junit test scripts lacking setUp() blocks.
+This also contains fixes that would have impacted building the
+v3 version.</li>
+<li><b>6/20/2013</b> The SIR will be unavailable on Friday, June 21, 2013
+from 6:00 AM CDT to 12:00 PM CDT for server maintenance.  We apologize
+for this inconvenience.</li>
+<li><b>5/23/2013</b> Several new artifacts for studying testing
+of software product lines (SPL) have been added to the repository.</li>
+<li><b>3/22/2013</b> The SIR team announces support for a new artifact
+language family, C++, and our first testing subject in C++, <b>concordance</b>,
+offering a rich set of mutated and inserted faults along with an extensive
+test suite.</li>
+<li><b>7/25/2012</b> A new version of the <b>mts</b> tool package
+has been uploaded which includes a tool for creating
+<a href="https://www.mono-project.com" target="_blank">mono</a>
+test scripts (shell scripts) from universe (STIMPL) files.</li>
+<li><b>5/8/2012</b> An updated version of the jtcas object has
+been installed.  The fault in version 21 was incorrectly placed in
+the wrong method/function in the 1.0 version.</li>
+<li><b>4/1/2012</b> New concurrency testing subjects are available
+for download.</li>
+<li><b>12/19/2011</b> The SIR repository will have maintenance
+outage starting on December 23, 2011 and extending through
+December 27, 2011 as our host server is upgraded.  The SIR
+will be unavailable during this time.  We apologize for any
+inconvenience this may cause.
+</li>
+<li><b>11/22/2011</b> The nanoxml object has been redelivered
+to the repository to now includes the UML state diagrams for the
+package classes.
+</li>
+<li><b>07/14/2011</b> The problem of missing classes has been remedied
+in all the Java invariant objects (Stack, Red-Black Tree, Disjoint Set,
+Binary Heap, Binary Search Tree, Vector, Sorting, Doubly-Linked List, and
+Array Partition.)  All references to the missing classes have been
+changed to standard Java classes or have been removed.  The test classes
+provided have also been removed, since those classes required using the
+unavailable classes.  If you wish to download the original versions of
+the packages (which still include the original test classes) you may
+do so via the Archived Objects link in the left panel.
+</li>
+<li><b>06/01/2011</b> A port of the Siemens <b>tcas</b> to the C#
+language is now available for download.  This <b>tcas-csharp</b> object
+is similar to the <b>jtcas</b> port of tcas to Java which is also now available.
+</li>
+<li><b>05/09/2011</b> The problem with downloading using Chrome and
+Opera browsers has been fixed.
+</li>
+<li><b>05/07/2011</b> A problem with downloading using the Chrome and
+Opera browsers has been identifed.
+The download object links work reliably with Firefox 3.6, IE 8 and 9,
+and Safari 5.0.5 on Mac OS X.
+We will report further on this issue and we appologize for the
+inconvenience.</li>
+<li><b>3/15/2011</b> The <b>nanoxml</b> object has been redelivered
+to correct the extended fault matrices which were incorrect.  Also
+one fault has been removed from those provided in nanoxml v5 which
+was overly expressive according to SIR fault guidelines.  The fault
+can still be activated but the fault matrix does not include this
+fault.</li>
+<li><b>2/10/2011</b> It has been brought to our attention that all
+invariant objects specify several classes that are not provided with
+the packages and cannot be built by SIR users.  This applies to the
+objects: <b>Stack, RedBlackTree, BinarySearchTree, ArrayPartition, DoublyLinkedList,
+Sorting, Vector, BinaryHeap</b>, and <b>DisjointSet</b>.  We have contacted the
+original institution to obtain these classes.  An announcement will be
+given on this page when this oversight has been rectified.
+</li>
+<li><b>9/23/2010</b> An updated version of nanoxml has been produced which
+contains 21 additional test frames to increase test coverage.
+</li>
+<li><b>11/9/2009</b> The SIR team announces the availablity of Java
+concurrency testing subjects to the repository.  These subjects have been
+created and used by several research groups for empirical studies into path
+sensitive Java constructs and model checking analyses.  These test
+subjects have been packaged for use with the <a href="https://babelfish.arc.nasa.gov/trac/jpf" target="_blank">
+JavaPathFinder</a> model checking environment.
+</li>
+<li><b>10/6/2009</b> An updated version of xml-security has been delivered
+into the repository with object preparation bugs fixed.  A summary of the bug
+fixes are: wrong/bad version of xercesImpl.jar in the seeded common libs
+directory, a non-functional/unnecessary #include in XMLSignatureInput.cpp,
+and an incorrect seeding (#ifdef) of XU_HD_2 in XMLUtils.cpp.  Our thanks to
+Jake Cobb at Georgia Tech for finding these.
+</li>
+<li><b>9/22/2009</b> The SQUALL lab at Carleton University has contributed
+the Cruise Control, Elevator and Ordered Set (OrdSet) testing research objects.
+These objects feature state machine code block elements making them well suited
+to test coverage and minimalization studies on finite state machines.
+</li>
+<li><b>8/10/2009</b> The Derby DB subject has been released from SIR development
+for use as a testing research object.  Derby has over 500 KLOC and inserted faults
+making it well suited to studies of database systems testing and medium to
+large size project testing.</li>
+<li><b>2/2/2009:</b> Researchers from the SAnToS Group at Kansas State University have
+contributed a set of Java heap-based data structure examples
+for the purpose of evaluating symbolic execution and unit-test
+generation tools for Java.</li>
+<li><b>7/24/2008:</b> We are proud to announce <b>beta</b> version availability
+of two new artifacts to the repository.
+The <code>bash</code> (Bourne Again Shell) and <code>vim</code> (vi Improved)
+objects are now available for experimentation.</li>
+<li><b>10/31/2006:</b> Bug fixes have been released for <code>make</code>. The
+fixes resolve various problems with the STImpL (universe) files that caused
+test scripts to behave incorrectly. Please consult documentation for additional
+details.</li>
+<li><b>10/23/2006:</b> Bug fixes have been released for <code>JMeter</code> and
+<code>xml-security</code>. The fixes resolve a problem with library jar file
+dependencies causing <code>javac</code> to crash. For the curious, the error
+appears actually to be in the Sun library classes for handling jar files
+(a bug report has been filed), however repackaging the jar files seems to
+suffice as a workaround; e.g.:
+<pre>
+  jar -xf &lt;jar_file&gt;
+  rm &lt;jar_file&gt;
+  jar -cf &lt;jar_file&gt; &lt;jar_contents&gt;
+</pre>
+</li>
+<li><b>10/02/2006:</b> We are happy to announce a <strong>beta</strong> release
+of the reworked <code>sed</code> object. The new version of <code>sed</code>
+now provides a comprehensive test suite designed according the best-practice
+TSL principles. It also includes <strong>new versions</strong>, as well as
+developer provided tests, and basic information about real faults in old
+versions. As a beta release, we request your patience in the event that you
+encounter issues with the object, and we want to hear about any such issues.</li>
+<li><b>10/02/2006:</b> A bug fix to <code>grep</code> has been released to fix
+compile errors that have been encountered on more recent versions of the gcc compiler.</li>
+<li><b>09/19/2006:</b> A new line counter for C objects has been added to the SIR tools
+downloads. This line counter accumulates counts of the non-comment physical lines
+of source code in programs written in C (among numerous other languages). We note
+that line counts can vary greatly depending on the tool used and strategy
+employed. For this reason, and for consistency, we have run this line counter on
+our existing C objects, which has revised some of the numbers reported for these
+objects.</li>
+<li><b>09/14/2006:</b> If you have been using C objects with the latest version of GCC,
+you may have noticed some compilation errors. We are aware of this problem and
+are working on fixes.</li>
+<li><b>05/04/2006:</b> New version of <code>mts</code>/<code>javamts</code> is available.
+Version 1.1 adds an XML file generator, contributed by Ben Liblit of University of
+Wisconsin, and other minor fixes.</li>
+<li><b>02/17/2006:</b> A new Java implementation of <code>mts</code>/<code>javamts</code>
+is now available in the tools download, replacing the old <code>mts</code>
+implementation. The new implementation features an improved interface and a number
+of enhancements, while still supporting backward compatibility. Please refer
+to the README file in the download package for details.</li>
+</ul>
+
+<hr>
+<h3>Acknowledgments</h3>
+<p>The SIR project was conducted in two phases.
+</p>
+  
+<p>
+Phase 1 of the SIR construction effort was supported by the 
+National Science Foundation under Grants
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0454203" target="_blank">0454203</a> and
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0454348" target="_blank">0454348</a>&nbsp;<sup><a href="#fn1">&dagger;</a></sup>.
+</p>
+<p>
+Phase 1 Lead Personnel were:
+</p>
+<div>
+<ul>
+<li style="list-style-type:square">Matthew B. Dwyer, University of Nebraska - Lincoln</li>
+<li style="list-style-type:square">Sebastian Elbaum, University of Nebraska - Lincoln</li>
+<li style="list-style-type:square">John Hatcliff, Kansas State University</li>
+<li style="list-style-type:square">Gregg Rothermel, University of Nebraska - Lincoln</li>
+<li style="list-style-type:square">Hyunsook Do, University of Nebraska - Lincoln</li>
+<li style="list-style-type:square">Alex Kinneer, University of Nebraska - Lincoln</li>
+</ul>
+</div>
+
+<p>
+Phase 2 of the SIR project was supported by the
+National Science Foundation under Grants
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0958231" target="_blank">CNS-0958231</a>,
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0958199" target="_blank">CNS-0958199</a>,
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0958235" target="_blank">CNS-0958235</a>, and
+<a href="https://www.nsf.gov/awardsearch/showAward.do?AwardNumber=0958346" target="_blank">CNS-0958346</a>&nbsp;<sup><a href="#fn1">&dagger;</a></sup>.
+</p>
+<p>
+Phase 2 Lead Personnel were:
+</p>
+<div>
+<ul>
+<li style="list-style-type:square">Sarfraz Khurshid, University of Texas - Austin</li>
+<li style="list-style-type:square">Darko Marinov, University of Illinois, Urbana-Champaign</li>
+<li style="list-style-type:square">Gregg Rothermel, University of Nebraska - Lincoln</li>
+<li style="list-style-type:square">Tao Xie, North Carolina State University</li>
+<li style="list-style-type:square">Wayne Motycka, University of Nebraska - Lincoln</li>
+</ul>
+</div>
+  
+<p>
+Many other students, faculty, and researchers from various institutions and 
+companies have also been involved in or aided the construction of this repository 
+or the objects provided through it, and we wish to thank them:
+</p>
+<div>
+<table id="names" class="center" border="0" cellpadding="2" cellspacing="1">
+<tr>
+<td style="width:200px" > Adam Ashenfelter</td>
+<td style="width:200px" > Yuriy Brun</td>
+<td style="width:200px" > Sean Callan</td>
+</tr>
+<tr>
+<td> Soumya Chattopadhyay</td>
+<td> Dan Chirica</td>
+<td> Chengyun Chu</td>
+</tr>
+<tr>
+<td> Desiree Dunn</td>
+<td> Mike Ernst</td>
+<td> David Friberg</td>
+</tr>
+<tr>
+<td> David Gable</td>
+<td> Amit Goel</td>
+<td> Madeline Hardojo</td>
+</tr>
+<tr>
+<td> Mary Jean Harrold</td>
+<td> Angela Holland</td>
+<td> Binh Huynh</td>
+</tr>
+<tr>
+<td> Dalai Jin</td>
+<td> Praveen Kallakuri</td>
+<td> Satya Kanduri</td>
+</tr>
+<tr>
+<td> Srikanth Karre</td>
+<td> Alex Kinneer</td>
+<td> Jim Law</td>
+</tr>
+<tr>
+<td> Khoa Le</td>
+<td> Alexey Malishevsky</td>
+<td> Kyle Murphy</td>
+</tr>
+<tr>
+<td> Alex Orso</td>
+<td> Sameera Reddy</td>
+<td> David Rosenblum</td>
+</tr>
+<tr>
+<td> Joe Ruthruff</td>
+<td> Roland Untch</td>
+<td> Ted Whaler</td>
+</tr>
+<tr>
+<td> Vasanth Williams</td>
+<td> Rui Wu</td>
+<td> Weiyun Wu</td>
+</tr>
+<tr>
+<td> Zhiru Zhu</td>
+<td> Tom Ostrand</td>
+<td> Phyllis Frankl</td>
+</tr>
+<tr>
+<td> Filip Vokolos</td>
+<td> Monica Hutchins</td>
+<td> Herb Fisher</td>
+</tr>
+<tr>
+<td> Tarak Goradia</td>
+<td> Zhimin Wang</td>
+<td> Isis Cabral</td>
+</tr>
+<tr>
+<td> Suzette Person</td>
+<td> Samar Mouchawrab</td>
+<td> Zhihong Xu</td>
+</tr>
+</table>
+</div>
+<p id=fn1>
+<sup>[&dagger;]</sup> Any opinions, findings, and conclusions or recommendations expressed 
+in this material are those of the author(s) and do not necessarily 
+reflect the views of the National Science Foundation.
+</p>
+  
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li><a href="https://sir.csc.ncsu.edu/content/sir.php" class="small">Home</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/acct_mng.php" class="small">Manage&nbsp;Account</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/admin.php" class="small">Administrative&nbsp;Settings</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/logout.php" class="small">Logout</a></li>
+<li><a href="https://sir.csc.ncsu.edu/portal/usage.php" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/validity.php" class="small">Reporting&nbsp;Experimental Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/other_resources.php" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/portal/acks.php" class="small">Acknowledgments</a></li>
+<li><a href="https://sir.csc.ncsu.edu/php/showfiles.php" class="small">Download Objects</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/tools.php" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/oldfiles.php" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/cite.php" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/c-overall.php" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/java-overall.php" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/InvariantCheckingJavaExampleHandbook.php" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/spl-overall.php" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/concise-desc.php" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/c-overall-full.php" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/java-overall-full.php" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/spl-overall-full.php" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/concise-overall-full.php" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/docs.php" class="small">Related Documents</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/reporting.php" class="small">Report&nbsp;Problems</a></li>
+</ul>
+</div>
+<div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+</body>
+
+</html>

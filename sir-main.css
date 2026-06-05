@@ -1,0 +1,99 @@
+/**
+ * Default stylesheet for the SIR repository.
+ *
+ * Alex Kinneer
+ * University of Nebraska - Lincoln
+ * 05/09/2006
+ * Mods by Wayne Motycka 7/18/13
+ * 
+ */
+
+/* Look and feel */
+BODY {
+  background-color: #EEEEEE;
+  color: #000000;
+}
+A:link {
+  color: blue;
+}
+A:visited {
+  color: teal;
+}
+A:hover {
+  color: aqua;
+}
+A:active {
+  color: #FF3333;
+}
+
+/* Monotype styling */
+CODE {
+  font-size: 12px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+PRE {
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* Indentation */
+P.i1 {
+  margin-left:2em
+}
+
+P.i2 {
+  margin-left:4em
+}
+
+P.i3 {
+  margin-left:6em;
+}
+
+CODE.i1 {
+  margin-left:2em
+}
+
+CODE.i2 {
+  margin-left:4em
+}
+
+PRE.i1 {
+  margin-left:2em
+}
+
+DIV.i1 {
+  margin-left:2em;
+}
+
+DIV.i2 {
+  margin-left=4em;
+}
+
+OL.i0 {
+  list-style-position: inside;
+}
+
+OL.i1 {
+  list-style-position: inside;
+  margin=1em,2em,1em,2em;
+}
+OL.i2 {
+  list-style-position: inside;
+  margin=1em,2em,1em,4em;
+}
+.shadeIt {
+background-color: white;
+    filter:alpha(opacity=50); /* IE */
+    opacity: 0.5; /* Safari, Opera */
+    -moz-opacity:0.50; /* FireFox */
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    background-repeat:no-repeat;
+    background-position:center;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}

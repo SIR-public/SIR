@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Frequently Asked Questions</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" style="font-size:large">Get Access!</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/previewfiles.html" class="small">SIR Software Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">SIR Frequently Asked Questions</h2><p>Through discussions with many other researchers and educators, the organizers of
+this repository have encountered a number of frequently asked questions.</p>
+
+<p>
+<strong>Q.1:</strong> <em>Why not just collect and make available a wide selection of systems
+available from industry and open source web sites, together with whatever materials they come with?</em>
+</p>
+<p>
+<strong>A:</strong> Certainly such systems could support case studies, and in fact such
+systems are what many researchers have turned to for empirical validation purposes. Such systems
+do not, however, provide the controls necessary to support controlled experimentation.
+Also, if one does not employ a uniform format for materials, then other
+researchers can't easily adapt the tools or techniques they wish to study to the various
+artifacts. A comprehensive experimentation plan must include both case studies and controlled
+experimentation; it is the latter that is most lacking in the literature today, and that we seek to support.
+</p>
+<p>
+<p>
+<strong>Q.2:</strong> <em>Do you intend to specify some particular intermediate form for programs?</em>
+</p>
+<p>
+<strong>A:</strong> No. We intend to provide programs, versions, models, and other such artifacts
+and attributes; researchers may use whatever analysis or testing tools, and whatever representations
+they find appropriate, on these.
+</p>
+<p>
+<strong>Q.3:</strong> <em> Many real-world applications are written to run against proprietary middleware
+or libraries. A truly useful repository of benchmarks has to include applications in this class, which
+means that it also has to deal with licensing issues and perhaps the issue of creating real-world
+runtime environments.</em>
+</p>
+<p>
+<strong>A:</strong> It is true that to generalize results, it will be necessary to experiment, eventually,
+with systems of this sort. Any experiment supporting infrastructure will need, eventually, to provide or simulate real
+runtime environments, and allow investigation of questions relative to systems that use proprietary
+middleware and libraries. But there are many complicated issues to be resolved here, and initially,
+establishment of a repository that does not include these things represents a sufficiently large leap
+beyond the current state of the art to be worthwhile. Once established and successful, a repository
+can then be extended in directions such as these, allowing the scope of experiments performed on the
+repository artifacts to expand.
+</p>
+<p>
+<strong>Q.4:</strong> <em> Do you intend to provide some mechanism by which commercial entitites
+could contribute proprietary code to your repository without worrying about revealing trade
+secrets, etc?</em>
+</p>
+<p>
+<strong>A:</strong> Initially, no, but we can imagine applying devices such as identifier mangling
+or other code obfuscation techniques to proprietary code, or considering licenses that allow release
+of source for research purposes while protecting intellectual property. We believe that such
+considerations, however, like those discussed in answer to the preceding question, will not fall
+within the scope of the four years of this project. They may, however, be addressed in the future
+as the repository subsequently expands.
+</p>
+<p>
+<strong>Q.5:</strong> <em> Even if you collect a few dozen programs, they still won't be a representative
+set, they still likely won't represent my programs, so how will your infrastructure be helpful?</em>
+</p>
+<p>
+<strong>A:</strong> In part, this question reveals a misunderstanding of how progress is made in empirical
+science. Experimentation does not provide proofs, it merely provides evidence for or against hypotheses.
+It gains its strength through replication: one employs not just a single experiment, but a family of
+experiments (and case studies). We utilize controls on small sets of objects, to be as certain as we can
+that we are observing causal effects. We then widen the scope of our experimentation to include additional
+objects, gradually increasing the external validity of our conclusions. We don't have certainty, and we
+can't say whether results will apply to other programs, but as the evidence grows our confidence that
+results will so apply can increase.
+</p>
+<p>
+On the other hand, this question also addresses an important fact: the degree to which we can trust
+our empirical results to generalize depends on the degree to which the samples we have performed our
+experiments on can be said to be representative of the general population from which they are drawn. In
+computer science, we have no clear idea as yet what a "representative sample" of programs would be. For the
+moment we must content ourselves with building empirical knowledge on bodies of objects whose relationship
+to the general population of objects is unclear (essentially, using quasi-experiments rather than experiments).
+As we do this, however, we can expect our knowledge of the population to improve: we can move in
+the direction of being able to determine whether our sample is representative. Now, see the next question.
+</p>
+<p>
+<strong>Q.6:</strong> <em> You mention benchmark suites. Is that what you're building?</em>
+</p>
+<p>
+<strong>A:</strong> A benchmark is a sample of a population that has gone through a vetting process, such that a degree
+of consensus has been reached that the benchmark is an indicator of the extent to which certain qualities
+hold generally. We can't hope to establish such a concensus in four years. Moreover, it isn't clear that a
+benchmark suite is desirable, as such suites tend to take on inappropriate external validity. We do hope,
+however, that this project will create a resource to support experimentation, that can evolve as needs change.
+</p>
+<p>
+<strong>Q.7:</strong> <em> You consider studies of techniques and tools, why not also consider studies of humans?</em>
+</p>
+<p>
+<strong>A:</strong> The infrastructure we are developing could certainly be used to provide objects that engineers would
+apply techniques to in studies of engineers. But studies of humans are particularly expensive, and before
+embarking on experimentation aimed at questions such as "in practice, can test engineers use tool T cost effectively",
+it makes sense to examine whether T, if used, could produce any useful results in the first place.
+If not, then there is no point in performing expensive human studies. Moreover, studies of T may help us
+first adjust T to be more effective, so that we're studying the right T. And, studies of T may alert us to
+factors that may matter (and should perhaps be controlled) in studies of humans.
+</p>
+<p>
+<strong>Q.8:</strong> <em> Why not just use the Spec Benchmarks?</em>
+</p>
+<p>
+<strong>A:</strong> The Spec benchmarks have been developed to evaluate the abilities of optimizing compilers, not to evaluate
+bug-finding tools, testing techniques, or specification-checking systems. They do not provide essential
+attributes such as fault data, program annotations, multiple versions, or support for necessary controls.
+</p>
+<p>
+<strong>Q.9:</strong> <em> How does the proposed work compare to the recent similar NIST effort?</em>
+</p>
+<p>
+<strong>A:</strong> NIST's PESST project set out to establish a repository of programs and fault data, contributed
+by corporations, that could be used to evaluate and compare testing techniques. Review of a white paper
+detailing the project, and found on the NIST site, however, describes the effort as meant to produce "a
+collection of reference materials", not an infrastructure specifically for support of controlled experimentation.
+The NIST investigators did not have substantial experience with empirical studies, nor do they discuss issues
+such as experimental controls. Had it been established, the NIST materials could have served as raw materials
+for our infrastructure, and helped in evaluating representativeness; however, the project is no longer active.
+</p>
+<p>
+<strong>Q.10:</strong> <em> How does the proposed work compare to the CBase effort?</em>
+</p>
+<p style="padding-bottom:2em">
+<strong>A:</strong> The CBase effort differs from ours in scope and target. Our scope is testing and analysis in particular,
+while theirs is dependability more broadly. Further, they are not targeting controlled experimentation: they
+provide an assorted collection of systems data that does not support the level of control that we support.
+</p>
+
+</body>
+</html>

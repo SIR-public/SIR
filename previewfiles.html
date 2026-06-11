@@ -52,95 +52,9 @@ body {
    clear:both;
 }
 </style>
-<script type="text/javascript">
-<!--
-  function verify(form) {
-    if ((form['min_ver_cnt'].value != "")
-        && !isValid("0123456789", form['min_ver_cnt'].value)) {
-      alert("Minimum version count must be numeric");
-      return false;
-    }
-    if ((form['max_ver_cnt'].value != "")
-        && !isValid("0123456789", form['max_ver_cnt'].value)) {
-      alert("Maximum version count must be numeric");
-      return false;
-    }
-    if ((form['min_src_size'].value != "")
-        && !isValid("0123456789", form['min_src_size'].value)) {
-      alert("Minimum source size must be numeric");
-      return false;
-    }
-    if ((form['max_src_size'].value != "")
-        && !isValid("0123456789", form['max_src_size'].value)) {
-      alert("Maximum source size must be numeric");
-      return false;
-    }
-    if ((form['min_unit_cnt'].value != "")
-        && !isValid("0123456789", form['min_unit_cnt'].value)) {
-      alert("Minimum class/procedure count must be numeric");
-      return false;
-    }
-    if ((form['max_unit_cnt'].value != "")
-        && !isValid("0123456789", form['max_unit_cnt'].value)) {
-      alert("Maximum class/procedure count must be numeric");
-      return false;
-    }
-    return true;
-  }
+	
 
-  function isValid(legalChars, str) {
-    if (str.length == 0) {
-      return false;
-    }
-
-    for (i = 0; i < str.length; i++) {
-      if (legalChars.indexOf(str.charAt(i)) == -1) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  function showJavaProps(on) {
-    if (on) {
-      document.getElementById("java_fmtrx_flags").style.display='block';
-      document.getElementById("cl_fmtrx").disabled=false;
-      document.getElementById("m_fmtrx").disabled=false;
-      document.getElementById("min_unit_cnt_lbl").innerHTML="Minimum<br>Class Count";
-      document.getElementById("max_unit_cnt_lbl").innerHTML="Maximum<br>Class Count";
-      document.getElementById('siemens_chk').checked=false;
-    }
-    else {
-      document.getElementById("java_fmtrx_flags").style.display='none';
-      document.getElementById("cl_fmtrx").disabled=true;
-      document.getElementById("m_fmtrx").disabled=true;
-      document.getElementById("min_unit_cnt_lbl").innerHTML="Minimum<br>Procedure Count";
-      document.getElementById("max_unit_cnt_lbl").innerHTML="Maximum<br>Procedure Count";
-    }
-  }
-
-  function toggleSearch() {
-    if (document.getElementById("search_lnk").innerHTML == "Advanced Search") {
-      document.getElementById("adv_search").style.display='table-row';
-      document.getElementById("search_lnk").innerHTML="Simple Search";
-    }
-    else {
-      document.getElementById("adv_search").style.display='none';
-      document.getElementById("search_lnk").innerHTML="Advanced Search";
-    }
-  }
-
-  function checkLang() {
-    if (document.getElementById('siemens_chk').checked) {
-      document.getElementById('lang_java').selected=false;
-      document.getElementById('lang_c').selected=true;
-      document.getElementById('lang_cs').selected=false;
-      document.getElementById('lang_cplus').selected=false;
-      showJavaProps(0);
-    }
-  }
-// -->
-</script>
+	
 </head>
 <body style="" ><div id="banner">
 <h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>

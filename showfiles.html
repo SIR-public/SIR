@@ -5,8 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
 <!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
 <title>Software-artifact Infrastructure Repository: Object Downloads</title>
-<link rel="SHORTCUT ICON" href="https://sir.csc.ncsu.edu/portal/favicon.ico">
-<link rel="stylesheet" href="https://sir.csc.ncsu.edu/content/sir-main.css" type="text/css">
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
 <style type="text/css" media="screen">
 /** Cut things down to work with the whole canvas. */
 body {
@@ -53,96 +52,8 @@ body {
    clear:both;
 }
 </style>
-<script type="text/javascript">
-<!--
-  function verify(form) {
-    if ((form['min_ver_cnt'].value != "")
-        && !isValid("0123456789", form['min_ver_cnt'].value)) {
-      alert("Minimum version count must be numeric");
-      return false;
-    }
-    if ((form['max_ver_cnt'].value != "")
-        && !isValid("0123456789", form['max_ver_cnt'].value)) {
-      alert("Maximum version count must be numeric");
-      return false;
-    }
-    if ((form['min_src_size'].value != "")
-        && !isValid("0123456789", form['min_src_size'].value)) {
-      alert("Minimum source size must be numeric");
-      return false;
-    }
-    if ((form['max_src_size'].value != "")
-        && !isValid("0123456789", form['max_src_size'].value)) {
-      alert("Maximum source size must be numeric");
-      return false;
-    }
-    if ((form['min_unit_cnt'].value != "")
-        && !isValid("0123456789", form['min_unit_cnt'].value)) {
-      alert("Minimum class/procedure count must be numeric");
-      return false;
-    }
-    if ((form['max_unit_cnt'].value != "")
-        && !isValid("0123456789", form['max_unit_cnt'].value)) {
-      alert("Maximum class/procedure count must be numeric");
-      return false;
-    }
+            
 
-    return true;
-  }
-
-  function isValid(legalChars, str) {
-    if (str.length == 0) {
-      return false;
-    }
-
-    for (i = 0; i < str.length; i++) {
-      if (legalChars.indexOf(str.charAt(i)) == -1) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  function showJavaProps(on) {
-    if (on) {
-      document.getElementById("java_fmtrx_flags").style.display='block';
-      document.getElementById("cl_fmtrx").disabled=false;
-      document.getElementById("m_fmtrx").disabled=false;
-      document.getElementById("min_unit_cnt_lbl").innerHTML="Minimum<br>Class Count";
-      document.getElementById("max_unit_cnt_lbl").innerHTML="Maximum<br>Class Count";
-      document.getElementById('siemens_chk').checked=false;
-    }
-    else {
-      document.getElementById("java_fmtrx_flags").style.display='none';
-      document.getElementById("cl_fmtrx").disabled=true;
-      document.getElementById("m_fmtrx").disabled=true;
-      document.getElementById("min_unit_cnt_lbl").innerHTML="Minimum<br>Procedure Count";
-      document.getElementById("max_unit_cnt_lbl").innerHTML="Maximum<br>Procedure Count";
-    }
-  }
-
-  function toggleSearch() {
-    if (document.getElementById("search_lnk").innerHTML == "Advanced Search") {
-      document.getElementById("adv_search").style.display='table-row';
-      document.getElementById("search_lnk").innerHTML="Simple Search";
-    }
-    else {
-      document.getElementById("adv_search").style.display='none';
-      document.getElementById("search_lnk").innerHTML="Advanced Search";
-    }
-  }
-
-  function checkLang() {
-    if (document.getElementById('siemens_chk').checked) {
-      document.getElementById('lang_java').selected=false;
-      document.getElementById('lang_c').selected=true;
-      document.getElementById('lang_csharp').selected=false;
-      document.getElementById('lang_cplus').selected=false;
-      //showJavaProps(0);
-    }
-  }
-// -->
-</script>
 </head>
 <body style="" ><div id="banner">
 <h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
@@ -174,88 +85,10 @@ body {
 <li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/reporting.php" class="small">Report&nbsp;Problems</a></li>
 </ul>
 </div>
+            
 <div id="content">
 <a name="TOP"></a>
-<!-- Search query form -->
-<form action="https://sir.csc.ncsu.edu/php/showfiles.php" method="get" onsubmit="return verify(this)">
-<fieldset><legend>Search for Objects</legend>
-<table width="100%" cellpadding="8" border="0">
-<tr><td rowspan="2">
-  <select multiple size="4" name="lang[]" id="lang">
-    <option selected value="Java" id="lang_java" onclick="showJavaProps(1)">Java</option>
-    <option value="C" id="lang_c" onclick="showJavaProps(0)">C</option>
-<!--    <option value="CSharp" id="lang_csharp" onclick="showJavaProps(0)">C#</option> -->
-    <option value="C#" id="lang_csharp" onclick="showJavaProps(0)">C#</option>
-<!--    <option value="CPlus" id="lang_cplus" onclick="showJavaProps(1)">C++</option> -->
-    <option value="C++" id="lang_cplus" onclick="showJavaProps(1)">C++</option>
-    <option value="Python" id="lang_python" onclick="showJavaProps(1)">Python</option>
-    <option value="PHP" id="lang_php" onclick="showJavaProps(1)">PHP</option>
-    <option value="Rust" id="lang_rust" onclick="showJavaProps(1)">Rust</option>
-  </select></td>
-  <td><label for="name">Object name: </label><input type="text" name="name" id="name"></td>
-  <td rowspan="2">
-  <table border="0">
-    <tr><td><label>Test types: </label></td>
-      <td><input type="checkbox" name="tst_tsl" id="tst_tsl" value="1"><label for="tst_tsl">TSL&nbsp;tests</label></td>
-      <td><input type="checkbox" name="tst_unit" id="tst_unit" value="1"><label for="tst_unit">Unit tests</label></td>
-      <td><input type="checkbox" name="tst_adhoc" id="tst_adhoc" value="1"><label for="tst_adhoc">Other&nbsp;tests</label></td>
-    </tr>
-    <tr><td><label>Fault types: </label></td>
-      <td><input type="checkbox" name="flt_real" id="flt_real" value="1"><label for="flt_real">Real</label></td>
-      <td><input type="checkbox" name="flt_seed" id="flt_seed" value="1"><label for="flt_seed">Seeded</label></td>
-      <td><input type="checkbox" name="flt_mut" id="flt_mut" value="1"><label for="flt_mut">Mutation</label></td>
-    </tr>
-    <tr><td><label>Other:</label></td>
-      <td><input type="checkbox" name="concurrency" id="concurrency" value="1"><label for="concurrency">Concurrency</label></td>
-      <td><input type="checkbox" name="ksu_invar" id="ksu_invar" value="1"><label for="ksu_invar">Invariants</label></td>
-      <td><input type="checkbox" name="spl" id="spl" value="1"><label for="spl">SPL</label></td>
-  </tr>
-  <tr><td></td>
-      <td><input type="checkbox" name="concise" id="concise" value="1"><label for="concise">Concise</label></td>
-  </tr>
-  </table>
-</tr>
-<tr><td><!-- This is the cell for row 2, column 2, reserved for future use -->&nbsp;</td>
-</tr>
-<tr id="adv_search" style="display:none">
-<td colspan="3">
-  <table cellpadding="4" border="0">
-  <tr><td>Minimum<br>Version Count</td><td>Maximum<br>Version Count</td>
-    <td>Minimum<br>Source Size</td><td>Maximum<br>Source Size</td>
-    <td id="min_unit_cnt_lbl">Minimum<br>
-    ClassCount</td>
-    <td id="max_unit_cnt_lbl">Maximum<br>
-    ClassCount</td>
-    <td rowspan="2" valign="top">
-      <input type="checkbox" name="fmtrx" id="fmtrx" value="1"><label for="fmtrx">Fault matrices</label>
-      <div id="java_fmtrx_flags" style="margin-left:2em">
-        <input type="checkbox" id="cl_fmtrx" name="cl_fmtrx" value="1"><label for="cl_fmtrx">Class-level fault matrices</label><br>
-        <input type="checkbox" id="m_fmtrx" name="m_fmtrx" value="1"><label for="m_fmtrx">Method-level fault matrices</label>
-      </div>
-      <div>
-        <input type="checkbox" name="siemens" id="siemens_chk" value="1" onchange="checkLang()"><label for="siemens_chk">Siemens/space</label>
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td><input type="text" name="min_ver_cnt" size="3" maxlength="3"></td>
-    <td><input type="text" name="max_ver_cnt" size="3" maxlength="3"></td>
-    <td><input type="text" name="min_src_size" size="6"></td>
-    <td><input type="text" name="max_src_size" size="6"></td>
-    <td><input type="text" id="min_unit_cnt" name="min_unit_cnt" size="6" maxlength="6"></td>
-    <td><input type="text" id="max_unit_cnt" name="max_unit_cnt" size="6" maxlength="6"></td>
-  </tr>
-  </table></td>
-</tr>
-<tr><td><input type="submit" name="display" value="Display"></td>
-  <td>&nbsp;</td>
-  <td align="right">
-        <a id="search_lnk" style="font-size:smaller" href="#TOP" onclick="toggleSearch()">Advanced Search</a>
-      </td>
-</tr>
-</table>
-</fieldset>
-</form>
+            
 
 
 <table cellspacing="0" cellpadding="2" border="0" width="100%">

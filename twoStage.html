@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Object Biography: Concurrency Testing Subjects</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Object Biography: Concurrency Testing Subjects</h2>
+<p>
+The concurrency testing subjects are a collection of Java programs
+that exhibit the characteristics of multithreaded activities requiring
+arbitration.  The subjects are useful in studying both the behavior
+of concurrent program designs and also for model checking analysis. These
+subjects were collected and used by Dwyer et al. in <a href="#dwyerfse06">[DwyerFSE06]</a> to study factors
+affecting path-sensitive error detection techniques.
+
+</p>
+<p>
+The concurrency subjects presented here consist of the suites of programs
+compiled by the Bandera <a href="#dwyer06">[Dwyer06]</a> and Java PathFinder
+(JPF) <a href="#visser00">[Visser00]</a> projects.
+These programs cover nearly all of
+the multi-threaded programs that were used as of 2006 in evaluating
+path-sensitive Java analyses in the literature; some papers also used
+Java standard library implementations as analysis subjects.
+</p>
+<p>
+The examples can be divided into two kinds: concurrency error <i>kernels</i>
+and <i>realistic</i> programs. Concurrency error kernels are very simple
+programs that distill the essence of a particular concurrency error.
+Examples include adapted versions from the concurrency literature, such
+as dining philosophers, as well as programs that exhibit Java-specific
+errors. A student independently implemented kernels for the Java
+<i>concurrent bug patterns</i> (CBP) described in
+<a href="#farchi03">[Farchi03]</a>. These kernels
+typically include the control and data structures required to exhibit the error
+and nothing else. Realistic programs are small to medium size programs that
+perform a computation over rich data structures. They tend to be much larger
+than the concurrency kernels, often accept input data that parameterizes
+the computation, and include significant control and data structures that are
+unrelated to the error.
+</p>
+<p>
+These examples also contain variants on examples from a collection of
+multi-threaded Java programs being developed at IBM to support testing and
+analysis research <a href="#eytani07">[Eytani07]</a>. This set of programs overlaps with the Bandera
+and JPF programs to some extent, but it also includes a number of programs that
+were developed to encode common Java concurrency bug patterns. Many of the IBM benchmarks were
+written following standard forms of parameterization, e.g., the degree of
+multi-threading in an example was indicated by a string &quot;little&quot;,
+&quot;average&quot;, or &quot;lot&quot;, for error reporting, e.g.,
+error messages were printed to a log file, and for perturbing the schedules so
+as to make errors more difficult to detect by testing, e.g., by inserting
+random &quot;sleep()&quot; calls.
+These examples were transformed to further parameterize them, e.g., programs
+accept an integer
+that indicates the degree of multithreading, to indicate errors through
+assertion violations,
+and to remove &quot;sleep()&quot; calls; 
+this last step being easily automated. One example transformation performed
+was non-trivial.
+This involved refactoring the Account example into a version called
+AccountSubtype that uses
+an interface and sub-typing to organize different types of accounts, e.g., checking, savings, etc.
+The rationale for this was that it is a more realistic object-oriented structure for this program
+and the fault was related to account type, so this might help us understand the interaction
+between OO structure and fault detection. In all cases, the resultant transformed versions of the IBM
+benchmark programs are considered behaviorally equivalent to the original versions. 
+</p>
+<p>
+The subjects available from the SIR website are:
+<div>
+<table noborder>
+<tr><th>Subject Name</th><th>Concurrency Bug Type</th></tr>
+<tr><td>account</td><td>Deadlock, Race</td></tr>
+<tr><td>accountsubtype</td><td>Deadlock, Race</td></tr>
+<tr><td>airline</td><td>Race</td></tr>
+<tr><td>alarm_clock</td><td>Null Pointer Exception</td></tr>
+<tr><td>allocationVector</td><td>No Lock</td></tr>
+<tr><td>boundedBuffer</td><td>Deadlock</td></tr>
+<tr><td>clean</td><td>Deadlock</td></tr>
+<tr><td>daisy</td><td>Assert</td></tr>
+<tr><td>deadlock</td><td>Deadlock</td></tr>
+<tr><td>deos</td><td>Assert</td></tr>
+<tr><td>diningPhilosophers</td><td>Deadlock</td></tr>
+<tr><td>elevator</td><td>Array Index Out-Of-Bounds Exception</td></tr>
+<tr><td>groovy</td><td>Deadlock</td></tr>
+<tr><td>lang</td><td>Race</td></tr>
+<tr><td>linkedlist</td><td>Null Pointer Exception</td></tr>
+<tr><td>log4j1</td><td>Deadlock</td></tr>
+<tr><td>log4j2</td><td>Atomicity</td></tr>
+<tr><td>log4j3</td><td>Null Pointer Exception</td></tr>
+<tr><td>loseNotify</td><td>Deadlock</td></tr>
+<tr><td>nested_monitor</td><td>Deadlock</td></tr>
+<tr><td>piper</td><td>Deadlock</td></tr>
+<tr><td>pool1</td><td>Race</td></tr>
+<tr><td>pool2</td><td>Race</td></tr>
+<tr><td>pool3</td><td>Race</td></tr>
+<tr><td>pool4</td><td>Deadlock</td></tr>
+<tr><td>pool5</td><td>Deadlock</td></tr>
+<tr><td>pool6</td><td>Deadlock</td></tr>
+<tr><td>producer_consumer</td><td>Race</td></tr>
+<tr><td>raxextended</td><td>Race</td></tr>
+<tr><td>raxextended2</td><td>Race</td></tr>
+<tr><td>readers_writers</td><td>Deadlock, Race</td></tr>
+<tr><td>reorder</td><td>Atomicity</td></tr>
+<tr><td>replicated_workers</td><td>Deadlock</td></tr>
+<tr><td>sleepingBarber</td><td>Deadlock</td></tr>
+<tr><td>twoStage</td><td>Two Stage Access</td></tr>
+<tr><td>wrongLock</td><td>Wrong Lock</td></tr>
+</table>
+</div>
+</p>
+<p>
+Description of bug classifications:
+<div>
+<table noborder>
+<tr><th>Bug</th><th>Description</th></tr>
+<tr><td>Deadlock</td><td>Resource allocation contention problem</td></tr>
+<tr><td>Race</td><td>Thread execution order and execution speed problem</td></tr>
+<tr><td>No Lock</td><td>Resource use contention resolution problem</td></tr>
+<tr><td>Assert</td><td>When resources (time) insufficient for task scheduled</td></tr>
+<tr><td>Array Index Out-Of-Bounds Exception</td><td>Array manipulation problems in a multithreaded context</td></tr>
+<tr><td>Null Pointer Exception</td><td>Null pointer referenced due to unprotected field access</td></tr>
+<tr><td>Atomicity</td><td>A non-interference between threads problem</td></tr>
+<tr><td>Two Stage Access</td><td>A failure to lock all relevant datasets throughout a transaction problem</td></tr>
+<tr><td>Wrong Lock</td><td>Different locks are obtained by different threads problem</td></tr>
+</table>
+</div>
+<br />
+A more detailed description of the concurrency bug types classifications can be found in [Farchi03]. 
+</p>
+<p>
+<div>
+<hr>
+</div>
+</p>
+<a name="eytani07"></a>
+<p>[Eytani07]. Eytani, Y. and Havelund, K. and Stoller, S.D. and Ur, S.,
+&quot;Toward a framework and benchmark for testing tools for multi-threaded programs&quot;,
+in <i>Concurrency and Computation: Practice and Experience</i>, Vol 19, Issue 3, pp 267-279. John Wiley & Sons Ltd. 2007.</p>
+<a name="dwyerfse06"></a>
+<p>[DwyerFSE06]. Dwyer, M.B. and Person, S. amd Elbaum, S.,
+&quot;Controlling factors in evaluating path-sensitive error detection techniques &quot;,
+in Proceedings of the 14th ACM SIGSOFT Symposium on Foundations of Software Engineering, November 2006.</p>
+<a name="dwyer06"></a>
+<p>[Dwyer06]. Dwyer, M.B. and Hatcliff, J. and Hoosier, M. and Ranganath, V. and Robby and Wallentine, T.,
+&quot;Evaluating the effectiveness of program slicing for model reduction of concurrent object-oriented programs &quot;,
+in Proceedings of the 12th International Conference on 
+Tools and Algorithms for Construction and Analysis of Systems, 2006.</p>
+<a name="farchi03"></a>
+<p>[Farchi03]. Farchi, E. and Nir, Y. and Ur, S.,
+&quot;Concurrent bug patterns and how to test them&quot;,
+in Proceedings of the 17th International Symposium on 
+Parallel and Distributed Processing, 2003.</p>
+<a name="visser00"></a>
+<p>[Visser00]. Visser, W. and Havelund, K. and Brat, G. and Park, S.,
+&quot;Checking programs&quot;,
+in Proceedings of the 15th IEEE Conference on 
+Automated Software Engineering, September 2000.</p>
+
+</body>
+</html>

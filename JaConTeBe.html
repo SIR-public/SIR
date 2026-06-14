@@ -63,12 +63,7 @@ iframe[seamless] {
 }
 -->
 </style>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script> 
-    $(function(){
-      $("#includedContent").load("http://stap.sjtu.edu.cn/share/JPF_results.htm"); 
-    });
-</script>  -->
+
 </head>
 <body style="" ><div id="banner">
 <h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
@@ -105,7 +100,7 @@ The JaConTeBe concurrency subject is a collection of 47 Java test classes
 that exhibit concurrency faults that are manifest within standard Java
 library classes and third-party sourced Java libraries.  The types of faults
 manifested are similar to those found in other
-<a href="concurrency.php">concurrency subjects</a> available in the
+<a href="concurrency.html">concurrency subjects</a> available in the
 repository.
 </p>
 <p>
@@ -115,30 +110,13 @@ essence of a particular subject's
 concurrency error into a simple and easy to understand code example.
 Necessary control and data structures are included within each <em>kernel</em>
 and in some cases the kernel can be used as the basis for experiments using
-Java Pathfinder,
-<a href="http://babelfish.arc.nasa.gov/trac/jpf/wiki/intro/start" target="_blank">JPF</a>.
+Java Pathfinder.
 Many of the faults expressed by the JaConTeBe objects cannot be
 exposed using JPF, however.  To enable revelation of the contained faults,
 each of the JaConTeBe subjects is supplied with a shell script
 which executes the kernel test driver application to expose the
 concurrency fault using the platform standard JVM.
 </p>
-<h3 style="text-align:left">Fault Descriptions</h3><p>
-The categories of faults expressed, along with links to the applicable bug reports for each object
-contained in the JaConTeBe subject, are listed in the following table.
-</p>
-<p>
-<iframe src="http://stap.sjtu.edu.cn/share/bugList.htm" seamless style="width:100%;height:500px"></iframe>
-</p>
-<h3 style="text-align:left">JPF Compatibility Considerations</h3><p>
-As stated earlier, some JaConTeBe objects cannot be analyzed using JPF.  The
-table below reflects the experimental results obtained when these objects
-were used with JPF along with a reference link to the bug report describing the fault
-to the relevant development team.  The table also indicates the JPF version used
-along with the JPF error and failure reason, if known.
-</p>
-<p>
-<iframe src="http://stap.sjtu.edu.cn/share/JPF_results.htm" seamless style="width:100%;height:500px"></iframe>
-</p>
+ 
 </body>
 </html>

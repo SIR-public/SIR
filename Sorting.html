@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Invariant Object Biographies</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Sorting</h2><P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Sorting
+algorithms take a group of elements and return them in a specific
+order.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-style: normal"><B>I. Language
+Agnostic Overview</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Sorting
+is a problem that is well suited to computers.  Sorting steps can be
+laid out explicitly, and the task is highly repetitive.  A
+significant number of sorting algorithms have been developed, and
+there are substantial differences between them.  The majority of
+sorting algorithms are comparison based, which limits their fastest
+worst-case sorting time to O(</SPAN><I>n &middot; </I><SPAN STYLE="font-style: normal">log(</SPAN><I>n</I><SPAN STYLE="font-style: normal">))
+where <I>n</I> is the number of elements to be sorted.</SPAN></SPAN></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+All the sorting algorithms presented here were taken from the data
+structures textbook &ldquo;Data Structures and Algorithm Analysis in
+Java&rdquo; by Mark Allen Weiss.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-style: normal"><B>Ia.        Algorithm
+Overview</B></P>
+<UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-style: normal"><B>Insertion
+        Sort</B><SPAN STYLE="font-weight: medium"> &ndash; Perhaps the simplest
+        of all sorting algorithms, insertion sort starts with the first
+        element, and then compares the second to it.  Once those two are in
+        order, the algorithm continues, finding the correct place for every
+        element.</SPAN></SPAN></P>
+        <UL>
+                <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+                in Java, 3<SUP>rd</SUP> Edition, Robert Sedgewick, pgs 285-287</SPAN></SPAN></P>
+        </UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-style: normal"><B>Shell
+        Sort</B><SPAN STYLE="font-weight: medium"> &ndash; This sorting method
+        sorts elements (using insertion sort) separated by </SPAN></SPAN><SPAN STYLE="font-weight: medium"><I>k</I><SPAN STYLE="font-style: normal">
+        elements &ndash; a </SPAN><I>k</I><SPAN STYLE="font-style: normal">
+        sized group is referred to as a gap &ndash; and then decreases </SPAN><I>k</I><SPAN STYLE="font-style: normal">
+        and repeats the process until </SPAN><I>k</I><SPAN STYLE="font-style: normal">=1,
+        after which the elements are sorted.</SPAN></SPAN></P>
+        <UL>
+                <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+                in Java, 3<SUP>rd</SUP> Edition, Robert Sedgewick, pgs 300-306</SPAN></SPAN></P>
+        </UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-style: normal"><B>Heap
+        Sort</B><SPAN STYLE="font-weight: medium"> &ndash; Once the elements are
+        in a heap data structure, the top element is removed.  This is
+        either the largest or smallest element (depending on whether a
+        min-heap or max-heap is used) and the heap structure is preserved &ndash;
+        so the process can be repeated.</SPAN></SPAN></P>
+        <UL>
+                <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+                in Java, 3<SUP>rd</SUP> Edition, Robert Sedgewick, pgs 389-393</SPAN></SPAN></P>
+        </UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-style: normal"><B>Merge
+        Sort</B><SPAN STYLE="font-weight: medium"> &ndash; The elements are
+        split into halves recursively until they are single.  Then, they are
+        merged with each other, and when they merge, they are sorted.  This
+        produces sorted arrays, the number of which divides in half and size
+        multiplies by two with every iteration.</SPAN></SPAN></P>
+        <UL>
+                <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+                in Java, 3<SUP>rd</SUP> Edition, Robert Sedgewick, pgs 353-356</SPAN></SPAN></P>
+        </UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-style: normal"><B>Quick
+        Sort</B><SPAN STYLE="font-weight: medium"> &ndash; An element is chosen
+        as pivot, and then all elements larger than it go to one side and
+        smaller elements to the other side.  A pivot is chosen from each
+        half, and the two sides are split again.  This process continues
+        recursively.</SPAN></SPAN></P>
+        <UL>
+                <LI><P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+                in Java, 3<SUP>rd</SUP> Edition, Robert Sedgewick, pgs 315-320</SPAN></SPAN></P>
+        </UL>
+</UL>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-style: normal"><B>II.        Java
+Implementation</B></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>insertionSort</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+<SPAN STYLE="font-weight: medium">a.    <SPAN STYLE="font-style: normal">This
+algorithm has two loops, one nested inside the other.  The outer loop
+iterates over every element in the array, and the second iterates
+from the current element backwards until it reaches the beginning of
+the array.  The inner loop moves every element up one and moves the
+selected element down until the next element is smaller or equal &ndash;
+this means the element is in the correct spot.</SPAN></SPAN></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+<SPAN STYLE="font-weight: medium">b.    <SPAN STYLE="font-style: normal">The
+precondition is that the array to be sorted isn't null.  The
+postcondition is that the array is sorted.</SPAN></SPAN></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>shellsort</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+<SPAN STYLE="font-weight: medium">a.    <SPAN STYLE="font-style: normal">This
+algorithm has three loops, nested inside one another.  The outer loop
+iterates over the gaps &ndash; starting with half of the length of the
+array, then one fourth of the length of the array, etc...  The middle
+loop iterates over each gap &ndash; two for the first iteration of the
+outer loop, four for the second, etc...  Finally the inner loop
+iterates over each element in the given gap, and sorts them using an
+insertion sort.</SPAN></SPAN></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+<SPAN STYLE="font-weight: medium">b.    <SPAN STYLE="font-style: normal">The
+precondition is that the array to be sorted isn't null.  The
+postcondition is that the array is sorted.</SPAN></SPAN></P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal">
+<B>heapsort</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+a.      Heapsort has two for loops, though they are sequentially ordered
+rather than nested.  The first loop converts the array into a heap,
+and the second loop sorts the heap.  The algorithm uses two helper
+methods, percDown and swapReferences.  percDown moves elements down
+the heap &ndash; this is used in the initial heap construction as well as
+restructuring after an element is removed for sorting. 
+swapReferences simply swaps two elements of an array.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+b.      The precondition is that the array to be sorted isn't null.  The
+postcondition is that the array is sorted.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal">
+<B>mergeSort</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+a.      This algorithm can be thought of as occurring in two phases &ndash;
+splitting and merging.  Both are abstracted from the initiating
+method (below) for clarity.  The splitting phase simply divides the
+given array in half, and then recursively calls itself on both
+halves.  This continues until the arrays contain only one element,
+this is when the merging begins.  Two elements are compared and
+merged into a two element array &ndash; then two of these arrays are
+merged into a sorted four element array.  The algorithm continues
+like this until one array with all the elements in sorted order is
+created.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+b.      The precondition is that the array to be sorted isn't null.  The
+postcondition is that the array is sorted.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal">
+<B>quicksort</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+a.      This implementation is again split into several helper methods. 
+In addition to swapReferences (which simply switches two array
+elements), a method named median3 is called on the first, middle and
+last values.  It finds the median of the three numbers and returns it
+&ndash; this is used to find the pivot.  Once a pivot is found, the array
+is partitioned, split, and sorted again.  Once the arrays reach a
+pre-set cutoff value, they are sorted with insertion sort.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-style: normal; font-weight: medium">
+b.      The precondition is that the array to be sorted isn't null.  The
+postcondition is that the array is sorted.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal">
+<B>Metrics:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+Lines of code for implementation: 130</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+Methods for implementation: 15</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+Lines of code for invariants: 29</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+Methods for invariants: 3</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal">
+<B>References:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Wikipedia's
+entry on sorting algorithms:
+</SPAN></SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Sorting_algorithm" target="_blank"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">http://en.wikipedia.org/wiki/Sorting_algorithm</SPAN></SPAN></A></U></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Algorithms
+in Java, 3<SUP>rd</SUP> Edition by Robert Sedgewick.  Chapters
+6,7,8,9.  Pages 263-417.</SPAN></SPAN></P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+        6.4 &ldquo;Insertion Sort.&rdquo; pgs 285-287</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+        6.8 &ldquo;Shell Sort.&rdquo; pgs 300-306</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+        9.4 &ldquo;Heap Sort.&rdquo; pgs 389-393</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+        8.3 &ldquo;Top-Down Mergesort.&rdquo; pgs 353-356</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-style: normal; font-weight: medium">
+        7.1 &ldquo;Quicksort &ndash; The basic algorithm.&rdquo; pgs 315-320</P>
+</UL>
+</body>
+</html>
+

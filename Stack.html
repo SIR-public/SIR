@@ -1,0 +1,299 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Invariant Object Biographies</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Stack</h2>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+A stack is a data structure that uses last-in, first-out (LIFO)
+ordering and allows reading and writing on the top element only.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>I.  Language
+Agnostic Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<IMG SRC="Stack-m6c5da6f8.png" NAME="graphics1" ALIGN=RIGHT WIDTH=179 HEIGHT=128 BORDER=0 ALT="A simple stack pictorial">
+</P>
+<P>
+The stack is perhaps the most fundamental of all data structures used in
+computer science.  It has been adapted to store everything from
+simple numbers, to user-defined data types, to the entire state of
+running programs.  The stack was developed over 50 years ago, making
+it one of the oldest ideas in the relatively young field of computer
+science.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+The two included implementations of a stack, based either on a list
+or an array, were taken from the data structures textbook &ldquo;Data
+Structures and Algorithm Analysis in Java&rdquo; by Mark Allen Weiss.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+Implementations of stacks are typically required to satisfy the
+following constraints:</P>
+<OL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        You cannot pop elements from an empty stack.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Random element access is not allowed &ndash; only the &ldquo;top&rdquo; element
+        can be read or removed, and new elements can only go on top.</P>
+</OL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+There are a number of fundamental operations that can be performed on
+any stack:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Empty() &ndash; This will destroy the contents of the stack, leaving it
+        empty.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Push(Element) &ndash; This puts a new element on top of the stack.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Pop() &ndash; This removes the top element from the stack and returns it
+        to the user.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Top() &ndash; This returns the top element to the user, but does not
+        affect the stack.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        IsEmpty() &ndash; This returns true if the stack is empty, otherwise it
+        returns false.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>II. Java
+Specific Overview:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+There are two ways to implement a stack, based on a list or based on
+an array.  
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>IIa.        Array
+Based Implementation</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+The array that the stack is built on is initialized to either a
+default or a user-defined size depending on which constructor is
+called.  New elements are pushed onto the stack by incrementing the
+variable topOfStack, and then inserting them into the newly
+incremented position.  Elements are popped by setting the top object
+to null and then decrementing topOfStack.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+There are two fields which are used in the invariants:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        theArray &ndash; This is the array of objects on top of which the Stack
+        class is built.  It stores the actual data which is accessed and
+        modified by the push and pop methods of the Stack class.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        topOfStack &ndash; This is an integer which stores the count of the
+        elements in the stack.  Only the value which is stored at this key
+        can be read.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+So, the readable element is stored at theArray[topOfStack] and new
+elements are pushed at theArray[++topOfStack].</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>push</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method first checks to make sure there is enough room on the
+stack for the new element. If there is, it inserts (pushes) a new
+element onto the top of the stack.  If there is not enough room, an
+overflow exception is thrown.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      The preconditions verify that that the underlying array is not
+null, that its size is at least one, that the stack is not full, that
+the number of elements hasn't somehow been set to a negative value,
+and that the number of elements is not larger than the size of the
+underlying array.  The postcondition verifies that the element was
+pushed successfully.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>pushPop</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method pushes and pops an element.  This has no effect on the
+permanent state of the stack, as the element is removed immediately
+after being added.  It is used to test the functionality of the
+stack.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      The preconditions verify that that the underlying array is not
+null, that its size is at least one, that the stack is not full, that
+the number of elements hasn't somehow been set to a negative value,
+and that the number of elements is not larger than the size of the
+underlying array.     
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>isFull</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method checks to see if the underlying array is full.  If so,
+it returns true, if not, it retuns false.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no invariants, rather it is used in the invariants
+of other methods.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>IIb. List Based Implementation</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+To construct a new stack with a list based implementation, the
+topOfStack pointer is initialized to null.  New elements are pushed
+onto the stack by first making the new element point to whatever is
+currently at the top of the stack, and then assigning the topOfStack
+variable to point at the new element.  Popping simply consists of
+assigning the topOfStack variable to the element that the current top
+points to &ndash; in effect making the second element become the first. 
+It should again be noted that this implementation is generic to any
+object or primitive.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+There is only one field checked by the invariant:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+        topOfStack &ndash; This is an object of the ListNode data type.  It
+        points to the element on the top of the stack.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+So, the top of the stack can be accessed by reading
+topOfStack.element.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>Push</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method puts a new value on the top of the stack.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      The precondition verifies that the stack is not cyclic.  The
+postconditions verify that the stack has not become cyclic, and that
+the element that was to be pushed is now on the top of the stack.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>isAcyclic</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method traverses the stack and verifies that the same node
+isn't in the stack twice &ndash; that the stack doesn't point to itself
+at any point.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no invariants, rather it is used in the invariants
+of other methods.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>Metrics:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for implementation: 114 
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for implementation: 24</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for invariants: 45</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for invariants: 28</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>References:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium">Wikipedia's entry on Stack data
+structures: </SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Stack_(data_structure)" target="_blank"><SPAN STYLE="font-weight: medium">http://en.wikipedia.org/wiki/Stack_%28data_structure%29</SPAN></A></U></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Data Structures, Algorithms and Applications in Java by Sartaj Sahni.
+Chapter 9: &ldquo;Stacks.&rdquo; pgs 302-347.</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+        9.3 &ldquo;Array Representation.&rdquo; pgs 307-315</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+        9.4 &ldquo;Linked Representation.&rdquo; pgs 316-317</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium">Algorithms in Java, 3<SUP>rd</SUP>
+Edition by Robert Sedgewick.  Sections 4.4 &ndash; 4.5: &ldquo;Abstract Data
+Types.&rdquo; 148-157.</SPAN></P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+        4.4 &ldquo;Stack ADT Implementations.&rdquo; pgs 148-153</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+        4.5 &ldquo;Generic Implementations.&rdquo; pgs 154-157</P>
+</UL>
+</body>
+</html>
+
+

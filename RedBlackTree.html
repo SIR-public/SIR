@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Invariant Object Biographies</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Red Black Tree</h2><P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; font-weight: medium">
+<IMG SRC="Red-Black-Tree-m32a8e864.png" NAME="graphics1" ALIGN=RIGHT HSPACE=5 VSPACE=5 WIDTH=405 HEIGHT=211 BORDER=0 ALT="A red-black tree graph"><BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium">A
+red-black tree is a self balancing tree whose search/insert/remove
+methods have a time complexity of O(log<I>n</I>).</SPAN></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>I.  Language
+Agnostic Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+Red-black trees are commonly used in programs when quick searching,
+inserting, or removing and efficient use of space are necessary.  As
+they are the underlying data structure used in many more complex
+structures, scrutiny is warranted.  
+</P>
+<!-- <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+The source code for the Vector class was developed by Sun, as part of
+version 1.5 of the Java framework.</P> -->
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+A red-black tree has all the constraints of a binary tree, and often
+can be used in the same way.  However, a red-black tree also has
+several additional constraints:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Each node must be labeled either &ldquo;red&rdquo; or &ldquo;black&rdquo;.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        The root node must be black.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        All leaf nodes (null or sentinel values) must be black.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Both children of each red node must be black.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Every path from the root node to a leaf must contain the same number
+        of black nodes.</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+                A node's &ldquo;black height&rdquo; is defined as the number of internal
+                black nodes in a path from the root to a leaf.</P>
+        </UL>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>II. Java
+Specific Overview:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+The red black tree is implemented with pointers (as opposed to on top
+of an array).  There are five fields which are worth noting:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        int key &ndash; This is the key accompanying the value that is to be
+        searched for.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        V value &ndash; This is the value itself, the data that the node is
+        storing.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Entry&lt;V&gt; left &ndash; This is a pointer to the left child.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Entry&lt;V&gt; right &ndash; This is a pointer to the right child.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+        Entry&lt;V&gt; parent &ndash; This is a pointer to the node's parent.</P>
+</UL>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>wellConnected</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method verifies that the parent fields are correct.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no preconditions or postconditions, rather it is
+used in verifying the conditions of other methods.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>redConsistency</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method verifies that all the children of a red node are black.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no preconditions or postconditions, rather it is
+used in verifying the conditions of other methods.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>blackConsistency</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method verifies that all the children of a black node are
+red.  It also verifies that the current node is black.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no preconditions or postconditions, rather it is
+used in verifying the conditions of other methods.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>ordered</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method verifies that all the order property still holds. 
+That is, the keys of the left subtree of any node must be less than
+the node's key, and all of its right subtree as well.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      This method has no preconditions or postconditions, rather it is
+used in verifying the conditions of other methods.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>remove</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method finds and deletes the value with the given key.  It
+then returns the value that was deleted.  If the key could not be
+found, the data structure is not altered and null is returned. 
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      The preconditions and postconditions, which are identical, both
+check that the root node is either null or the tree is consistently
+ordered, and that the data structure's size variable is correctly set
+to the size of the tree.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>Metrics:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for implementation: 334</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for implementation: 24</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for invariants: 96</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for invariants: 10</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>References:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium">Wikipedia's entry on red-black
+trees: </SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Red_black_tree" target="_blank"><SPAN STYLE="font-weight: medium">http://en.wikipedia.org/wiki/Red_black_tree</SPAN></A></U></FONT><SPAN STYLE="font-weight: medium">
+</SPAN>
+</P>
+</body>
+</html>

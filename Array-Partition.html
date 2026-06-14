@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Invariant Object Biographies</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Array-Partition</h2><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>I.        Language
+Agnostic Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+This code is part of the Quicksort algorithm, one of the fastest and
+most efficient sorting algorithms in use today.  Quicksort is
+extremely common, used explicitly in many programs and implicitly in
+others, since it is part of the Java libraries.  Since it so
+frequently used, correctness is required, and proving this
+correctness for all situations is worthwhile.  
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium">This
+specific implementation is from Saswat Anand, Corina S. Pasareanu,
+and Willem Visser.  Symbolic execution with abstract subsumption
+checking.  <I>SPIN Workshop on Model Checking of Software</I><SPAN STYLE="font-style: normal">,
+2006.  This was in turn implemented from: Tomas Ball.  A theory of
+predicate-complete test coverage and generation.  Technical report,
+Microsoft Research, 2004.</SPAN></SPAN></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>II.    Java Specific
+Overview</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">This
+class divides an array into upper and lower halves, using the first
+element (a[0]) as a pivot.  It does this by moving all elements whose
+value is larger than the pivot to after all the elements whose value
+is smaller than the pivot.  Ideally, this pivot will be the median
+value, and after partitioning the array would be evenly divided
+between low and high values.  It should also be noted that the
+algorithm uses an in-place partitioning scheme to save memory.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">As
+the name indicates, this class is implemented with an array rather
+than a linked list or tree of any kind.  This implementation has
+several advantages and disadvantages, and a future study may wish to
+consider the same algorithm with different underlying data
+structures.  
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">The
+invariant is realized through a basic assert and function.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>partition</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This is the partitioning method which divides the array into upper
+and lower parts.  The dividing line is set at the value of the first
+element.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions verify that the underlying array is not null,
+that there are at least three elements in the array and that the
+count of the number of elements accurately reflects the size of the
+array.  The postcondition verifies that the array is &ldquo;weakly&rdquo;
+sorted, see the discussion of the invariant for thorough explanation.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium"><BR>
+</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>isWeaklySorted</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a)      This invariant verifies that the array, having been partitioned,
+is divided into two halves.  The first half must be less than or
+equal to the pivot (a[0]) and the second half must be strictly
+greater than the pivot.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b)      As it is used in other invariants, this method has no invariants
+of its own.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>Metrics:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for implementation: 13</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for implementation: 1</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Lines of code for invariants: 22</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Methods for invariants: 2</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<B>References:</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in">
+<SPAN STYLE="font-weight: medium">Wikipedia's entry on in-place
+partitioning:
+</SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Quicksort#Version_with_in-place_partition" TARGET="_blank"><SPAN STYLE="font-weight: medium">http://en.wikipedia.org/wiki/Quicksort#Version_with_in-place_partition</SPAN></A></U></FONT></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+<BR>
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; border: none; padding: 0in; font-weight: medium">
+Data Structures and Algorithm Analysis in Java by Mark Allen Weiss. 
+Section 7.7.2: &ldquo;Partitioning Strategy.&rdquo;  pgs 266 &ndash; 268. 
+</P>
+
+</body>
+</html>

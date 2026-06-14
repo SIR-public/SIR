@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Invariant Object Biographies</title>
+<link rel="SHORTCUT ICON" href="https://sir.csc.ncsu.edu/portal/favicon.ico">
+<link rel="stylesheet" href="https://sir.csc.ncsu.edu/content/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li><a href="https://sir.csc.ncsu.edu/content/sir.php" class="small">Home</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/acct_mng.php" class="small">Manage&nbsp;Account</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/admin.php" class="small">Administrative&nbsp;Settings</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/logout.php" class="small">Logout</a></li>
+<li><a href="https://sir.csc.ncsu.edu/portal/usage.php" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/validity.php" class="small">Reporting&nbsp;Experimental Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/other_resources.php" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/portal/acks.php" class="small">Acknowledgments</a></li>
+<li><a href="https://sir.csc.ncsu.edu/php/showfiles.php" class="small">Download Objects</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/tools.php" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/oldfiles.php" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/cite.php" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/c-overall.php" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/java-overall.php" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/InvariantCheckingJavaExampleHandbook.php" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/spl-overall.php" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/concise-desc.php" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/c-overall-full.php" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/java-overall-full.php" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir.csc.ncsu.edu/content/spl-overall-full.php" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/concise-overall-full.php" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/docs.php" class="small">Related Documents</a></li>
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/content/reporting.php" class="small">Report&nbsp;Problems</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Disjoint Set</h2><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+A disjoint-set is a data structure for maintaining dynamic partitions
+of a set.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+<B>I.   Language Agnostic Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+A partition of some set X is a collection of non-empty subsets whose
+union is X, but any two of the  subsets are disjoint.  For example,
+let X = {1,2,3,4,5}.  Then, {{1,3,5},{2,4}} is a partition of X.  
+</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The source code for the disjoint-set class is taken from the book
+&ldquo;Data Structure and Algorithm Analysis in Java&rdquo; by Mark Allen
+Weiss, first edition, 1998.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+There are two operations that must be supported by a disjoint set
+implementation:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Find &ndash; This takes an element from the set X and returns the subset
+        that contains the element.  In the above example, Find(3) would
+        return the subset {1,3,5}.  This algorithm is also commonly referred
+        to as a &ldquo;union-find&rdquo; algorithm.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Union &ndash; This takes two different subsets and merges them into one
+        subset.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+Any disjoint-set implementation must satisfy the following
+properties:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Tree nodes must be the elements of the set X.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Every node (except the root) must have a pointer to the parent.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Every tree forms a set, and the root of a tree is representative of
+        the entire tree.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The find operation takes a tree node as input and returns the root of
+the tree which contains the node.  It does this by following the
+parent pointers until a root node is reached.  Thus, the time
+complexity of the find operation is proportional to the maximum
+height of the trees in the forest, and the complexity is linear when
+the forest degenerates into a list.  Conversely, the union operation
+takes the roots of two trees and merges them into one tree.  The time
+complexity of the union operation is constant since the operation
+simply sets one root's parent pointer to be the other input root
+node.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+Further, an optimized union-find algorithm incorporates two
+improvements over the original algorithm described above:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Union by rank &ndash; In the union operation, the root of the shorter
+        tree is set as a child of the root of the higher tree.  This
+        guarantees that the maximal tree height is increased at most by one
+        after the union operation.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Path compression &ndash; After the find operation, the input element is
+        set as a child of the return value (The root of the tree which
+        contains the input element).</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+<B>II.  Java Specific Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The disjoint set tree is implemented on top of an integer array,
+which makes the forest have the following properties:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        The array indexes are the elements of the set.</P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        The value of an array index <I>i</I> (s[<I>i</I>]) is the parent of index <I>i.</I></P>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        A root is denoted by having a value of &minus;1, that is, node <I>r</I> is a root
+        node if and only if s[<I>r</I>] = &minus;1.</P>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+There are two implementations of the disjoint-set class included, one
+optimized and one unoptimized.  They are both subject to the same
+invariants, however, and so only the invariants and dependent methods
+are discussed here.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The disjoint-set invariant has three requirements:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        The underlying array must not be null.</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                Enforced by verifying that s != null.</P>
+        </UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Every value must be between &minus;1 and one less than the value of the
+        array.</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                Enforced by verifying that the return value from the method
+                goodValues is boolean true.</P>
+        </UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        The data structure must be acyclic, that is, it must be a forest.</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                Enforced by verifying that the return value from the method acyclic
+                is boolean true.</P>
+        </UL>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The pre and postconditions for the Find operation, Find(int x), are:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Precondition: x &gt;=0 &amp;&amp; x &lt; s.length</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                This asserts that the input element is in the set.</P>
+        </UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Postcondition: s[$ret] &lt; 0</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                This verifies that the returned value is a root of a tree. Note
+                that the postcondition is rather weak. Ideally, we want to assert
+                that the input element is in the tree that has the return as its
+                root.</P>
+        </UL>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+The pre and postconditions for the Union operation, union(int
+root1,int root2), are:</P>
+<UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Precondition: root1 &gt;= 0 &amp;&amp; root1 &lt; s.length &amp;&amp;
+        root2 &gt;= 0 &amp;&amp; root2 &lt; s.length &amp;&amp; root1 != root2
+        &amp;&amp; s[root1] == &minus;1 &amp;&amp; s[root2] == &minus;1</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                This checks that the two input elements are roots of different
+                trees.</P>
+        </UL>
+        <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Postcondition: find(root1) == find(root2)</P>
+        <UL>
+                <LI><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+                This makes sure that the two trees are merged together.</P>
+        </UL>
+</UL>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+<B>Metrics:</B></P>
+<MULTICOL ID="Section1" DIR="LTR" COLS=2 GUTTER=0>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+        <B>Original:</B></P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Lines of code for implementation: 35</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Methods for implementation: 5</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Lines of code for invariants: 39</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Methods for invariants: 3</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+        <B>Fast:</B></P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Lines of code for implementation: 38</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Methods for implementation: 4</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Lines of code for invariants: 39</P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Methods for invariants: 3</P>
+</MULTICOL>
+<DIV ID="Section2" DIR="LTR">
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal">
+        <B>References:</B></P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">Wikipedia's
+        entry on disjoint sets:
+        </SPAN></SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Disjoint-set_data_structure" target="_blank"><SPAN STYLE="font-weight: medium"><SPAN STYLE="font-style: normal">http://en.wikipedia.org/wiki/Disjoint-set_data_structure</SPAN></SPAN></A></U></FONT></P>
+        <P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-style: normal; font-weight: medium">
+        Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and
+        Clifford Stein. <i>Introduction to
+        Algorithms</i>, Second Edition. MIT Press and McGraw-Hill, 2001. ISBN
+        0-262-03293-7. Chapter 21: Data Structures for Disjoint Sets,
+        pp.498-524</P>
+</DIV>
+<div id="footr" style="height:1em"></div>
+<p style="border-top:thin solid #999999; font-size:small">
+If this page looks broken, try the following link to
+<!--<a href="../../php/set-page.php?mode=">fix the page</a>.-->
+<a href="https://sir.csc.ncsu.edu/php/set-page.php?mode=2">fix the page</a>.
+(<a href="https://sir.csc.ncsu.edu/portal/browser-compatibility.php">Explanation</a>)</p>
+</div>
+</body>
+</html>

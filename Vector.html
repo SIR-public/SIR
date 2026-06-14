@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Invariant Object Biographies</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Vector</h2><P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+A vector is a data structure that implements a mapping from an
+unbounded range of integers to objects of a certain type.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in"><B>I.  Language
+Agnostic Overview</B></P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+Vectors are similar to arrays &ndash; one the most common and certainly
+one of the simplest data structures used in computer science.  Arrays
+are hampered, however, by their fixed size.  A vector data structure
+solves this problem, by increasing the array's size automatically
+when it becomes full and another insert is requested.  Vectors are
+used frequently in both research and production environments.  As
+they are versatile, fast, and space-efficient, they are a smart
+choice for a wide range of applications.  Vectors are simple data
+structures, so correctness is not especially challenging, but it is
+extremely important.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in; font-weight: medium">
+The source code for the Vector class was developed by Sun, as part of
+version 1.4 of the Java framework.</P>
+<P CLASS="western" ALIGN=LEFT STYLE="margin-bottom: 0in">Implementations
+of vectors are typically required to satisfy the following
+constraints:</P>
+<OL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">The underlying
+        array can never be null.</P>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">The element count
+        can never be negative.</P>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">The element count
+        can never be greater than the size of the underlying array.</P>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">No element can
+        have a negative index.</P>
+</OL>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>II.    Java Specific
+Overview:</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The Vector class in
+Java is implemented on top of an array, so it still provides very
+fast random access. When an insert is attempted, and the current
+array doesn't have sufficient capacity, the array size is either
+increased by a predetermined number, or if that number isn't set, the
+capacity is simply doubled.  It should also be noted that the Java
+implementation is also generic to any object (and presumably any
+primitive).</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">There are two fields
+which are used in the invariants:</P>
+<UL>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">elementData &ndash;
+        This is the array of objects on top of which the Vector class is
+        built.  It stores the actual data which is accessed and modified by
+        the various methods of the Vector class.</P>
+        <LI><P CLASS="western" STYLE="margin-bottom: 0in">elementCount &ndash;
+        This is an integer which stores the count of elements in the array.</P>
+</UL>
+<P CLASS="western" STYLE="margin-bottom: 0in">So, a given element
+would be stored at elementData[elementCount-1].</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>ensureCapacity</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This method ensures there is enough room in the underlying array
+for minCapacity elements.  If not, the array size is increased
+(either doubled, incremented by a set amount, or set to minCapacity)
+to an acceptable size.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions verify that:</P>
+<UL>
+<LI><P CLASS="western" STYLE="margin-bottom: 0in">The underlying array has been
+properly initialized (constraint 1)</LI>
+<LI><P CLASS="western" STYLE="margin-bottom: 0in">The number of elements hasn't
+somehow been set to a negative value (constraint 2)</LI>
+<LI><P CLASS="western" STYLE="margin-bottom: 0in">The number of elements
+isn't larger than the size of the underlying array (constraint 3).</LI>
+</UL>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+The postCondition verifies the same properties (1, 2 and 3) and that the
+underlying array can hold at least minCapacity elements.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>indexOf</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This method searches for the given value and then returns its
+associated index.  It searches forward (index sizes increasing by
+one) from the given index.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions verify that the underlying array has been
+properly initialized (constraint 1), the number of elements hasn't
+somehow been set to a negative value (2), and the number of elements
+isn't larger than the size of the underlying array (3).  It also
+checks that that a negative search position was not given (4) (note
+that this only applies to the two-argument form of the indexOf
+method).  The postconditions are that either -1 or a correct index
+which is not less than the index must be returned.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>lastIndexOf</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This method is similar to indexOf in that it searches for a value
+and returns the index, however, it searches backward (index sizes
+decreasing by one) from the given index.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions of this method identical to those of indexOf
+(constraints 1, 2, 3 and 4).  The postconditions are also similar,
+however there is one notable difference.  Since lastIndexOf searches
+backwards rather than forwards, the returned index cannot be greater
+than the given index, instead of larger.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>removeElementAt</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This method removes the element from the vector which is stored at
+the given index.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions verify that the underlying array has been
+properly initialized (constraint 1), the number of elements hasn't
+somehow been set to a negative value (2), and the number of elements
+isn't larger than the size of the underlying array (3).  There are no
+postconditions.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>insertElementAt</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+a.      This method inserts an element into the vector at a given
+position.  Often, it is not called directly, but by the method
+addElement(E obj), which inserts the given object at the end of the
+data structure.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in; font-weight: medium">
+b.      The preconditions verify that the underlying array has been
+properly initialized (constraint 1), the number of elements hasn't
+somehow been set to a negative value (2), and the number of elements
+isn't larger than the size of the underlying array (3).  They also
+check that the index to insert the element into is not a negative
+position (4), or a position larger than the size of the array.  The
+postconditions specify that the underlying array has not become null,
+that the element count is nonnegative, and that the element count is
+not greater than the size of the underlying array.</P>
+<P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in"><B>add</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+a.      This method simply adds the given element to the end of the
+vector.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in">
+b.      The preconditions verify that the underlying array has been
+properly initialized (constraint 1), the number of elements hasn't
+somehow been set to a negative value (2), and the number of elements
+isn't larger than the size of the underlying array (3).  The post
+conditions verify the same things.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>Metrics:</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Lines
+of code for implementation: 254</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Methods
+for implementation: 49</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Lines
+of code for invariants: 60</P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Methods
+for invariants: 6</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>References:</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium">Wikipedia's
+entry on dynamically resizing arrays:
+</SPAN><FONT COLOR="#000080"><U><A HREF="http://en.wikipedia.org/wiki/Dynamic_array" target="_blank"><SPAN STYLE="font-weight: medium">http://en.wikipedia.org/wiki/Dynamic_array</SPAN></A></U></FONT></P>
+<P CLASS="western" STYLE="margin-bottom: 0in; font-weight: medium">Data
+Structures, Algorithms and Applications in Java by Sartaj Sahni. 
+Section 5.4: &ldquo;Vector Representation.&rdquo; pgs 176 &ndash; 180.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><SPAN STYLE="font-weight: medium">Algorithms
+in Java, 3<SUP>rd</SUP> Edition by Robert Sedgewick.  Section 3.2:
+&ldquo;Arrays.&rdquo; pg 87.</SPAN></P>
+</body>
+</html>

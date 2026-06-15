@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+h4 {
+  font-size: small;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">C Object Handbook</h2>
+<h3><a name="Contents"></a>Table of Contents</h3>
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#2">Object Selection</a></li>
+<li><a href="#3">Object Organization</a></li>
+<li><a href="#4">General Object Setup</a></li>
+<li><a href="#5">Test Creation</a>
+  <ol style="list-style-type:upper-alpha">
+  <li><a href="#5A">TSL Specification</a></li>
+  <li><a href="#5B">Test Case Creation</a></li>
+  <li><a href="#5C">Expect Script Specification</a></li>
+  </ol></li>
+<li><a href="#6">Coverage Tests</a></li>
+<li><a href="#7">Test Histories and Timings</a></li>
+<li><a href="#8">Fault Seeding and Fault Matrices</a></li>
+</ol>
+
+<h3><a name="Overview"></a>1. Overview</h3>
+
+<p>This document describes the organization of a typical small to medium size
+C program as an experiment object. Note that in this document we focus
+on the &quot;new&quot; organization for C objects. Details on the previous
+organization of C objects (the "Siemens" programs and
+<code>space</code>) are available in the
+<a href="#appendix">appendix to this document</a>.</p>
+
+<p>The objects in the repository have been designed with support of a certain
+experimentation workflow in mind. However, we have attempted to create a design
+that is generic enough to allow customization to other workflows as appropriate.
+One approach to conducting an experiment with the infrastructure is the
+following:</p>
+<ol>
+<li>Download or create a new copy of one or more objects in a local space
+for the experiment.</li>
+<li>Set the operating system (Linux/Unix/OSX shell) environment
+variable &quot;<code>experiment_root</code>&quot;
+to reflect the location of the experiment object. This variable should
+provide the absolute path to the directory into which you have placed the
+SIR object directory. This enables scripts and tools provided by the
+infrastructure to resolve needed paths without hardcoding system
+specific paths.</li>
+<li>Determine the artifacts that you want to utilize, such as specifications,
+versions, seeded faults, and inputs.</li>
+<li>Create scripts that can leverage the common organizational
+structure of the objects to perform the desired experimentation tasks on a
+version of the object, and that can further leverage the infrastructure by relying
+on common locations for outputs.</li>
+<li>Finally, create a top-level script that will perform the experimentation
+tasks across all versions of an object.</li>
+</ol>
+<p>In this way, the object infrastructure facilitates a high degree of automation,
+enabling experiments that can more rapidly gather much larger amounts of reliable
+data, in turn leading to results with stronger claims of significance and fewer
+threats to validity. In some experiments, one can even consider a master script
+that automatically executes the experiment tasks across multiple objects.</p>
+
+<p>SIR provides a number of tools to help you conduct experiments on the object
+programs. The above is only one example of a process for using the infrastructure;
+many others are possible. However, regardless of the process you choose,
+<strong>you should always perform step 2 above if you intend to use the tools
+provided by the infrastructure.</strong></p>
+
+
+<h3><a name="2"></a>2. Object Selection</h3>
+
+<p>To populate the repository, we sought C objects that satisfied various guidelines.
+They needed to be &quot;real&quot; programs, in the sense that they are non-trivial
+programs created by experienced software programmers to implement solutions to actual
+problems. In other words, we did not consider programs created specifically
+for research or experimentation, or programs created by students. We required
+the objects to be small to medium in size (historically 3 to 30KLOC), with
+free and distributable source code. There needed to be at least 5 versions
+available, which could include versions identified by source control tags
+where available. Finally, we preferred programs that could be built from their
+source code and run on Solaris. Where possible, we tried to find and include
+other associated artifacts, such as existing specifications, test suites,
+and fault reports.</p>
+
+<p>We limited our selection of programs to those that generate
+outputs that can easily be automatically checked by comparison with saved outputs.
+Programs that manipulate the screen or produce graphical output such that it is
+necessary to save screen-dumps were not considered suitable and are not found
+in the repository. Programs that produce text output to the screen
+and/or output to files were accepted. We also desired programs that are
+deterministic, or that could be made so relatively easily. This means that
+programs involving concurrency and thread use were not considered.</p>
+
+
+<h3><a name="3"></a>3. Object Organization</h3>
+
+<p>Objects in the repository are organized into a format that
+supports experimentation activities, which is described here:</p>
+
+<p class="i1">
+<a href="c-object-dir-spec.php">C object directory specification</a></p>
+
+
+
+<h3><a name="4"></a>4. General Object Setup</h3>
+
+<p>Each program currently available has been merged into a single source
+code file, to accommodate a particular toolset that we used to collect coverage information
+and trace files. However, it should be possible to accommodate multiple-file objects in
+the infrastructure, by providing appropriate Makefiles, as long as the Makefiles yield a
+single executable.</p>
+
+<p>The single file versions of the objects were created by joining all of
+the .c files comprising the program using <code>cat</code>. Header files
+remain separate. So the vK directory for version K contains a set of zero or
+more header files, and one .c file. A makefile is provided for each version
+that defines a minimum of three targets. The default target builds the program
+normally, without modification. A &quot;build-st&quot; target
+instruments the program for collecting statement traces and a
+&quot;built-bt&quot; target instruments the progam for collecting branch traces,
+as described in Section 2 of the
+<a href="c-object-dir-spec.php">C object directory specification</a>.</p>
+
+<p>Please be aware that in some objects, certain libraries provided with the
+code may have been exempted from the merging step under the assumption that
+the library code is not normally of interest for testing. Additionally,
+configuration support for compiling on multiple platforms may have been
+disabled in some objects (such as <code>make</code>), and thus these programs
+may not work on alternate platforms without modification. It is possible,
+however, to inspect the original distributions of the objects provided in
+the tar packages, and use those materials to prepare such objects for use on
+other platforms. Some additional remarks regarding make can be found
+<a href="configuration-support.php">here</a>.</p>
+
+<p>Some objects may have been modified to ensure deterministic output,
+and to guarantee that all outputs appear on <code>stdout</code>. These modifications
+are necessary to allow automated regression testing with automated
+checking of outputs via output differencing, and are motivated in part
+by the sheer volume of data that is typically generated. These are,
+however, typical problems faced by testers in everyday testing activities,
+and these techniques are often used by test engineers in practice.
+For additional details, see:</p>
+
+<p class="i1">
+<a href="nondet-stderr.php">Removing sources of nondeterminism</a>
+</p>
+
+<h4><a name="4.1"></a>4.1 Generalized Object Test Execution</h4>
+<p>
+To replicate test results using the objects in the SIR repository the
+following general series of tasks should be performed by your script:
+</p>
+<ul>
+<li>
+Copy the original version of the object into the <i>source</i> directory.
+The location of this original version varies by object, depending on
+the date of preparation.  Some objects use the directory
+<i>versions.alt/versions.orig</i>, or <i>versions.alt/orig</i>.  Others
+like the Siemens subjects (tcas, printokens, etc.) have the original
+stored in the directory <i>source.alt/source.orig</i>.  
+</li>
+<li>
+Compile the original version using the appropriate compilation tool chain.
+</li>
+<li>
+Execute the test suite against the object.  Most, objects in
+the repository provide a basic test suite script that executes all tests
+against the object.  Objects that provide multiple test suite compositions
+usually provide the test script matching the <b>tsl.universe</b> file
+from the <i>testplans.alt</i> directory.  Some objects provide multiple
+universe files which compose test suites of differing goals, e.g.
+coverage (as denoted by the use of "cov" in universe file names), tsl
+(a test suite conforming to a Test Specification Language and typically
+contain tests oriented towards coverage based on combinatoric in accordance
+with the category partition method), ducov (indicating def-use oriented
+coverage), junit (indicating JUnit tests and implying conformance to
+test goals of a JUnit style class testing), and other labels typically
+indicating a custom test suite used by a previous researcher.
+</li>
+<li>
+Save the test result outputs from the original (unfaulted) version
+to a known location, e.g. outputs.alt, for use in comparison tests later.
+</li>
+<li>
+Copy one of the faulted artifacts (of the same version as your original
+when applicable) into the <i>source</i> directory.  The faulted artifacts
+are found in the <i>versions.alt</i> directory and the subdirectory
+structure found beneath this directory differs depending upon date of
+preparation.  Siemens subjects, due to their age and the way chosen to
+insert the faults,
+have a subdirectory of <i>versions.orig</i> while others use a subdirectory
+named <i>seeded</i> to indicate the location of the fault seeded versions.
+The Siemens subjects also have the unfaulted original version stored
+under the <i>source.alt</i> directory with the faulted versions stored
+under <i>versions.alt</i>.
+You will need to evaluate what is present in the versions.alt (or source.alt)
+directory and what is required to copy original and
+faulted versions of source into the <i>source</i> directory in order
+to replicate test conditions, and ultimately the SIR test
+results (as provided in the object's fault matrices.)
+</li>
+<li>
+If the faulted artifact uses the FaultSeeds.h method of inserting
+faults, you will need to uncomment the desired fault in that file,
+e.g. remove the comment markers changing
+<pre>
+/* #define FAULT_AK_1 */
+</pre>
+to
+<pre>
+#define FAULT_AK_1
+</pre>
+Thus informing the preprocessor that this faulted code should be
+compiled in.  C language objects use this method to enable fault.
+Note that some Java language objects use this technique also.  These
+objects require running the C preprocessor on the faulted version of
+the source (source files with a .cpp file extension in Java test
+objects exhibit this style of fault insertion.)  Automated (shell script)
+mechanisms may be provided with these subjects, an example of
+which can be found in the <b>xml-security</b> object.
+</li>
+<li>
+Once the fault has been applied, compile the object.
+</li>
+<li>
+Execute the test suite against the faulted object.
+</li>
+<li>
+Compare the test outputs to the outputs generated by testing
+the original (unfaulted) version that you saved earlier.
+</li>
+<li>
+Repeat these last 4 steps for each fault applicable to that
+version of the object.
+<li>
+Finally, repeating all steps above for each version of the object
+provided and tabulating the results will generate equivalent information
+to that which is presented in the fault matrices.
+</li>
+</ul>
+
+
+<h3><a name="5"></a>5. Test Creation</h3>
+
+<p>Tests for the C objects in the repository are constructed using one of two
+methods.  The primary (and preferred) method involves creating TSL
+specifications that are translated into test frames and subsequently
+into the actual tests.  The second method used by the C objects is
+expect-send scripts.  These test scripts utilize the
+<a href="https://expect.nist.gov/" target="_blank">Expect</a> tool which
+provides a script-based mechanism for testing command-line interactive
+objects.</p>
+
+<ol style="list-style-type:upper-alpha">
+<li><a name="5A"></a>TSL Specification
+
+<p>TSL is a test specification language used to write specification-based
+tests for a product. The repository provides a tool that that translates
+a TSL specification into <em>test frames</em>, which can then be used to
+generate actual tests.</p>
+
+<p>Existing TSL specifications are provided with a number of the objects
+in the repository. These specifications were written to produce a sufficient
+but not excessive number of frames, defined at the time as 500 to 2000 frames.
+If you simply want to generate the test frames from these existing
+specifications, you should refer to the instructions for using
+the tsl tool provided by the repository:</p>
+
+<p class="i1">
+<a href="tsl-usage.php">tsl tool usage</a></p>
+
+<p>Should you wish to modify these specifications or create
+new specifications for objects in the repository, you will first want to
+familiarize yourself with how TSL specifications are constructed. The process
+is described in the following paper:
+"<a href="https://portal.acm.org/citation.cfm?id=62964" target="_blank">The
+Category-Partition Method for Specifying and Generating
+Functional Tests</a>", Thomas Ostrand and Marc Balcer, Communications
+of the ACM, Volume 31, Number 6, June 1988, pp 676-686.
+(The paper is available in the ACM Digital Library online).
+You should then read the documentation describing the specifics of
+the TSL format that is processed by the tsl tool available from the
+repository (which is almost the same as the format described in the paper):</p>
+
+<p class="i1">
+<a href="tsl-spec.php">tsl specification</a></p>
+
+<p>Please note that if you create new TSL specifications for the objects
+in this repository, we ask that you contribute these specifications back
+to the repository in accordance with the
+<a href="../portal/sir-license.php">SIR User License</a>.</p>
+</li>
+
+<li><a name="5B"></a>Test Script Generation
+
+<p>The C objects available in this repository are provided with
+<em>STImpL</em> (Simple Test Implementation Language) files that encode
+descriptions of how test frames are to be realized as actual executable tests,
+and sets of inputs required to support those tests.
+A program called <code>mts</code> (make-test-script)
+is provided to translate these STImpL files into various types of scripts
+that can be used to automatically execute the tests and gather test traces.
+If you simply want to generate test scripts from these existing STImpL files,
+you should refer to the instructions for using <code>mts</code>:</p>
+
+<p class="i1">
+<a href="mts-usage.php">mts tool usage</a></p>
+
+<p> Note: The Siemens programs and the <code>space</code> program
+use an earlier encoding for tests, and must be processed differently.
+See the <a href="#appendix">appendix to this document</a>.</p>
+
+<p>Should you wish to modify or create new STImpL files, the STImpL file format
+and extensive details regarding the types of scripts that can be created are
+described here (note that historically, STImpL files have been referred to as
+<em>universe</em> files):</p>
+
+<p class="i1">
+<a href="stimpl-file-spec.php">STImpL file specification</a></p>
+
+<li><a name="5C"></a>Expect Script Specification
+
+<p>Expect scripts provide a mechanism to automate actions applied to an object's
+user interface and capture the resultant output generated by these actions.
+Expect scripts contain a sequence of actions produced by "send" script operations,
+and expected results captured by "expect" script operations.  The expect script
+tests typically are constructed to generate an output compatible with file
+difference comparison tools (diff, cmp, etc.).  Objects in the repository
+using expect scripts have shell scripts provided to automate the execution
+of the expect scripts and collect the test output files into the common location
+specified in the
+<a href="c-object-dir-spec.php">C object directory specification</a>.</p>
+<p>Execution of the expect scripts requires that the
+<a href="https://expect.nist.gov/" target="_blank">Expect</a> and
+<a href="https://tcl.sourceforge.net/" target="_blank">Tcl</a> packages
+be installed on the test system.  In addition to these packages, some of the C
+objects use Make and <a href="https://www.perl.org" target="_blank">Perl</a> scripts to automate
+the copy/compile/test sequence.
+</li>
+</ol>
+
+<h3><a name="6"></a>6. Coverage Tests</h3>
+
+<p>Some of the C objects in the repository are supplied with additional-coverage test
+suites, encoded in additional STImpL files. These STImpL files are found in
+<code>testplans.alt</code> with the other STImpL files, and are marked by a
+'cov' component in their file extension.</p>
+
+<p>The tests encoded in these STImpL files attempt to achieve additional branch
+coverage. They are constructed by iteratively using a coverage tool to evaluate
+the branch coverage achieved by the TSL test suite, and attempting to create new tests
+to exercise uncovered branches. However, you should note that the TSL tests for
+our medium-size C objects are functional tests,
+and these objects do not contain enormous numbers of coverage tests.
+In this sense the objects are considered reasonably realistic since in practice full
+coverage is often not achieved. Our process faces the same cost-benefit
+tradeoffs faced in practice: tester time versus test effectiveness.
+Our object creators worked on coverage testing for a time limited by our budget.
+Certain branches may not be covered for any of the following reasons:</p>
+<ul>
+<li>If a branch cannot be executed by any input to the program.
+(It is non-executable, either because it is dead code or it cannot be made
+to execute on the current platform or in the current environment.)</li>
+<li>If a branch can be executed only with great difficulty, typically
+by making some error happen (e.g. making a <code>malloc</code> fail).</li>
+<li>If we have made some decision about the program to ignore certain
+functionality, and the branch can only be executed if we
+do not ignore that functionality.</li>
+</ul>
+
+
+<h3><a name="7"></a>7. Test Histories and Timings</h3>
+
+<p>A test history is a mapping from a program code entity (e.g. statement or branch)
+to the test cases that caused execution of that code. Objects in the repository
+may be provided with test history files containing this information about the test suites
+created from the provided TSL specifications. If test history files are provided
+with the object, they will be found in the <code>traces.alt</code> directory as
+described in the <a href="c-object-dir-spec.php">C object directory specification</a>.
+</p>
+
+<!--
+<p>Many of the objects provide test timing files, located in the <code>info</code>
+directory. These files simply report the execution time of each test case in a
+test suite. Note that these timings are very system dependent and users are encouraged to
+collect their own timings as described in the following document:</p>
+
+<p style="margin-left:2em">
+<a href="test-time.php">Collecting test timings</a></p>
+-->
+
+
+<h3><a name="8"></a>8. Fault Seeding and Fault Matrices</h3>
+
+<h4>Seeded Faults</h4>
+
+<p>As indicated previously in the C object directory specification, all of the C
+objects currently available from the repository are provided with
+<em>seeded</em> faults. Each version of an object found in the directory
+<code>versions.alt/versions.seeded</code> contains the source code of that
+program with fault seeds inserted and guarded by preprocessor conditionals.
+A file named &quot;FaultSeeds.h&quot; is provided that contains all of the
+&quot;#define&quot; declarations that can be used to activate individual faults.
+Faults can therefore be activated by using the COMPILE_PARAMETERS option
+that is provided by the makefiles. For example, if you want to
+activate the fault with fault-id F_AG_1 then, you type:</p>
+<div style="margin-left:2em">make COMPILE_PARAMETERS = -DF_AG_1</div>
+
+<p>To facilitate disclosure of experimental processes
+and support claims of validity, the process used to inject these seeded faults is
+described in the following document:</p>
+
+<p class="i1">
+<a href="c-fault-seeding.php">C fault seeding process</a></p>
+
+
+<h4>Fault Matrices</h4>
+
+<p>Objects are also provided with fault matrices that summarize the relationship
+of test cases to faults (e.g. they correlate faults to the test cases that reveal
+those faults). We do not guarantee these fault matrices as authoritative for any
+platform or environment other than the one under which they were generated. For this
+reason, we generally encourage users to generate their own fault matrices, a process
+that is described in the following document:</p>
+
+<p class="i1">
+<a href="c-fault-matrix.php">C fault matrix generation</a></p>
+<p>
+Additional information on interpreting the fault matrix files can be found in
+the <a href="fault-matrix-interpretation.php">fault matrix interpretation</a>
+document.</p>
+<hr>
+
+<h3><a name="appendix"></a>Appendix</h3>
+
+<p>Previous C objects (the "Siemens" programs and <code>space</code>) were
+organized somewhat differently than the newer objects described 
+above in this document.  Some details are provided here.</p>
+
+<p><a href="object-dir-old-spec.php">Object directory organization.</a></p>
+
+<p><a href="siemens-info1.php">Types of test suites.</a></p>
+
+<p><a href="siemens-info2.php">Additional information.</a></p>
+
+<p>Also, the "MTS" tool described above in Section 5.B is a newer
+version of an older tool, and to generate test scripts for the
+"Siemens" and <code>space</code> programs you will need to use
+the older tool.  The source code for that tool can be found by 
+following the "Download Tools" link, where it is named "mts-old.c".   
+Instructions for using that tool, and usage examples, 
+are embedded as a comment in the top of that C source file. 
+
+</body>
+</html>
+

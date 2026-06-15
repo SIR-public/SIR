@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Tools</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+.redfont {
+  color: red;
+}
+.bluefont {
+  color: blue;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Tools</h2>
+<p style="padding-top:1em">The following tools are used to create and execute tsl test
+suites for both C and Java objects.</p>
+
+<table width="80%">
+<tr><td style="width:30%"><b>javamts/monomts/mts</b></td>
+<td style="width:30%"><a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=mts.tar.gz">mts.tar.gz</a></td>
+<td>07/25/2012</td></tr>
+<tr><td colspan="3">This program transforms universe files into various types of 
+scripts that can be used to automatically execute the tests or gather
+traces for the tests.</td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td><b>time.pl, mydate</b></td>
+<td><a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=time.tar.gz">time.tar.gz</a></td>
+<td>11/15/2005</td></tr>
+<tr><td colspan="3"><code>time.pl</code> calculates the time taken by test cases to execute 
+the program, and is used to collect timings. <code>mydate</code> returns sytem time in seconds
+(elapsed from 1970) and in fractions of a second with resolution of 1 microsecond, and
+is used to collect timings.</td></tr>
+<tr><td colspan="3">&nbsp;</td></tr>
+<tr><td><b>tsl</b></td>
+<td><a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=tsl.tar.gz">tsl.tar.gz</a></td>
+<td>11/15/2005</td></tr>
+<tr><td colspan="3"><code>tsl</code> generates frames based on a TSL specification.</td></tr>
+</table>
+
+<p style="padding-top:1em">The next set of tools are used to perform analyses on the execution of object test
+suites, including test prioritization. These tools are distributed and built together,
+to satisfy various dependencies.</p>
+
+<table width="80%">
+<tr><td style="width:30%"><b>C Tools</b></td>
+<td style="width:30%"><a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=c-tools.tar.gz">c-tools.tar.gz</a></td>
+<td>11/15/2005</td></tr>
+<tr><td><a name="javatools"></a><b>Java Tools</b></td>
+<td><a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=java-tools.tar.gz">java-tools.tar.gz</a>
+</td><td>11/15/2005</td></tr>
+<tr><td colspan="3">
+<table>
+<tr><td style="width:15px"></td><td><b>gen_fault_matrix</b></tr>
+<tr><td style="width:15px"></td><td>This module contains various scripts needed to generate a fault matrix
+file for an object. A fault matrix encodes the relationship between faults and the test cases that reveal
+those faults.</td></tr>
+<tr><td style="width:15px"></td><td><b>adiff</b></tr>
+<tr><td style="width:15px"></td><td>A tool that produces a list of changed functions.</td></tr>
+<tr><td style="width:15px"></td><td><b>misc_lib</b></tr>
+<tr><td style="width:15px"></td><td>This module contains various other tools useful for object
+construction. See the enclosed CONTENTS file for more detail.</td></tr>
+</table></td></tr>
+</table>
+
+<p style="padding-top:1em">
+<b>Java line counters</b><br>
+<b>LOCC</b>, available from <a href="http://csdl.ics.hawaii.edu/Plone/research/locc" target="_blank">http://csdl.ics.hawaii.edu/Plone/research/locc</a>,
+supports size measurement of Java, C/C++, MPI C/C++ (Message Passing Interface), source code and ASCII text.
+We have used this tool to count the logical lines of code in our
+Java objects.  Version 4.3.7 of LOCC can be downloaded here:
+<a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=locc-4.3.7.tar.gz">LOCC</a>.
+</p>
+<p>
+<b>javaNCSS</b>
+is an alternative source code lines counter for Java provided by Chr. Clemens Lee and
+generates SLOC counts slightly differently.
+JavaNCSS was used to compute the SLOC for the concurrency fault experiment objects (e.g. the
+account subject.)  JavaNCSS is available from
+<a href="http://www.kclee.de/clemens/java/javancss" target="_blank">http://www.kclee.de/clemens/java/javancss</a>.
+</p>
+<p>
+<b>cloc</b>
+is a Perl-based implementation by Al Danial which incorporates code from SLOCCount and supports
+a large number of source languages and extensibility to new languages.  Cloc is available
+from <a href="http://cloc.sourceforge.net" target="_blank">http://cloc.sourceforge.net</a>.
+The SIR has made one extension to <b>cloc</b> permitting 
+line counting of <a href="https://www.cs.utexas.edu/users/schwartz/" target="_blank">
+AHEAD</a> composed software product line (.jak) files.  This extension is
+available <a href="jak_langdef.txt" target="_blank">here</a>.  See the --read-lang-def
+option of <b>cloc</b> for a how-to on using this extension.
+</p>
+<p>
+<b>C line counter</b><br>
+David A. Wheeler's SLOCCount, available at
+<a href="https://www.dwheeler.com/sloccount/" target="_blank">https://www.dwheeler.com/sloccount/</a>
+is a tool for counting the number of non-comment source lines of code in numerous languages.
+We have used this tool to count the source lines of code in our C objects.
+Version 2.26 of SLOCCount can be downloaded here:
+<a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=sloccount-2.26.tar.gz">SLOCCount</a>.
+</p>
+
+<p>
+<b>mts-old.c</b><br>
+This C program is the older version of mts, that functions on universe files of the form found with the
+Siemens and Space programs. This tool's source can be downloaded here:
+<a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=mts-old.c">mts-old.c</a>.
+</p>
+
+<p>
+<b>C coverage</b><br>
+We do not provide a tool for computing coverage information on C objects.
+In the SIR subjects where code  coverage information is provided or available,
+the coverage information for these C objects was computed using the
+<!-- <a href="https://pleuma.cc.gatech.edu/aristotle/aas.php" target="_blank">Aristotle Analysis System</a> -->
+<a href="https://gamma.cc.gatech.edu/aas.html" target="_blank">Aristotle Analysis System</a>
+for C programs.  The Aristotle system has not been maintained however and source code
+is not available.  The open source community has several projects aimed at C
+code coverage analysis.  If you are interested in performing C coverage studies we
+suggest reviewing the capabilities of the Unix/Linux code coverage analysis standard 
+<a href="https://gcc.gnu.org/onlinedocs/gcc/Gcov-Intro.html#Gcov-Intro" target="_blank">gcov</a> tool
+as well as examine the capabilities of the <a href="https://github.com/synesissoftware/xCover" target="_blank">xCover</a> 
+and <a href="http://covtool.sourceforge.net" target="_blank">covtool</a> projects or the many
+other open source coverage analysis projects on the Internet.  Compiler tool chains
+like <a href="https://llvm.org" target="_blank">LLVM</a> can also provide code coverage tracing
+via appropriate command line flags.
+</p>
+<p>
+<b>Java coverage</b><br>
+There are three coverage tool suites for Java which we are aware of:
+</p>
+<ul>
+<!--<li>The <a href="https://sofya.unl.edu" target="_blank">Sofya</a> analysis framework</li>-->
+<li>The <a href="https://sofyatool.github.io/SofyaTool/index.html" target="_blank">Sofya</a> analysis framework</li>
+<li><a href="https://github.com/cobertura/cobertura" target="_blank">Cobertura</a> an open source analysis framework</li>
+<li><a href="http://emma.sourceforge.net" target="_blank">Emma</a> an older open source analysis framework</li>
+<li><a href="https://www.eclemma.org/" target="_blank">Ecl Emma</a> an Eclipse plugin code coverage tool using the JaCoCo library</li>
+</ul>
+<p>
+We have been using Sofya for several years in code coverage studies.  We have
+limited direct experience with Cobertura and Emma having found both useful for
+overall coverage reporting.
+</p>
+<p>
+<b>Non-Deterministic ANT</b><br>
+The Apache project's <a href="https://ant.apache.org" target="_blank">ant</a> build tool permits automating
+testing with <span class="bluefont">JUnit</span> but introduces a level of non-determinism in the
+outputs in the form of test execution time statistics.  These small differences in execution time
+make the comparison of outputs between versions difficult, thus the SIR uses a modified
+version of the ant program that removes this dynamic time aspect from the textual reports.
+The modifications to remove the non-determinism only apply to the text (.txt) output of
+JUnit tests.  The XML output from JUnit tests continues to reflect execution time
+data and thus the XML output files remain deterministic.
+This version can be downloaded here:
+<a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=nondet_ant-1.8.2.tar.gz">nondet_ant-1.8.2.tar.gz</a>
+</p>
+<p>
+The removal of non-deterministic output in the SIR version of <span class="bluefont">ant</span>
+required changes to the associated <a href="https://www.junit.org" target="_blank">JUnit</a> 
+library that is provided.  This modified version of JUnit is available here:
+<a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=sir_junit.tar.gz">sir_junit.tar.gz</a>.
+Note that this version also has a SelectiveTestRunner adapted for use with the <a href="http://abbot.sourceforge.net" target="_blank">
+Abbot</a> test framework.  You may need to remove this if you intend to build your own version of
+<span class="bluefont">JUnit</span> using this package.
+</p>
+<h3>Contributions</h3>
+
+<table width="80%" style="padding-bottom:1em">
+<tr><td style="width:30%"><b>JUnit wrapper test suite for<br><code>nanoxml</code> TSL tests</b></td>
+<td style="width:30%"><a href="../php/common/download.php?ac=pub&amp;key=sir/tools/contrib&amp;file=nanoxml-junit.tar.gz">nanoxml-junit.tar.gz</a></td>
+<td>10/17/2005</td></tr>
+<tr><td colspan="3"><i>Contributor</i>: Valentin Dallmeier, Saarland University</td></tr>
+<tr><td colspan="3">This package supplies JUnit test suites that act as wrappers for the <code>nanoxml</code>
+TSL test suites. Test suites for versions 1 through 5 of <code>nanoxml</code> are provided.
+<b><i>Note</i></b>: These JUnit tests are behaviorally equivalent to the TSL test
+suites already provided with <code>nanoxml</code>, and have not been created using
+the unit testing methodology. For this reason, they should <i>not</i> be used in comparisons
+between the functional and unit testing paradigms.</td></tr>
+</table>
+</body>
+</html>
+

@@ -211,7 +211,7 @@ overall coverage reporting.
 <p>
 <b>Non-Deterministic ANT</b><br>
 The Apache project's <a href="https://ant.apache.org" target="_blank">ant</a> build tool permits automating
-testing with <i>JUnit</i> but introduces a level of non-determinism in the
+testing with <i>JUnit</i>. Be aware, however, that this tool introduces a level of non-determinism in the
 outputs in the form of test execution time statistics.  These small differences in execution time
 make the comparison of outputs between versions difficult, thus the SIR uses a modified
 version of the ant program that removes this dynamic time aspect from the textual reports.
@@ -225,7 +225,7 @@ This version can be downloaded here:
 The removal of non-deterministic output in the SIR version of <i>ant</i>
 required changes to the associated <a href="https://www.junit.org" target="_blank">JUnit</a> 
 library that is provided.  This modified version of JUnit is available here:
-<a href="Tools/sir_junit.tar.gz">sir_junit.tar.gz</a>.
+<a href="Tools/sir_junit.tar.gz"</a>.
 Note that this version also has a SelectiveTestRunner adapted for use with the <a href="http://abbot.sourceforge.net" target="_blank">
 Abbot</a> test framework.  You may need to remove this if you intend to build your own version of
 <i></i>JUnit</i> using this package.

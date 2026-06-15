@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of C Object Preparation: Fault Seeding</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<!-- Counters cannot be implemented with CSS because the browser support
+just isn't there. -->
+
+<h2 style="text-align:center">Seeding Faults</h2>
+<p>The difficulty of locating existing faults has led us to seed faults.
+Another motivation for doing this is that most of our work involves
+regression testing --- looking for errors caused by code changes.
+For our purposes we need to seed regression faults.   The following
+process could, however, be adapted to seed general classes of faults.</p>
+
+<h3>Process</h3>
+
+<p>1. Placing faults in the code</p>
+
+<p>Fault Seeders are programmers with at least two years of programming experience 
+in C/C++. At least two faults seeders should work on each object.</p>
+
+<p>1.1. Finding the changes between versions</p>
+
+<p>With the assistance of a diff tool, determine where the changes occurred. 
+We recommend using diff -u (unified diff) in order to get more accurate 
+differences.  Be aware that if the changes between versions were large, the 
+diff tool may carry differences forward, even when the code is identical. 
+You should verify the differences independently and use diff only as a guide.</p>
+
+<p>1.2. Introducing the fault</p>
+
+<p>Each programmer must do this independently to make the process as 
+objective/credible as possible.</p>
+
+<p>1.2.1. Type of fault</p>
+
+<p>In your life as a programmer, you have inserted and (hopefully) removed many 
+type of faults. This fault seeding process needs to mimic what you have found 
+during your experience in terms of type and number of faults. Here is a simple 
+fault classification scheme that can be helpful for thinking about different 
+types of faults:</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>Fault associated with variables: definition of variable, redefinition of variable,
+deletion of variable, change value of variable in existing assign statement.</li>
+<li>Fault associated with control flow: addition of new block of code, deletion of path,
+redefinition of execution condition, removal of block, change order of execution,
+new call to external function, removal of call to external function, adding function, removing function.</li>
+<li>Fault associated with memory allocation: allocated memory not freed, not initialized, erroneous pointer.</li>
+</ol>
+
+<p>Although faults are often more complicated than the ones just mentioned, 
+complex faults can often be decomposed into these simpler types of faults. 
+For the integrity of experiments, it is very important that you try to include 
+different types of faults to simulate a <strong>real</strong> fault insertion process.</p>
+
+<p>1.2.2. Fault location</p>
+
+<p>A regression fault can be located <strong>only</strong> within the changes between versions 
+(limited by the differences found in 1.1). We will be assuming then, that 
+the programmer that made the modification inserted a fault (although <strong>we</strong> will 
+be modifying the modified code to simulate that). There is no restriction on 
+the size or type of fault at this stage. The only requirement is that the 
+changed program can still be compiled and executed.</p>
+
+<p>1.2.3. Code change</p>
+
+<p>Each target section of code (line, block, etc) where a fault is meant to be 
+seeded needs to be duplicated (copy and pasted). One copy will be the original,
+the second copy is the one with the embedded fault. The copies need to be 
+enclosed in preprocessor directives as follows:</p>
+<pre>
+#ifndef FAULTY-fault-id
+
+    // original code
+
+#else
+
+    // code with the embedded fault
+
+#endif
+</pre>
+
+<p>The fault-id format is defined in the next section.</p>
+
+<p>In addition, the following line should be included at the top of the file:</p>
+<pre>
+#include FaultSeeds.h
+</pre>
+
+<p>Make sure the code compiles after you have made your changes. First, create an 
+empty FaultSeeds.h file, compile and link. The program should behave just as 
+the original program did. Then, add the following line to the header file: 
+<code>#define FAULTY-fault-id</code>, compile and link to test one of your modifications. 
+Change the fault-id in the define line to test each of your modifications 
+individually.</p>
+
+<p>1.2.4. Format of fault-id</p>
+
+<p>For each fault, you need to keep a record that includes:<br>
+Fault ID, baseline version, the ID # of the associated difference, a description
+of the introduced fault (including a link to the classification). Each fault ID 
+must follow the following format: F_FaultSeederInitials_Number.</p>
+
+<p>Examples:</p>
+<pre class="i1">
+F_GR_1 (first fault found by G.Rothermel), 
+F_SE_5 (fifth fault found by S. Elbaum)
+</pre>
+
+<p>1.2.5. Iterate</p>
+
+<p>We'd like to begin with approximately 20 potential faults per version,
+but this requires adjustment for scantily modified versions.   Thus, a total 
+of Z faults (Z = MIN (number of diffs in version / 2, 10)) should be
+generated per version.  In other words, you will seed 10 faults per version or less if 
+the number of differences is smaller than 20. Repeat the process in 1.2 
+until Z faults are found.</p>
+
+<p>2. Selecting faults to keep for experiments</p>
+
+<p>2.1. Common fault filtering</p>
+
+<p>Since two programmers do the seeding process independently, some faults may be 
+repeated. Repeated faults will be removed after all Z faults have been inserted.
+Although the programmers could work together to avoid overlapping, this would 
+hurt the validity and credibility of the process so we decided against it.</p>
+
+<p>The two programmers can perform this process by looking at the fault record,
+referring to the code when necessary to compare seeded faults that seem to be 
+similar. If two seeded faults are identical, just add DUP to the fault record 
+of one of the faults.</p>
+
+<p>2.2. Exposure filtering</p>
+
+<p>The modified code from both programmers needs to be joined. Note that only <strong>one</strong>
+original section is necessary per program. This should be a simple and short 
+(maximum 10 modifications) cut/paste process but needs to be done carefully.
+Make sure you compile, link and test your program like you did in 1.2.4.<p>
+
+<p>Then, run the test suite on each version to proceed with the filtering. We will
+filter out two types of faults:</p>
+
+<p>2.2.1. Faults that are exposed by more than X% of the tests.</p>
+
+<p>These faults are removed because they are considered too easy to find (are 
+unlikely to be introduced by an experienced programmer, and if they are 
+introduced, are likely to be detected during unit testing). If a seeded fault
+is exposed by more than X percent of the tests, then add <strong>easy</strong> to the fault 
+record of the faults.</p>
+
+<p>2.2.2. Faults that are not detected by any tests.</p>
+
+<p>There are two alternatives depending on time availability. If developing a 
+test to expose the fault would take less than Y hours, then write the new test 
+and verify that it works. If developing a test takes more than Y hours, the 
+write an N-EXP next to the fault description.</p>
+
+<p>Ultimately after filtering we want 3-10 faults per version. Note that we can 
+include only one fault per line changed.</p>
+
+<p>2.3. Final Setup</p>
+
+<p>Keep in the header file only the fault-ids that were not filtered. Test the 
+program and then, move on to the next version!!!</p>
+
+<p>3. Additional Clarifications</p>
+
+<p>It is our intent that seeded faults be unique not only within, but also
+across, object versions, and fault seeders should verify that this is
+intent is satisfied.   Fault names, however, are unique within versions
+only, not between them.</p>
+
+<p>Because we are interested in regression faults, our fault seeding
+focuses on the versions after, but including, v0.   These changed
+versions can contain regression faults.   As noted earlier, additional,
+non-regression faults could be seeded in all versions.  (For example,
+the Siemens programs contain "general" faults, not regression faults.)</p>
+
+<p>On some object versions it may be the case that no regression faults
+were successfully seeded; typically this occurs in cases where there
+are few changes made to the code for versions.   But these versions
+have been retained, since they may be useful for other purposes.</p>
+
+</body>
+</html>
+

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook: Creating a C Fault Matrix</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Creating a C Fault Matrix</h2>
+<p>A fault matrix file contains information about the faults exposed by the 
+test cases present in a STImpL file for a particular version. It gives
+the mapping between the fault and the test cases which expose that fault. 
+The steps to generate a fault matrix file are given below.</p>
+
+<p>Steps to generate a fault matrix file:</p>
+<ol>
+<li>Make sure that the <code>mts</code> and <code>gen_fault_matrix</code> tools are present in the 
+current path.  To download these tools see: <a href="tools.php">tools</a>.</li>
+<li>Set environment variable <code>experiment_root</code> to point to the parent directory 
+of the object's directory by typing <code>setenv experiment_root &lt;path&gt;</code>
+For example, suppose your objects directory containing all the objects is located
+at &quot;/nfs/phantom/u10/goel/objects&quot;, then the experiment_root is
+set by typing <code>setenv experiment_root /nfs/phantom/u10/goel</code>.</li>
+<li>Run the tool to create the fault matrix file, by typing:<br>
+<code class="i1">make_fault_matrix_with_names.sh &lt;prog&gt; &lt;version start&gt;</code><br>
+<code style="margin-left:3em">&lt;number of versions&gt; &lt;test STImpL file&gt; &lt;fault matrix file&gt;</code>
+<p>
+<code class="i1">&lt;prog&gt;</code>  : name of object program.<br>
+<code class="i1">&lt;version start&gt;</code> : the version starting from which we want to create a fault-matrix file.<br>
+<code class="i1">&lt;versions&gt;</code> : the total number of versions for which we want to create fault-matrix files.<br>
+<code class="i1">&lt;test STImpL file&gt;</code> : name of the test STImpL file (either .tsl.universe or .cov.universe file)<br>
+<code class="i1">&lt;fault matrix file&gt;</code> : name of the fault matrix file to create.
+</p>
+</li>
+</ol>
+
+<p>We will look at the <code>flex</code> object as an example.</p>
+
+<p>In <code>flex</code>, faults are seeded from version v1 onwards and the STImpL file
+v0.tsl.universe is inherited accross all the versions, i.e. from v1 to v5.
+But version v5 does not have any seeded faults, therefore the number of
+versions for which the tool will create a fault matrix file will be 4,
+i.e. from v1 to v4.</p>
+
+<p>The name of the fault matrix file to create is fault-matrix.v0.tsl.universe
+(described in <a href="c-object-dir-spec.php">object-dir-spec</a>). To run the tool we type:</p>
+<p><code class="i1">
+make_fault_matrix_with_names.sh flex 1 4 v0.tsl.universe fault-matrix.v0.tsl.universe
+</code></p>
+<p>This command creates the fault matrix files for the test STImpL file
+v0.tsl.universe on versions v1 to v4 and stores them in the object's info
+directory, under subdirectories v1 to v4.</p>
+
+<p>Now suppose we want to create the fault matrices for the test STImpL file
+v2.tsl.universe. Since it is inherited across all the versions from v2 to v5
+and version v5 does not have any seeded faults, we type:</p>
+<p><code class="i1">
+make_fault_matrix_with_names.sh flex 2 3 v2.tsl.universe fault-matrix.v2.tsl.universe
+</code></p>
+<p>Note that to create a fault matrix, this tool executes each version on
+each test in the STImpL file and this may take some time!</p>
+
+</body>
+</html>
+

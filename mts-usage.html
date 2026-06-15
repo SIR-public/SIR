@@ -1,0 +1,522 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook: MTS Tool</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Running the MTS Tool</h2>
+<p>Make-test-script (<code>mts</code>) is the program that turns a universe file
+into a script to automatically execute test cases. The types of scripts that can be
+created by <code>mts</code>, and their respective uses, are described in detail
+in the <a href="#stypes">script types</a> section.</p>
+
+<p>To run <code>mts</code>, type:</p>
+<pre style="margin-left:2em">
+mts &lt;object-dir&gt; &lt;object-exe&gt; &lt;universe-file&gt; &lt;script-type&gt;
+            &lt;script-name&gt; &lt;program-suffix&gt; &lt;compare-dir&gt; 
+</pre>
+
+<p>(The carriage return above is for readability only; all parameters 
+should be given on a single command line.)</p>
+<div style="margin-left:2em">
+<code>&lt;object-dir&gt;</code> : name of object directory for program under test<br>
+<code>&lt;object-exe&gt;</code> : name of executable to be executed,<br>
+<code>&lt;universe-file&gt;</code> : name of universe file<br>
+<code>&lt;script-type&gt;</code> : R|D|d|T|d_t|D_t
+</div>
+<div style="margin-left:4em">For runall, runall-and-diff using <code>cmp</code>,
+runall-and-diff using <code>diff</code>, trace, runall-and-diff-time script using
+<code>diff</code>, or runall-and-diff-time script using <code>cmp</code></div>
+<div style="margin-left:2em">
+<code>&lt;nameScript&gt;</code> : name of output script<br>
+<code>&lt;program-suffix&gt;</code> : suffix of program name, or NULL (case insensitive)
+</div>
+<div style="margin-left:4em">-- only for script type T.</div>
+<div style="margin-left:2em">
+<code>&lt;compare-dir&gt;</code> :  name of directory containing outputs to compare
+test outputs to, or NULL (case insensitive)</div>
+<div style="margin-left:4em">--only for script type D</div>
+
+<p>It's important to understand how <code>mts</code> uses the first
+two parameters in creating a script. The executable name
+is the name of the executable that will be run, you could
+give its full path name, or give a path relative to where
+you'll be running the script from (the scripts directory).</p>
+
+<p>The contents of the first parameter are more complex: they are
+prepended to names of input files, output files, scripts,
+and files-to-be-copied, allowing the script to put things in
+or get them from the right place. What you put here depends
+on where you run the script from. Examples will illustrate.</p>
+
+<ol>
+<li>Example:
+
+<p>Suppose your universe file contains:</p>
+<pre class="i1">
+-P [1 3 string1] -I [infile] -F [lex.yy.c|test1out]
+-P [4 0 string2] -O [odir/out7.dat]
+</pre>
+
+<p>Suppose you have the object &quot;foo&quot; present under the directory structure
+&quot;/nfs/phantom/u8/goel2/objects/foo&quot; and suppose you'll be running the
+&quot;<code>mts</code>&quot; program from the scripts directory, i.e at path 
+&quot;/nfs/phantom/u8/goel2/objects/foo/scripts&quot;.</p>
+
+<p>You type:</p>
+<pre class="i1">
+mts .. ../source/foo.exe ../testplans.alt/universe sc.sh R NULL NULL
+</pre>
+
+<p>This causes <code>mts</code> to look for universe file 
+&quot;universe&quot; at path &quot;../testplans.alt/universe&quot; relative to the script
+directory path which is at &quot;/nfs/phantom/u8/goel2/objects/foo/scripts&quot;,
+so mts finds the universe file at 
+&quot;/nfs/phantom/u8/goel2/objects/foo/testplans.alt/universe,
+and writes a runall script sc.sh looking like this:</p>
+<pre class="i1">
+echo script type: R
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &lt; ../inputs/infile &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1.out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+</pre>
+
+<p>NOTES: <code>mts</code> has taken your first parameter, &quot;..&quot;,
+and used it in writing where infile and outputs are
+(e.g. writing &quot;../inputs/infile&quot; on test 1)</p>
+</li>
+
+<li>Example:
+
+<p>Suppose you have the same universe file, and you type:</p>
+<pre class="i1">
+mts /nfs/phantom/u8/goel2/objects/foo
+  /nfs/phantom/u8/goel2/objects/foo/source/foo.exe
+  ../testplans.alt/universe sc.sh R NULL NULL
+</pre>
+
+<p>This causes <code>mts</code> to look for universe file 
+&quot;universe&quot;, and write a runall script looking like this:</p>
+<pre class="i1">
+echo script type: R
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+/nfs/phantom/u8/goel2/objects/foo/source/foo.exe  1 3 string1 &lt;
+/nfs/phantom/u8/goel2/objects/foo/inputs/infile &gt;
+/nfs/phantom/u8/goel2/objects/foo/outputs/t1
+mv /nfs/phantom/u8/goel2/objects/foo/scripts/lex.yy.c /nfs/phantom/u8/goel2/objects/foo/outputs/test1.out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+/nfs/phantom/u8/goel2/objects/foo/source/foo.exe  4 0 string2 &gt;
+/nfs/phantom/u8/goel2/objects/foo/outputs/odir/out7.dat
+</pre>
+</li>
+</ol>
+
+<h3 style="padding-top:1em"><a name="stypes"></a>Types of test scripts</h3>
+
+<p>There are several types of scripts that can be created from a
+STImpL file; we describe each here.</p>
+
+<ol style="list-style-type:upper-alpha; padding-bottom:1em">
+<li>&quot;Runall&quot; script.
+
+<p>The purpose of a &quot;runall&quot; script is to execute every test listed
+in a STImpL file, saving outputs in the outputs directory.
+To illustrate the possibilities, we provide examples of the
+various parameters, with STImpL files and the scripts that
+get created from them if those parameters are used.</p>
+
+<p>Remember that the resulting script is expected to run from
+the &quot;scripts&quot; directory of the object program. Further,
+assume that the executable for the object program will
+be found in the &quot;source&quot; directory with the name foo.exe</p>
+
+<p>In the following, suppose the object program is &quot;foo.c&quot;.</p>
+
+<ol>
+<li>-P parameter.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1]
+-P [4 0 string2]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/t2
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name.</p>
+</li>
+
+<li>-I parameter.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-I [in17.dat]
+-I [idir/in16.dat]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  &lt; ../inputs/in17.dat &gt; ../outputs/t1
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  &lt; ../inputs/idir/in16.dat &gt; ../outputs/t2
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+no parameters are specified in the STImpL file, so none are in the script;<br>
+input is piped from input files in the inputs directory.</p>
+</li>
+
+<li>-O parameter with -P.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -O [out1.dat]
+-P [4 0 string2] -O [odir/out7.dat]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/out1.dat
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+</pre>
+
+<p>NOTES: -O causes standard output to go where specified;<br>
+parameters are put in place after the executable name.</p>
+</li>
+
+<li>-F parameter with -P.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/t2
+mv ../scripts/lex.yy.c ../outputs/test2out
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name;<br>
+stdout output is still put into output files;<br>
+unix &quot;mv&quot; command does the requested file move.</p>
+</li>
+
+<li>-s and -x parameters with (possibly)-P
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [-Dvarname] -s [Sscript1] -x [Xscript1]
+-s [Sscript1] -x[Xscript1]
+</pre>
+
+<p>And suppose that files Sscript1 and Xscript1 contain the following:</p>
+<pre class="i1">
+Sscript1:
+---------
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+
+Xscript1:
+---------
+cd ..
+rm -r ./workingdir
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+../source/foo.exe  -Dvarname &gt; ../outputs/t1
+cd ..
+rm -r ./workingdir
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+../source/foo.exe  &gt; ../outputs/t2
+cd ..
+rm -r ./workingdir
+</pre>
+
+<p>NOTES:  since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name on test 1;<br>
+text of startup and exit script files has been placed
+into the script before and after program foo.exe gets executed.</p>
+</li>
+
+<li>-S and -X parameters 
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-S [script1 p1] -X[script2]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../testplans.alt/testscripts/script1 p1
+../source/foo.exe  &gt; ../outputs/t2
+../testplans.alt/testscripts/script2
+</pre>
+</li>
+</ol>
+</li>
+
+<li>&quot;Get-traces&quot; script.
+
+<p>The get-traces script is almost exactly like a runall script.
+The difference is that it is intended to run an instrumented
+executable, and after each run, save the trace file created
+for that executable.</p>
+
+<p>(These scripts depend on availability of Aristotle.  It should
+be possible, however, to modify the mts code to cause it
+to create scripts utilizing some other coverage tool.)</p>
+
+<p>Because of the similarity of this script with the runall script,
+we give just one example, with the -P parameter. We assume
+that the instrumented executable is &quot;foo.int.exe&quot; in the
+&quot;objects/foo/source&quot; subdirectory.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1]
+-P [4 0 string2]
+</pre>
+
+<p>A resulting get-traces script is:</p>
+<pre class="i1">
+The following is an T script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.int.exe  1 3 string1 &gt; ../outputs/t1
+cp $ARISTOTLE_DB_DIR/foo.c.tr ../traces/0.tr
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.int.exe  4 0 string2 &gt; ../outputs/t2
+cp $ARISTOTLE_DB_DIR/foo.c.tr ../traces/1.tr
+</pre>
+
+<p>NOTES:  since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name;<br>
+the executable is foo.int.exe.<br>
+We have an extra line after each test copying the trace file to the traces subdirectory.<br>
+Trace files are numbered from 0 up; test case k generates trace file (k-1).tr
+(unfortunate but can't be helped)</p>
+</li>
+
+<li>&quot;Runall-and-Diff&quot; script.
+
+<p>The runall-and-diff script is also quite like a runall script.
+The difference is that after running each test, it compares results 
+of that test with results from a previous run.  As such, the script 
+is automating regression testing.</p>
+
+<p>What the script has to do is compare anything created as output
+by the program with saved versions of outputs. That means it
+must accomodate 1) files written to standard-output, 2) output
+files created by the program. It detects the need to do 
+comparisons with these, and the names of files to compare with,
+by looking in -O and -F parameters.</p>
+
+<p>Because of the similarity of this script with the runall script,
+we give just one example, with the -P parameter, -O, and -F used.   
+We assume that the executable is &quot;foo.exe&quot; in the&quot;objects/foo/source&quot;
+subdirectory, and that the outputs directory is 
+&quot;/nfs/spectre/u5/mydir/oldoutputs/&quot;.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -O [odir/out7.dat] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall-and-diff script is:</p>
+<pre class="i1">
+The following is an D script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+cmp -s ../outputs/t1 /nfs/spectre/u5/mydir/oldoutputs/t1
+cmp -s ../outputs/test1out /nfs/spectre/u5/mydir/oldoutputs/test1out
+
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+mv ../scripts/lex.yy.c ../outputs/test2out
+cmp -s ../outputs/out7.dat /nfs/spectre/u5/mydir/oldoutputs/out7.dat
+cmp -s ../outputs/test2out /nfs/spectre/u5/mydir/oldoutputs/test2out
+</pre>
+
+<p>NOTES:  -O causes standard output to go where specified;<br>
+parameters are put in place after the executable name;<br>
+the output file specifed with -O in the second test gets compared with a previous one.<br>
+On the first test, where no -O appears, the &quot;default&quot; output file t1 gets
+compared with a previous one.<br>
+The output files listed in -F get compared with previous ones;<br>
+the location of old outputs in this example, /nfs/spectre/u5/mydir/oldoutputs/, is something that can be 
+specified when <code>mts</code> is run to make the script, but it is assumed that that directory is
+a saved copy of an outputs directory created on some run of another script, and that the directory has
+the same structure and filenames in it as will be created by this run of this script.</p>
+
+<p>If you run <code>mts</code> with &quot;-d&quot;
+rather than &quot;-D&quot;, the program uses &quot;diff -r&quot;
+instead of &quot;cmp -s&quot; to do the differencing. This allows
+comparison of entire output directories.</p>
+</li>
+
+<li style="padding-bottom:2em">&quot;Runall-and-Diff-Time&quot; script.
+
+<p>The runall-and-diff time script is almost exactly like a runall script.
+The difference is that it is intended to collect the time taken by each
+test to run.</p>
+
+<p>Because of the similarity of this script with the runall-and-diff script,
+we give just one example, with the -P parameter, -O, and -F used.   
+We assume that the instrumented executable is &quot;foo.exe&quot; in the
+&quot;objects/foo/source&quot; subdirectory, and that the outputs directory
+is &quot;/nfs/spectre/u5/mydir/oldoutputs/&quot;.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -O [odir/out7.dat] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall-and-diff time script is:</p>
+<pre class="i1">
+The following is an D_t script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+set t=`mydate`
+echo &quot;Start time = ${t}&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+cmp -s ../outputs/t1 /nfs/spectre/u5/mydir/oldoutputs/t1
+cmp -s ../outputs/test1out /nfs/spectre/u5/mydir/oldoutputs/test1out
+set t=`mydate`
+echo &quot;Finish time = ${t}&quot;
+
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+set t=`mydate`
+echo &quot;Start time = ${t}&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+mv ../scripts/lex.yy.c ../outputs/test2out
+cmp -s ../outputs/out7.dat /nfs/spectre/u5/mydir/oldoutputs/out7.dat
+cmp -s ../outputs/test2out /nfs/spectre/u5/mydir/oldoutputs/test2out
+set t=`mydate`
+echo &quot;Finish time = ${t}&quot;
+</pre>
+
+<p>Here <code>mydate</code> is the c program which returns sytem time in seconds 
+(elapsed from 1970) and in fractions of a second with resolution of
+1 microsecond.</p>
+
+<p>If you run <code>mts</code> with &quot;-d_t&quot;
+rather than &quot;-D_t&quot;, the program uses &quot;diff -r&quot;
+instead of &quot;cmp -s&quot; to do the differencing.</p>
+</li>
+</ol>
+
+</body>
+</html>
+

@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of Object Preparation: Fault Matrix Interpretation</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Fault Matrix Interpretation</h2><p>
+The fault matrices delivered with SIR objects generally describe which test finds which
+fault.  A typical fault matrix file contains three sections of interest, these are
+an overall report section, a test input/test frames section, and the fault matrix
+section.
+</p>
+<p>
+It should be noted that not all SIR subjects provide a fault matrix.  Those that
+do not either were never originally delivered with one or a fault matrix is
+not applicable because the object is used for a different type of testing
+experiment.  Fault matrices are only applicable to SIR subjects that attempt to
+do fault insertion or express mutation faults for testing analysis.
+</p>
+<h4>Overall Fault Matrix Report Section</h4>
+<p>
+The first section of a fault matrix file contains a pair of lines that tell
+how many (faulted) versions are reported on in the fault matrix as well as the
+total number of tests that were executed on each.  An example of this section
+(taken from the <code>tcas</code> subject fault-matrix):
+<pre>
+      41 listversions
+    1608 listtests
+</pre>
+This indicates that 41 faulted versions are reported on in this fault matrix
+and 1608 tests were run on each faulted version.
+</p>
+<h4>Test Inputs/Test Frames Section</h4>
+<p>
+Following the report section lines is the test inputs/test frames block.
+The contents of this block are simply the contents of the <b>universe</b>
+file that was used to create the test script (if the <code>mts</code> or
+<code>javamts</code> tool was used) or the contents of the shell script
+that performs the tests on the subject.  For the <code>tcas</code> subject
+the first few lines of this section looks like this:
+<pre>
+ 958 1 1 2597  574 4253 0  399  400 0 0 1
+ 627 0 0  621  216  382 1  400  641 1 1 0
+ 549 1 1 4398  133 1445 1  641  639 0 0 1
+ 576 0 1 3469  183  381 2  641  501 1 0 1
+ 992 1 0 3342   23 4657 1  640  741 0 0 0
+ 548 0 1   34  542 3514 2  499  401 1 1 1
+...
+</pre>
+Since the <code>tcas</code> subject uses the contents of the <b>universe</b> file
+as inputs, each line represents a test case (frame).
+</p>
+<p>
+For other SIR subjects, this section may appear differently.  The <code>mts</code>
+and <code>javamts</code> tools are used to compose test cases from <b>universe</b>
+files.  When this is the case, this section will have the appearance:
+<pre>
+-P [--quiet /home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t1: "quiet" output]
+-P [--silent /home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t2: "silent" output]
+-P [-V /home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t3: test version (-V) output]
+-P [--version /home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t4: test version (--version) output]
+-P [/home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t5: no command source given]
+-P [-e 's/dog/cat/' -e '/cat$/d' /home/ugrad/kmurphy/frost/worksandbox/sed/inputs/default.in] -C [t6: multiple -e commands]
+...
+</pre>
+as in this example from the universe file of the <code>sed</code> SIR subject.  Each
+line in this sequence again represents a test case.  See the <a href="mts-usage.php">mts</a> tool
+for more information on this format and its interpretation.
+</p>
+<h4>Fault Matrix Section</h4>
+<p>
+Following the test cases section is the actual fault matrix data.  The formatting
+of this section is straightforward but may not be obvious to the first time
+user.  Paramount to understanding the matrix is the concept of the "test" specific
+view.  The test specific view expresses the results of a test across all versions
+that test was performed upon.  If we examine the first part of this section in the
+fault matrix for the <code>sed</code> subject we see this:
+<pre>
+unitest0:
+v1:
+        0
+v2:
+        0
+v3:
+        0
+unitest1:
+v1:
+        0
+v2:
+        0
+v3:
+        0
+unitest2:
+...
+unitest5:
+v1:
+	0
+v2:
+	0
+v3:
+	1
+...
+</pre>
+The line containing the <code>unitest0:</code> string indicates the beginning
+of the report for test number 1 (since these are 0 significant representations).
+The next line, <code>v1:</code> indicates that what follows is the results
+of a comparison between the normal (unfaulted) outputs of test 1 with output
+of the faulted version (variant) 1.  When a difference is detected between the
+outputs (as reported by the <code>cmp</code> command) the line following this
+<code>v1:</code> line will contain a <b>1</b> as shown above for <code>unitest5 v3</code>
+ (faulted variant 3.)
+If no output change was detected
+between the original and faulted versions this next line contains a <b>0</b> as
+seen for <code>unitest0 v1:</code> above.
+Similarly, the <code>v2:</code> line introduces the results of an output comparison
+between the original test output and the output of the test when it was run
+on version (variant) 2.  Since sequential version 1 of the <code>sed</code> SIR subject
+only contains 3 faults, there are only 3 of these fault-version and result line
+pairs for each test (unitest).  
+</p>
+<p>
+Since each SIR subject typically has several sequential versions that have faults
+applied to each, the info directory is arranged with subdirectories for each of
+these versions and within that directory a fault-matrix file corresponding to
+the universe file will be found.
+<p>
+<a href="c-overall.php">Return to the C Object Handbook</a><br/>
+<a href="java-overall.php">Return to the Java Object Handbook</a>
+</p?>
+
+</body>
+</html>
+

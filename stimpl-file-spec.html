@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Object Handbooks: STImpL File Specification</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">STImpL File Specification</h2>
+<p>A <em>STImpL</em> file is a file listing your test cases.</p>
+
+<p>We've created a program, make-test-script
+(<a href="mts-usage.php"><code>mts</code></a> for C,
+<a href="javamts-usage.php"><code>javamts</code></a> for Java), that takes a
+STImpL file (along with other parameters) and creates a
+script that automatically executes the tests listed in that file.</p>
+
+<p>Note that we implement a &quot;test suite&quot; as a subset (not necessarily
+proper) of the lines in a STImpL file. So anything that works 
+on a STImpL file should work on a test suite.</p>
+
+<p>This document contains specifications for STImpL files and for the scripts
+that <code>mts</code>/<code>javamts</code> creates.</p>
+
+<h3>Format of a STImpL File</h3>
+
+<p>Each line (string of characters terminated by a newline) in a STImpL
+file represents either a test case or an assignment of a value to
+a variable. STImpL uses C-shell syntax to assign a value to variable.
+For example, you could use the following to set or change the value
+of the CLASSPATH environment variable:</p>
+<pre class="i1">
+setenv CLASSPATH &lt;classpath&gt;
+</pre>
+<p><i>You may notice that some existing STImpL files use Bourne shell
+syntax to set the CLASSPATH variable. This is a special case that is
+only supported for the CLASSPATH variable, and should not be used
+in future STImpL files.</i></p>
+<p>All other lines in a STImpL file specify test cases, constructed from
+combinations of the following parameters.</p>
+<p><i>Ideally each test case should be unique, but some
+earlier objects' STImpL files are not completely unique.</i></p>
+
+<ol style="list-style-type:upper-alpha; padding-bottom:1em">
+<li>Lines in the file contain one or more parameters; valid parameters
+and their meaning are as follows (text enclosed in &lt;&gt; stands
+for values that get put in, all other characters are literal):
+
+<p><code class="i1">-P [&lt;parameter-string&gt;]</code></p>
+<p class="i2">
+For use in supplying parameters.
+</p>
+<p class="i2">
+&lt;parameter-string&gt; represents the string of characters you 
+would type as parameters to the object program for that test
+case. These will not be &quot;interpreted&quot; in any way by <code>mts</code>, 
+that program will simply copy this string verbatim and use it in
+generating a test script.
+</p>
+<p class="i2">
+For program runs (test cases) that require no parameters, 
+the -P option won't be used in the STImpL file line for that test.
+</p>
+
+<p><code class="i1">-I [&lt;input-file-name&gt;]</code></p>
+<p class="i2">
+For use in supplying standard input only.
+</p>
+<p class="i2">
+&lt;input-file-name&gt; represents the name of a file that contains
+input to the program under test, that will be redirected to
+the program-under-test using the unix &quot;&lt;&quot; redirection mechanism
+</p>
+<p class="i2">
+This file name, however, must be a filename relative to the
+&quot;inputs&quot; subdirectory of the object program. I.e. if your
+input file is &quot;foo1.dat&quot; and resides directly in the &quot;inputs&quot;
+subdirectory for &quot;foo&quot; you would write &quot;-I [foo1.dat].
+If your input file is &quot;foo1.dat&quot; but you've placed it in
+a subdirectory of the inputs directory entitled &quot;stdinputs&quot;,
+you would write &quot;-I [stdinputs/foo1.dat].
+</p>
+<p class="i2">
+For program runs (test cases) that require no standard input, 
+the -I option won't be used in the STImpL file line for that test.
+There is no default input file.
+</p>
+<p class="i2">
+Note that &lt;input-file-name&gt; must be a string in legal unix
+filename syntax. In particular it can't contain any &quot;&gt;&quot; characters.
+</p>
+
+<p><code class="i1">-O [&lt;output-file-name]</code></p>
+<p class="i2">
+For use in redirecting standard-output only.
+</p>
+<p class="i2">
+&lt;output-file-name&gt; represents the name of a file that will hold
+standard output of the program under test, that output will be 
+redirected to this file using the unix &quot;&gt;&quot; redirection mechanism
+</p>
+<p class="i2">
+This file name, however, must be a filename relative to the
+&quot;outputs&quot; subdirectory of the object program. For example if
+your output file is to be &quot;foo1.out&quot; and is to be placed directly 
+in the &quot;outputs&quot; subdirectory for &quot;foo&quot; you would write &quot;-O [foo1.out]&quot;.
+If your output file is &quot;foo1.out&quot; but you want it placed in a 
+subdirectory of the outputs directory entitled 
+&quot;stdoutputs&quot;, you would write &quot;-I [stdoutputs/foo1.out].
+</p>
+<p class="i2">
+When the -O option is omitted, the test script will by default
+pipe all standard output to the outputs directory,
+creating a file named tk, where k is an integer representing
+the test number of this test (the number of the line in the 
+STImpL file that this test case was taken from).
+</p>
+<p class="i2">
+Note that &lt;output-file-name&gt; must be a string in legal unix
+filename syntax. In particular it can't contain any &quot;&gt;&quot; characters.
+</p>
+
+<p><code class="i1">-F [&lt;name-of-file-to-move&gt;|&lt;name-of-new-file&gt;]</code></p>
+<p class="i2">
+For use in causing output files created by the program to be moved 
+to the official outputs area.
+</p>
+<p class="i2">
+The -O parameter provides a way to specify where standard output
+should go, and when output files are specified as parameters they
+are handled in -P. But sometimes a program creates a file with
+a default name not specified as a parameter. We need to be 
+able to get this file to the outputs directory, potentially
+under a different name. The -F parameter allows this.
+</p>
+<p class="i2">
+The parameter takes two arguments inside the brackets, separated 
+by the &quot;|&quot; character. The &lt;name-of-file-to-move&gt; argument names
+the file created by the program under test. The &lt;name-of-new-file&gt; 
+names where you want this file moved.
+</p>
+<p class="i2">
+The &lt;name-of-new-file&gt; file name must be a filename relative to the
+&quot;outputs&quot; subdirectory of the object program.
+The &lt;name-of-file-to-move&gt; file name must be a filename relative to 
+the &quot;scripts&quot; subdirectory of the object program, where the test
+is being run from.  
+</p>
+<p class="i2">
+For example if you want your output file to be &quot;foo1.out&quot; and to 
+be placed directly in the &quot;outputs&quot; subdirectory for &quot;foo&quot; but
+your program will be putting it in the current directory (scripts)
+and calling it lex.yy.c, you would write &quot;-F[lex.yy.c|foo1.out].
+</p>
+<p class="i2">
+At most three -F parameters can occur in a STImpL line, and 
+each will be translated into code to move the named file.
+</p>
+<p class="i2">
+Finally, since this parameter activates a &quot;mv&quot; command,
+the &quot;file&quot; to be moved could just as well be a directory.
+</p>
+
+<p>
+<code class="i1">-S [&lt;name-of-startup-script&gt; &lt;params&gt;]</code><br>
+<code class="i1">-X [&lt;name-of-exit-script&gt; &lt;params&gt;]</code>
+</p>
+<p class="i2">
+If the program under test has special requirements it may be
+impossible to capture them with generic options such as those
+above. This pair of parameters will allow the tester to
+create pieces of script that should be executed before and/or
+after the program-under-test is run.
+</p>
+<p class="i2">
+Either or both of these parameters can be present.
+</p>
+<p class="i2">
+Typically, the &lt;name-of-startup-script&gt; and &lt;name-of-exit-script&gt; 
+arguments each name a file that contains some lines of C shell script.   
+Such filenames must be filenames relative to the 
+&quot;testplans.alt/testscripts&quot; subdirectory of the object program.
+For example if your script file is to be &quot;test1startup.sh&quot; 
+then it has to be placed directly in the &quot;testplans.alt/testscripts&quot; 
+subdirectory for &quot;foo&quot; and you would write &quot;-S [test1startup.sh]. If 
+your script file is &quot;test1startup.sh&quot; but you want it placed in a 
+subdirectory of &quot;testplans.alt/testscripts&quot; entitled &quot;scripts&quot;, you 
+would write &quot;-S [scripts/test1startup.sh].&quot;
+</p>
+<p class="i2">
+If your script needs some parameters of some sort, you can
+supply them as shown above by &lt;params&gt;.
+</p>
+<p class="i2">
+If you use -S, mts inserts a line to execute the script you
+name, just prior to the line that executes the program under test.
+If you use -X, mts inserts a line to execute the script you
+name, just after the line that executes the program under test.
+So the script written by mts ends up invoking your scripts
+directly. You might need to know that in this case, these
+scripts are invoked as sub-shells, and on termination the
+environment is restored to its previous state. If that's
+not what you need, see &quot;-s&quot; and &quot;-x&quot; below.
+</p>
+<p class="i2">
+(Note: there's nothing stopping &lt;name-of-startup-script&gt;
+and &lt;name-of-exit-script&gt; arguments from naming binaries
+or executables of other, non-script, sorts, and the &lt;params&gt;
+as being parameters in those, if those binaries are executables
+and are in the proper testplans subdirectory.)
+</p>
+
+<p>
+<code class="i1">-s [&lt;name-of-startup-script&gt;]</code><br>
+<code class="i1">-x [&lt;name-of-exit-script&gt;]</code>
+</p>
+<p class="i2">
+These are like -S and -X, except faced with them, mts physically
+copies the lines from the named scripts into the script it creates.
+This may be needed if you need to run some lines that can't be
+run from a subshell. In this case, you can't use parameters.
+</p>
+<p class="i2">
+There's nothing stopping you from using both -S and -s, and/or
+both -X and -x, if you use both -S and -s they'll be processed
+(and result in lines in the script) in order -S, -s and if
+you use both -X and -x they'll be processed (and result in lines
+in the script) in order -x -X. (In other words, the -s and -x
+calls are nested within the -S and -X calls.)
+</p>
+
+<p><code class="i1">-D [&lt;test-driver-name&gt;]</code></p>
+<p class="i2">
+For use in specifying a test driver.
+</p>
+<p class="i2">
+&lt;test-driver-name&gt; represents the name of an executable to be executed.
+If your script needs different executables for different test cases,
+then you can supply these as shown above by &lt;test-driver-name&gt;.
+</p>
+<p class="i2">
+For a test script that requires only one executable file, the -D option 
+won't be used in the STImpL file. Instead, an executable file name is
+given as a parameter to <code>javamts</code>.
+</p>
+
+<p><code class="i1">-B</code></p>
+<p class="i2">
+For use in causing executable program to be run as a background job.
+</p>
+
+<p><code class="i1">-C [comment]</code></p>
+<p class="i2">
+When present in a STImpL file spec, causes any text appearing
+inside the brackets to be ignored by <code>mts</code>.
+Comments are used in a STImpL file to specify which STImpL
+line corresponds to which test frame.
+</p>
+</li>
+
+<li style="padding-bottom:1em">On each STImpL file line, at least one parameter must be given.
+Parameters may be listed in any order, all must begin with hyphen followed 
+by a character with no spaces in between them. Zero or more spaces (blanks,
+not tabs) may appear after the hyphen/character pair, brackets must enclose 
+and delimit the text between them, that text can include anything except 
+for a newline or bracket. Parameters may be separated by zero or
+more spaces (blanks, not tabs), an end-of-line is interpreted to 
+end the set of parameters, and the entire line cannot exceed 4096 
+characters (adjustable by changing a constant). Parameters are
+case-sensitive (-I doesn't mean the same thing as -i).
+</li>
+
+<li>Instructions for naming input and output files in parameter strings.
+<ol style="padding-top:1em">
+<li style="padding-bottom:1em">input files
+<p>Assume that all tests will be run from the &quot;scripts&quot; subdirectory
+of the object; i.e. if your object is &quot;calc&quot;, then tests
+will be run from &quot;calc/scripts&quot;. We'll generate our automated
+testing scripts in that directory and that's where we'll run
+those scripts from.</p>
+
+<p>So, if you want your input files to come from the inputs directory,
+and need to specify them with parameters, you'd have to specify
+the path relative to the scripts directory in the parameter list.</p>
+
+<p>Example:</p>
+<p class="i1">Suppose your program foo opens and reads an input file,
+and this file is specified in a parameter -i&lt;inputfile&gt;,
+and suppose for one of the tests of foo you want it to 
+use a file &quot;myinput1.dat&quot;.</p>
+
+<p class="i1">Suppose you put &quot;myinput1.dat&quot; in a subdirectory of
+&quot;foo/inputs&quot; called &quot;inputfiles&quot;.</p>
+
+<p class="i1">Now, if you were running this program by hand on this
+test from the scripts directory you'd type:</p>
+<code class="i2">
+../source/foo.exe -i../inputs/inputfiles/myinput1.dat
+</code>
+<p class="i1">So, in your STImpL file spec for this you'd write:</p>
+<code class="i2">
+-P [-i../inputs/inputfiles/myinput1.dat]
+</code>
+</li>
+
+<li>output files
+
+<p>There are two ways to get output files into the output directory
+when specifying them with parameters.</p>
+
+<p>However, only use of the first will support the use, later,
+of &quot;Runall-and-Diff&quot; (regression testing) scripts.</p>
+<ol style="list-style-type:lower-alpha; padding-bottom:1em">
+<li>Write the file to the local directory and include use of
+the -F option to cause it to be moved.
+
+<p>So considering the example from C.2.b., you could write:</p>
+<code class="i2">
+-P [-omyoutput1.dat]  -F[myoutput1.dat|outputfiles/myoutput1.dat]
+</code>
+</li>
+
+<li>You could do as with input files, assuming that the program
+will be run from &quot;scripts&quot;, and that the parameter should
+be rewritten to redirect the output up to ../outputs/outputfilename
+
+<p>Example:</p>
+<p class="i1">Suppose your program foo opens and writes to an output file,
+and this file is specified in a parameter -o&lt;outputfile&gt;,
+and suppose for one of the tests of foo you want it to
+use a file &quot;myoutput1.dat&quot;.</p>
+
+<p class="i1">Suppose you want to put &quot;myoutput1.dat&quot; in a subdirectory
+of &quot;foo/outputs&quot; called &quot;outputfiles&quot;.</p>
+
+<p class="i1">Now, if you were running this program by hand on this
+test from the scripts directory you'd type:</p>
+<code class="i2">
+../source/foo.exe -o../outputs/outputfiles/myoutput1.dat
+</code>
+<p class="i1">So, in your STImpL file spec for this you'd write:</p>
+<code class="i2">
+-P [-o../outputs/outputfiles/myoutput1.dat]
+</code>
+<p class="i1">But NOTE, as mentioned above, we can't write Runall-and-Diff
+scripts easily that will use output files written in this manner, 
+so unless there's a good reason, you shouldn't use this approach,
+and we mention it here only for historical reasons.</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+
+</body>
+</html>
+

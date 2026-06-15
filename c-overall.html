@@ -336,7 +336,7 @@ methods.  The primary (and preferred) method involves creating TSL
 specifications that are translated into test frames and subsequently
 into the actual tests.  The second method used by the C objects is
 expect-send scripts.  These test scripts utilize the
-<a href="https://expect.nist.gov/" target="_blank">Expect</a> tool which
+<a href="https://www.nist.gov/services-resources/software/expect">NIST Expect tool</a> which
 provides a script-based mechanism for testing command-line interactive
 objects.</p>
 
@@ -356,7 +356,7 @@ specifications, you should refer to the instructions for using
 the tsl tool provided by the repository:</p>
 
 <p class="i1">
-<a href="tsl-usage.php">tsl tool usage</a></p>
+<a href="https://sir-public.github.io/SIR/tsl-usage.html">tsl tool usage</a></p>
 
 <p>Should you wish to modify these specifications or create
 new specifications for objects in the repository, you will first want to
@@ -372,13 +372,8 @@ the TSL format that is processed by the tsl tool available from the
 repository (which is almost the same as the format described in the paper):</p>
 
 <p class="i1">
-<a href="tsl-spec.php">tsl specification</a></p>
+<a href="https://sir-public.github.io/SIR/tsl-spec.html">tsl specification</a></p>
 
-<p>Please note that if you create new TSL specifications for the objects
-in this repository, we ask that you contribute these specifications back
-to the repository in accordance with the
-<a href="../portal/sir-license.php">SIR User License</a>.</p>
-</li>
 
 <li><a name="5B"></a>Test Script Generation
 
@@ -393,7 +388,7 @@ If you simply want to generate test scripts from these existing STImpL files,
 you should refer to the instructions for using <code>mts</code>:</p>
 
 <p class="i1">
-<a href="mts-usage.php">mts tool usage</a></p>
+<a href="https://sir-public.github.io/SIR/mts-usage.html">mts tool usage</a></p>
 
 <p> Note: The Siemens programs and the <code>space</code> program
 use an earlier encoding for tests, and must be processed differently.
@@ -405,7 +400,7 @@ described here (note that historically, STImpL files have been referred to as
 <em>universe</em> files):</p>
 
 <p class="i1">
-<a href="stimpl-file-spec.php">STImpL file specification</a></p>
+<a href="https://sir-public.github.io/SIR/stimpl-file-spec.html">STImpL file specification</a></p>
 
 <li><a name="5C"></a>Expect Script Specification
 
@@ -418,9 +413,9 @@ difference comparison tools (diff, cmp, etc.).  Objects in the repository
 using expect scripts have shell scripts provided to automate the execution
 of the expect scripts and collect the test output files into the common location
 specified in the
-<a href="c-object-dir-spec.php">C object directory specification</a>.</p>
+<a href="https://sir-public.github.io/SIR/c-object-dir-spec.html">C object directory specification</a>.</p>
 <p>Execution of the expect scripts requires that the
-<a href="https://expect.nist.gov/" target="_blank">Expect</a> and
+<a href="https://www.nist.gov/services-resources/software/expect" target="_blank">NIST Expect</a> and
 <a href="https://tcl.sourceforge.net/" target="_blank">Tcl</a> packages
 be installed on the test system.  In addition to these packages, some of the C
 objects use Make and <a href="https://www.perl.org" target="_blank">Perl</a> scripts to automate
@@ -465,7 +460,7 @@ to the test cases that caused execution of that code. Objects in the repository
 may be provided with test history files containing this information about the test suites
 created from the provided TSL specifications. If test history files are provided
 with the object, they will be found in the <code>traces.alt</code> directory as
-described in the <a href="c-object-dir-spec.php">C object directory specification</a>.
+described in the <a href="https://sir-public.github.io/SIR/c-object-dir-spec.html">C object directory specification</a>.
 </p>
 
 <!--
@@ -500,7 +495,7 @@ and support claims of validity, the process used to inject these seeded faults i
 described in the following document:</p>
 
 <p class="i1">
-<a href="c-fault-seeding.php">C fault seeding process</a></p>
+<a href="https://sir-public.github.io/SIR/c-fault-seeding.html">C fault seeding process</a></p>
 
 
 <h4>Fault Matrices</h4>
@@ -513,10 +508,10 @@ reason, we generally encourage users to generate their own fault matrices, a pro
 that is described in the following document:</p>
 
 <p class="i1">
-<a href="c-fault-matrix.php">C fault matrix generation</a></p>
+<a href="https://sir-public.github.io/SIR/c-fault-matrix.html">C fault matrix generation</a></p>
 <p>
 Additional information on interpreting the fault matrix files can be found in
-the <a href="fault-matrix-interpretation.php">fault matrix interpretation</a>
+the <a href="https://sir-public.github.io/SIR/fault-matrix-interpretation.html">fault matrix interpretation</a>
 document.</p>
 <hr>
 
@@ -526,11 +521,11 @@ document.</p>
 organized somewhat differently than the newer objects described 
 above in this document.  Some details are provided here.</p>
 
-<p><a href="object-dir-old-spec.php">Object directory organization.</a></p>
+<p><a href="https://sir-public.github.io/SIR/object-dir-old-spec.html">Object directory organization.</a></p>
 
-<p><a href="siemens-info1.php">Types of test suites.</a></p>
+<p><a href="https://sir-public.github.io/SIR/siemens-info1.html">Types of test suites.</a></p>
 
-<p><a href="siemens-info2.php">Additional information.</a></p>
+<p><a href="https://sir-public.github.io/SIR/siemens-info2.html">Additional information.</a></p>
 
 <p>Also, the "MTS" tool described above in Section 5.B is a newer
 version of an older tool, and to generate test scripts for the

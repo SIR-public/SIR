@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook: C Object Directory Specification</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">C Object Directory Specification</h2>
+<p>Each object we create has its own <em>object directory</em>,
+named to indicate the program involved.</p>
+
+<p>An object directory is organized into subdirectories (which
+in turn may contain subdirectories) according to a specific
+format. Doing this lets us write generic tools for experimentation
+that know where to find things and know what they're named,
+and work across all of our objects.</p>
+
+<p>This document describes the object directory organization in
+terms of its subdirectories, and what they contain.</p>
+
+<p>There are two types of organization for objects. One is our &quot;previous&quot;
+organization which is used on the Siemens programs and space, and is 
+actually for any objects where we have a single base version v0, and
+several different versions that are derivatives of v0. The second type 
+of organization is the &quot;new&quot; organization which is used for objects 
+where we have a sequence v0, v1, v2... vk of versions, where each vk+1 
+is a derivative of the previous version vk.</p>
+
+<p>In general, any directory or subdirectory that contains files
+whose function may not be obvious, or that depart from naming
+conventions, should contain a CONTENTS file describing those files.</p>
+
+
+<p>The subdirectories of an object are as follows:</p>
+<ol>
+<li><b>source</b>
+
+<p>An empty directory. During experiments, a version of a program 
+that we're working with is placed in here, then deleted after 
+we're finished with it.</p>
+</li>
+
+<li><b>versions.alt</b>
+
+<p>Contains &quot;variants&quot; of the source code of the versions of the 
+program.  Variants are needed when, say, we have to modify the 
+code to accomodate some tool.</p> 
+
+<p>The basic variant, that any object will have, is contained in the
+subdirectory of versions.alt called:</p>
+<div style="margin-left:2em">versions.orig</div>
+
+<p>This directory contains subdirectories</p>
+
+<p>v0, v1, v2, v3 ... vK</p>
+
+<p>where v0 is the earliest version,and the other vJ 
+contain the next sequential versions in turn.<p>
+
+<p>Each vK area contains the .c file and .h files needed to build the version, 
+plus Makefiles, and subdirectories of any required non-system libraries. 
+(Note that historically all non-library code in the objects was coalesced into
+a single .c file. This was to facilitate the use of a particular program analysis
+toolset, but is not a requirement and may not be true of future objects).</p>
+
+<p>Each Makefile must have the following targets:<p>
+<ul>
+<li>build - creates &lt;program&gt;.exe executable file.</li>
+<li>build-st - creates &lt;program&gt;.st.int.exe which is a statement instrumented executable.</li>
+<li>build-bt - creates &lt;program&gt;.bt.int.exe which is a branch instrumented executable.</li>
+</ul>
+
+<p>(The last two commands are targets that can be used to indicate that the object should
+be compiled with statement and branch instrumentation, respectively. Any instrumentation tool
+can be used; we provide these targets to encourage the use of a common interface that scripts and
+other experiment tools may rely on.)</p>
+
+<p>Also, each command that compiles a file must include the 
+$(COMPILE_PARAMETERS) flag. For example,</p>
+<div style="margin-left:2em">
+<code>
+gcc -c $(COMPILE_PARAMETERS) grep.c<br>
+<em style="margin-left:6em">or</em><br>
+gcc -o grep.exe $(COMPILE_PARAMETERS) grep.c
+</code>
+</div>
+
+<p>This may be used by experiment scripts to tailor the build. For example, it is used by
+some scripts to instantiate faulty versions of programs (see Section 8 of the C object
+handbook for additional details on activating fault seeds).</p>
+
+<p>A second subdirectory that may exist is called:</p>
+<div style="margin-left:2em">versions.seeded</div>
+
+<p>This directory contains subdirectories</p>
+
+<p>v1, v2, v3 ... vK</p>
+
+<p>There may also be a subdirectory v0.</p>
+
+<p>In versions.seeded, each vK area contains the .c file and .h files needed 
+to build the version, as well as additional files required to build the
+version with seeded faults activated.</p>
+
+<p>Note that we could obtain the same behaviors with the .orig and and 
+.seeded variants by turning all faults off, and thus, it might seem that 
+the .orig variant isn't needed.  The main reason for including and keeping 
+the .orig variant, however, is that there may be a need, someday, for
+the original untouched code to be available. For example, someone might
+wish to create a new set of seeded faults without being influenced by
+those that had previously been created.</p>
+</li>
+
+<li><b>versions</b>
+
+<p>An empty directory, used during some experiments to hold either
+a version, or a directory of versions, used in the experiment.</p>
+</li>
+
+<li><b>testplans.alt</b>
+
+<p>Testing information for objects.</p>
+
+<p>This directory contains subdirectories v0, v1, ... vK, each of which 
+contains testing information for that version.  The testplans.alt 
+directory may also contain a testscript subdirectory.</p>
+
+<p>To avoid keeping multiple copies of identical files, we have organized 
+the vJ subdirectories into two types of files:</p>
+<ul>
+<li>General Files: These are .tsl, .frame and .universe files defined below.</li>
+<li>Link Files: These are files that link to a previous version of general
+files. These allow the inheriting of similar test data from a previous
+version, thus preventing multiple copies. This will be clarified by the
+example discussed below.</li>
+</ul>
+
+<p>General files present in the vj subdirectories are:</p>
+<ul>
+<li>tsl specification files (.tsl extension) 
+    <p>These files are named vK_n.tsl or vK.tsl (K=0,1,2...) for different
+    versions and n=1,2,3... for the different tsl specs. For example, if 
+    we are in version v0 and there are two tsl specification files then 
+    these files will be named v0_1.tsl and v0_2.tsl.</p></li>
+<li>sets of test frames generated from .tsl files (.frame extension)
+    <p>These files are named vK_n.frame or vK.frame, generated from vK_n.tsl 
+    or vK.tsl files respectively. Here K=0,1,2.... for different versions 
+    and n=1,2,3...for tsl specs. For example, the frame file generated 
+    from vK_1.tsl will be named vK_1.frame.</p></li>
+<li>STImpL files (.tsl.universe or .cov.universe extension)
+    <p>A <em>STImpL</em> file is a file listing test cases (see also section
+    6.B of the C Object Handbook). A program called &quot;make-test-script&quot;
+    (<code>mts</code>) transforms STImpL files into various types of scripts that
+    can be used to automatically execute the tests or gather traces for 
+    the tests. There are two types of STImpL files:</p>
+    <ul>  
+        <li>vK_n.tsl.universe or vK.tsl.universe where K=0,1,2,... for 
+        different versions and n=1,2,3.. for different tsl 
+        specification files. These files contain test cases generated
+        from tsl test frames.</li>
+        <li>vK_n.cov.universe or vK.cov.universe where K=0,1,2.... for 
+        different versions and n=1,2,3...for different coverage files.
+        These files contain additional tests to get more code coverage.</li>
+    </ul></li>
+</ul>
+<p>test suite directories (containing multiple test suites, typically
+these just contain a subset of the lines in some STImpL files).
+These may be tarred and gzipped due to size. A CONTENT file should
+identify the meaning of these directories.</p>
+<p>testscript subdirectory<br>
+If there are any startup or exit scripts present in the STImpL file
+(see 5.B in the object handbook) they are stored in this directory.
+</p>
+
+<h4>Example</h4>
+
+<p>We use the "flex" object to illustrate the structure of the
+testplans.alt subdirectory.</p>
+
+<p>Consider subdirectory v0 in testplans.alt for flex.  Here, we find 
+the following files:</p>
+<ol style="list-style-type:lower-roman">
+<li>General files: v0.tsl, v0.frame, v0.tsl.universe, and 
+v0.cov.universe. These files hold the tsl spec for version v0,
+the frames generated from that tsl spec, a STImpL file containing
+tests created from those frames, and a STImpL file containing
+additional coverage tests, respectively.</li>
+</ol>
+
+<p>Now if we look at subdirectory v2 under testplans.alt, we find the 
+following files:</p>
+<ol style="list-style-type:lower-roman">
+<li>Link files. These are v0.tsl, v0.frame, and v0.tsl.universe. 
+These files point to the general files in the v0 subdirectory, as v2 
+inherits test information from version v0.</li>
+<li>General Files. These are v2.tsl, v2.frame, and v2.tsl.universe. 
+These contain the additional tsl specs, frames, and tests for v2,
+because v2 requires additional testing beyond that performed for v0.</li>
+</ol>
+
+<p>CONTENTS files should be provided, especially to distinguish the
+different tsl specs and STImpL files.</p>
+</li>
+
+<li><b>testplans</b>
+
+<p>An empty directory, used during some experiments to hold test suites
+needed by that experiment.</p>
+</li>
+
+<li><b>traces</b> 
+
+<p>An empty directory, used during some experiments to hold test traces.</p>
+</li>
+
+<li><b>traces.alt</b>
+<p>This directory contains subdirectories v0, v1, ... vK for the versions
+of the object; these subdirectories may hold trace information in the
+form of individual test traces.</p> 
+</li>
+
+<li><b>inputs</b>
+
+<p>Files containing inputs or directories of inputs used by programs in 
+various tests. These could be grouped into subdirectories or distinguished 
+by naming conventions if helpful.</p>
+</li>
+
+<li><b>outputs</b>
+
+<p>An empty directory, used during some experiments to hold test outputs.</p>
+</li>
+
+<li><b>outputs.alt</b>
+
+<p>Provides a place to permanently store the outputs of test runs. This is
+useful for regression testing where new outputs are compared
+('diffed') against previous outputs.</p>
+
+<p>This directory could contain subdirectories v0, v1, ... vK to differentiate
+between versions. CONTENTS files state what is present.</p>
+</li>
+
+<li><b>docs</b>
+
+<p>Documentation about the object. Subdirectories may be present when
+useful, such as v0, v1, ... vK directories.</p>
+</li>
+
+<li><b>originals</b>
+
+<p>Original materials obtained on the objects. Subdirectories are used
+if necessary (e.g. v0, v1, ... vK), and a CONTENTS file will describe
+the purpose of the subdirectories.</p>
+</li>
+
+<li><b>scripts</b>
+
+<p>The &quot;staging platform&quot; directory from which experiments are run. This 
+directory may also contain saved scripts that perform object-related
+tasks.  Subdirectories can be used if helpful (e.g. v0, v1, ... vK 
+containing scripts for each version).</p>
+</li>
+
+<li><b>info</b>
+
+<p>Other information about the program, especially information gathered
+by analysis tools and requiring saving for experiments.  In particular, 
+we have found it useful to include subdirectories v1, ... vK and 
+"common" to store version-specific and object-specific information,
+respectively.</p>
+
+<p>The principle information to be found in the version-specific directories
+is the fault matrix data, as follows:</p>
+
+<p>Each vK subdirectory in info may contain fault matrix information for that
+version.  The fault matrices have the following naming convention:<p>
+<ol style="list-style-type:lower-alpha">
+<li>If a fault matrix file is generated from a single STImpL file then
+it is named fault-matrix.&lt;universe-file&gt;. For example the fault
+matrix file generated by running the version on the v0_1.tsl.universe 
+file will be named fault-matrix.v0_1.tsl.universe.</li>
+<li>If a fault matrix file is generated from the concatenation 
+of two or more STImpL files then it is named
+fault-matrix.&lt;universe-file-1&gt;.&lt;universe-file-2&gt;>.---.&lt;universe-file-n&gt;
+where &lt;universe-file-1&gt; is the name of the 1st STImpL file 
+&lt;universe-file-2&gt; is the name of the 2nd STImpL file and so on.</li>
+</ol>
+
+<p>Fault matrices with .trimmed suffixes are matrices pruned down to
+include only seeded faults detected by one or more tests, and
+fewer than 20% of the tests, in the program's STImpL specifications.</p>
+
+<p>Further information on fault matrices and file names is provided
+under Section 8 in the C handbook.</p>
+
+</body>
+</html>
+

@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook: Old C Object Directory Specification</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Object Directory Information for Older C Objects (Siemens and Space)</h2>
+<p>This document describes the &quot;previous&quot; object directory organization in
+terms of its subdirectories, and what they contain. This organization is
+used on the Siemens programs and space, where we actually have a single
+base version of the program, and faulty versions that are derivatives
+of that base version.</p>
+
+<p>In general, any directory or subdirectory that contains files
+whose function may not be obvious, or that depart from naming
+schemes, should contain a CONTENTS file describing those files.
+We've tried to indicate below where such files might be most desired.</p>
+
+<p>The subdirectories of an object are as follows:</p>
+
+<ol>
+<li>source.alt
+
+<p>Source.alt contains &quot;variants&quot; of the source code 
+of the base version, each in a subdirectory. Variants are
+needed when, say, we have to modify the code to accomodate
+some tool. (They aren't the same as &quot;versions&quot;, which truly
+are new versions of the program and are semantically different.)</p>
+
+<p>The basic variant, that any object will have, is contained
+in the following subdirectory:</p>
+
+<p class="i1">source.orig</p>
+
+<p class="i1">This contains the .c file and .h files needed to build the
+object, plus Makefiles if needed, and subdirectories of any required non-system libraries.
+(Note that for our objects, all code is coalesced into a single C file; this is explained
+further in step 5 of the C object handbook).</p>
+</li>
+
+<li>source
+
+<p>An empty directory. During experiments, a version of a program 
+that we're working with is placed in here, then deleted after 
+we're finished with it.</p>
+</li>
+
+<li>versions.alt
+
+<p>Contains &quot;variants&quot; of the source code of the versions of the program.
+Variants, as in source.alt, are needed when, say, we have to modify 
+the code to accomodate some tool.</p>
+
+<p>The basic variant, that any object will have, is contained in the
+subdirectory of versions.alt called:</p>
+
+<p class="i1">versions.orig</p>
+
+<p class="i1">This directory contains subdirectories</p>
+
+<p class="i2">v1, v2, v3, vK</p>
+
+<p class="i1">up to some K.</p>
+
+<p class="i1">The base version is understood to be in source.alt,
+and the vJ versions are derivatives of it.</p>
+
+<p class="i1">Each vK area contains the .c file and .h files needed to build the
+version, and subdirectories of any required non-system libraries.</p>
+
+<p>CONTENTS files should describe the reasons for other variants.</p>
+</li>
+
+<li>versions
+
+<p>An empty directory, used during some experiments to hold either
+a version, or a directory of versions, used in the experiment.</p>
+</li>
+
+<li>testplans.alt
+
+<p>Testing information for objects.</p>
+
+<p>This directory contains subdirectories v0, v1, ... vK, each of which contains testing
+information for that version.</p>
+
+<p>Some files that may be present either in this directory or in
+its vJ subdirectories are:</p>
+  <ul>
+  <li>universe files (with filenames universe.????; universe.tsl and universe.cov
+  are typical possibilities)</li>
+  <li>test suite directories (containing multiple test suites, typically these just contain a
+  subset of the lines in some universe files)  these may be tarred and gzipped due to size</li>
+ </ul>
+
+<p>CONTENTS files should be provided, especially to distinguish the different tsl specs and universe files</p>
+</li>
+
+<li>testplans
+
+<p>An empty directory, used during some experiments to hold test suites
+needed by that experiment.</p>
+</li>
+
+<li>traces.alt
+
+<p>Contains subdirectories v0, v1, ... vK for the versions
+of the object; these subdirectories can hold trace files
+and test histories. CONTENTS files are probably necessary.
+Test history files have the following naming conventions: if a 
+test history file was generated on version vK using the universe.xxx 
+from the version vJ, it will be stored under vK and named 
+&lt;type&gt;th.xxx.vJ, where &lt;type&gt; is 's' for statement trace
+or 'b' for branch trace.</p>
+</li>
+
+<li>traces 
+
+<p>An empty directory, used during some experiments to hold traces.</p>
+</li>
+
+<li>inputs
+
+<p>Files containing inputs or startup directories used by programs in
+various tests.  These could be grouped into subdirectories or
+distinguished by naming conventions if helpful, in which case a
+CONTENTS file would help.</p>
+</li>
+
+<li>outputs.alt
+
+<p>Provides a place to permanently store the outputs of test runs,
+especially when wanting to do regression testing where outputs
+are diffed with previous outputs.</p>
+
+<p>Could contain subdirectories v0, v1, ... vK to differentiate
+between versions. Use CONTENTS files to state what is present.</p>
+</li>
+
+<li>outputs
+
+<p>An empty directory, used during some experiments to hold test outputs.</p>
+</li>
+
+<li>docs
+
+<p>Documentation about the object.  Use any subdirectories that
+are useful. Possibly, v0, v1, ... vK directories will help.
+Provide a CONTENTS file.</p>
+</li>
+
+<li>originals
+
+<p>Original materials obtained on the objects. Use any subdirectories,
+(e.g. v0, v1, ... vK) that are useful and provide a CONTENTS file.
+Tarring and gzipping contents is probably worthwhile.</p>
+</li>
+
+<li>scripts
+
+<p>The directory from which experiments are run. This directory may
+also contain saved scripts, such as runall.sh and gettraces.sh 
+scripts that run all tests in the universe. Subdirectories
+can be used if helpful (e.g. v0, v1, ... vK containing scripts
+for each version). Provide CONTENTS file.</p>
+</li>
+
+<li>info
+
+<p>Other information about the program, especially information gathered
+by analysis tools and requiring saving for experiments.
+Use subdirectories as helpful and provide CONTENTS file.</p>
+
+<p>Most likely, there will be subdirectories v0, v1, ... vK here, with
+each one possibly containing a fault matrix, fault index information,
+versions matrix, a sensitivity matrix for that version.</p>
+</li>
+</ol>
+
+</body>
+</html>

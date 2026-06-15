@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of C Object Preparation: Configuration Support and Nondeterministic stderr</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<p>Mike Ernst and Yuriy Brun (MIT) suggest the following:</p>
+
+<p>Using the original distribution (found in <code>originals</code>),
+run <code>configure</code>, and replace the
+provided library(s) with the generated one(s).  For example:</p>
+<pre>
+   tar xzf make-3.76.1.tar.gz
+   cd make-3.76.1
+   ./configure
+   make
+</pre>
+
+<p>You then need to copy two files from the make-3.76.1 directory:</p>
+<pre>
+  config.h
+  libglob.a
+</pre>
+<p>As Mike notes, an even better solution is to simply inline the glob routines
+in the big make.c file, just as all the C source files from the top-level
+directory were inlined in the big make.c file. Then there will be no
+dependence on a system-specific library.</p>
+<p><b>Additional notes on SIR subject portability and provisioning</b></p>
+<p>
+Since many of the C language subjects were originally developed for the Sun Solaris
+OS, you will need to concern yourself with porting these to your OS and
+compiler tools chain.  Frequently this involves setting or unsetting the appropriate
+preprocessor flags so that the correct method of initializing system variables
+is used.  For example, building the <b>make</b> subject using the GCC compiler tool chain
+typically requires setting the HAVE_SYS_SIGLIST and SYS_SIGLIST_DECLARED
+preprocessor compilation flags.  The <b>make</b> subject (as do most of the other
+C subjects developed for SUN Solaris) provides for a shell variable to contain these
+compilation flag settings, so by setting the COMPILE_PARAMETERS to the
+appropriate preprocessing flag values permits successful compilation, e.g.:
+<pre>
+For a Bash shell:
+export COMPILE_PARAMETERS="-DHAVE_SYS_SIGLIST -DSYS_SIGLIST_DECLARED"
+
+For Csh shell:
+setenv COMPILE_PARAMETERS "-DHAVE_SYS_SIGLIST -DSYS_SIGLIST_DECLARED"
+</pre>
+Once the COMPILE_PARAMETERS has been set in the shell, the make utility of
+your system will correctly locate and use the system library initialization of
+the sys_siglist variable.  This is standard code porting and is dependent
+on the compiler tool chain and operating system. Other C subjects may require
+different compile flags, or compile flags commented out within the include
+files supplied (typically config.h.)
+</p>
+<p>
+The <b>Flex</b> subject uses a local library (libfl.a) which must be rebuilt.
+Failing to rebuild this library will typically result in errors from the C
+compiler when performing the link-loader phase (/usr/bin/ld errors on Linux
+systems).  To rebuild the library, compile the .c files found in the lib_src
+directory for each version of Flex using the -c flag, e.g.
+<pre>
+<code>
+cd lib_src
+gcc -c libmain.c
+gcc -c liballoc.c
+gcc -c libstring.c
+gcc -c libyywrap.c
+</code>
+</pre>
+Once compiled, the archive can be rebuilt.  Remove the old libfl.a and
+from within the lib_src directory execute the <code>ar</code> command:
+<pre>
+<code>
+ar -c ../libfl.a libmain.o liballoc.o libstring.o libyywrap.o
+</code>
+</pre>
+Once libfl.a has been rebuilt for your platform, the compilation of
+flex.exe should complete successfully.
+</p>
+<p>
+The <b>flex</b> subject also has a tendency to require specifying the
+type of memory allocation library to use.  If flex fails to build,
+and one of the warning messages is similar to:
+</p>
+<pre>
+<code>
+flex.c:8130:7: warning: conflicting types for built-in function &#39;__builtin_alloca&#39; [enabled by default]
+</code>
+</pre>
+<p>
+followed by the compilation/linker error similar to:
+</p>
+<pre>
+<code>
+flex.o: In function &#96;yyparse&#146;:
+flex.c:(.text+0xaec9): undefined reference to `__builtin_alloca'
+flex.c:(.text+0xaefd): undefined reference to `__builtin_alloca'
+collect2: error: ld returned 1 exit status
+</code>
+</pre>
+<p>
+(the warning's line number may vary by version being compiled), this indicates you
+need the preprocessor symbol -DHAVE_ALLOCA_H set in the COMPILE_PARAMETERS as described above.
+Other subjects may require this or differing preprocessor symbols to be enabled, so a
+judicious code inspection for <b>cpp(1)</b> directives in the source lines
+immediately before the location of the warning will typically reveal
+which preprocessor symbol should be required.  While this example is
+specific to <b>flex</b> it can apply to any of the C subjects in the repository,
+the solution to compilation problems is typically setting the correct
+preprocessor symbol to activate the block of code that supports your
+host system OS and hardware architecture.
+</p>
+<p>
+The <b>replace</b> subject overrides functions in the stdio.h library
+which necessitate informing the compiler of this override.  For most
+compiler tool chains you can use the <code>-std=c89 -pedantic</code>
+flags to the C compiler which will permit this to be overridden.
+<p>
+The testing subjects available from the SIR have been prepared using
+Linux, UNIX, and Solaris operating systems.  The subjects may provide scripts
+that provision and execute tests upon the subject in an automated fashion
+which will require extensive modification to operate on non-UNIX derived
+systems (e.g. Microsoft Windows platforms.)  There are several options
+that you can investigate if you want to run these experiments using Microsoft
+platforms.  <a href="https://www.cygwin.com/" target="_blank">Cygwin</a> provides a tool
+collection that allows running scripts targetted at UNIX/Linux systems
+and should provide most of the needed capabilities to support experimentation.
+The <a href="https://www2.research.att.com/~gsf/download/gen/uwin.html" target="_blank">UWIN</a> 
+package from AT&amp;T Research provides another tool collection that
+provides UNIX/Linux command emulation suitble for running the scripts
+provided with these subjects.  As always, a virtual machine instance
+provided by <a href="https://www.virtualbox.org" target="_blank">VirtualBox</a> or
+<a href="https://www.vmware.com" target="_blank">VMWare</a> as well as
+virtual machine hosting capabilities built into certain operating systems
+can provide the needed platform to execute the subject scripts. 
+Depending upon which of these
+options you choose, there may be changes required within the scripts
+in order for them to execute in that environment.
+</p>
+<p>
+With more recent architectures some include files that were provided by
+the Linux platforms are no longer available.  Typically you will need
+to locate where the defined elements that were included in that file
+have moved to, and a web search for the missing include file will often
+yield a result you can use.  One such case is with the <code>grep</code>
+subject.  With <code>grep</code> the libintl.h file has an include
+of sys/isa_defs.h
+which no longer exists.  A web search finds that one project on GitHub
+makes a reference to this file and that reference contains only one line
+that includes linux_types.h .  Using this information, you can look for
+linux_types.h but it doesn't exist either.  Noticing that there is
+a types.h in the Linux /usr/include/sys directory, a change of that
+include from sys/isa_defs.h to sys/types.h allows <code>grep</code> to build
+successfully.  Other times you will need to find what was actually defined
+within the include file, which can again be found by web searching or the
+<a href="www.waybackmachine.org" target="_blank">wayback machine archive.</a>
+</p>
+
+</body>
+</html>
+

@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of SPL Object Preparation: Seeding Faults in an SPL</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<!-- Counters cannot be implemented with CSS because the browser support
+just isn't there. -->
+
+<h2 style="text-align:center">Seeding Faults in an SPL</h2><p>A software product line (SPL) can be implemented using any programming
+language.  Given the limited availability and our limited experience with SPLs
+these instructions are currently written to describe fault seeding applied
+to Java source objects.  In the future, this document will be expanded to
+describe fault seeding procedures applicable to other source code languages.</p>
+<p>1. <b>Placing regression faults in the code</b></p>
+
+<p>Regression faults are faults in changed code, and these are the faults
+in which we are interested and describe here. (Other types of faults could
+be inserted following a similar process.)</p>
+
+<p>Fault Seeders are programmers with at least two years of programming experience
+in Java. Ideally, at least two faults seeders work on each object.</p>
+
+<p>1.1. <b>Finding the changes between versions</b></p>
+
+<p>With the assistance of a code differencing (<code>diff</code>) tool,
+determine where the changes occurred.  We recommend using diff -u (unified diff)
+in order to get more accurate differences.
+Be aware that if the changes between versions were large, the diff tool may
+carry differences forward, even when the code is identical. You should verify
+the differences independently and use diff only as a guide. Also, if available,
+you can use adiff (this can be downloaded from <a href="tools.php">tools</a>)
+which produces a list of changed functions.</p>
+
+<p>1.2. <b>Introducing the fault</b></p>
+
+<p>Each programmer must do this independently to make the process as
+objective/credible as possible.</p>
+
+<p>1.2.1. <b>Type of fault</b></p>
+
+<p>In your life as a programmer, you have inserted and (hopefully) removed many
+type of faults. This fault seeding process needs to mimic what you have found
+during your experience in terms of type and number of faults. Here is a simple
+fault classification scheme that can be helpful for thinking about different
+types of faults:</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>Faults associated with variables: definition of variable, redefinition of
+variable, deletion of variable, change value of variable in existing assign statement.</li>
+<li>Faults associated with control flow: addition of new block of code, deletion of path,
+redefinition of execution condition, removal of block, change order of execution, new call
+to external function, removal of call to external function, adding function, removing function.</li>
+<li>Faults associated with language specific constructs or facilities (such as constructors
+or inheritance in Java).</li>
+</ol>
+
+<p>Although faults are sometimes more complicated than the ones just mentioned,
+complex faults can be decomposed into these simpler types of faults. For the
+integrity of the experiment, it is very important that you try to include
+different types of faults to simulate a <strong>real</strong> fault insertion process.</p>
+
+<p>1.2.2. <b>Fault location</b></p>
+
+<p>A regression fault can be located <strong>only</strong> within the changes between versions
+(limited by the differences found in 1.1).  We will be assuming then, that
+the programmer that made the modification inserted a fault (although <strong>we</strong> will
+be modifying the modified code to simulate that). There is no restriction on
+the size or type of fault at this stage. The only requirement is that the
+changed program can still be compiled and executed.</p>
+
+<p>1.2.3. <b>Faulted code</b></p>
+<p>As with C and Java objects, the preferred method of inserting faults
+into source code is to use the <code>cpp</code> preprocessor to activate faults.
+If the code contains symbols that would confuse the preprocessor, a source
+code overlay method is recommended.  How to use/implement the overlay method 
+is discussed in the <a href="https://sir-public.github.io/SIR/spl-fault-overlay.html">SPL Overlaying Faults</a>
+page.
+</p>
+
+<p>Regardless of whether the <code>cpp</code> or overlay method is used, 
+each target section of code (line, block, etc) where a fault is meant to be
+seeded needs to be duplicated (copy and pasted). One copy will be the original,
+the second copy is the one with the embedded fault. For <code>cpp</code> inserted
+faults, the copies need to be enclosed in preprocessor directives as follows:</p>
+<pre>
+#include FaultSeeds.h
+	:
+#ifdef fault-id
+
+	// code with the embedded fault
+
+#else
+
+	// original code
+
+#endif
+</pre>
+<p>(Yes, these are C directives, we will elaborate on using the C
+preprocessor on fault seeded files later.)</p>
+
+<p>
+For overlay fault insertion methods, the source file is copied and the
+fault inserted into the code with a comment at the location of
+the faulted code segment.  The file will be put into a separate directory
+tree that maintains the original directory tree structure.
+</p>
+<!-- <p>Also, the fault-id format is defined in the next section.</p> -->
+
+<p>In addition, the following files should be created to keep fault-id information:</p>
+<pre>
+     FaultSeeds.h
+<br />
+     FaultSeeds.org
+</pre>
+<p>The FaultSeeds.h file is used by the fault-matrices generator, to map faults
+to the test cases that reveal them.  The FaultSeeds.org is a human-readable file
+that describes the location of the fault by filename and relative position within
+the original source file.</p>
+
+<p>To test a faulty version, you need to turn one of the faults on before compiling
+faulty version. The C preprocessor (<code>cpp</code>) performs this process.</p>
+
+<p>The following example describes how faults should be inserted into a Java
+source SPL.  This procedure may be extensible to other languages (obviously C)
+however we have not addressed at this time the needs and capabilities of other
+programming languages to support preprocessing of source.</p>
+<p>Example:</p>
+<p class="i1">Assume you have two java files to be fault seeded: A.java and B.java.
+Copy A.java (or B.java) into A.cpp (or B.cpp) and keep A.java (or B.java) unmodified.</p>
+
+<p class="i1">After you seeded faults, A.cpp has fault-id, F_A_HD_1 and F_A_AK_1, in order,
+and B.cpp has F_B_HD_1, F_B_HD_2, and F_B_AK_1 in order. That is, F_A_HD_1 appears earlier
+than F_A_AK_1 in A.cpp file.</p>
+<p style="margin-left:3em">The FaultSeeds.h file contains all faults that reside in an object version
+in the following format: </p>
+<pre style="margin-left:3em" class="i2">
+#define FAULT_ID
+#define FAULT_ID
+#define FAULT_ID
+    .
+    .
+</pre>
+<p style="margin-left:3em">Using the example, FaultSeeds.h would contain:</p>
+<pre style="margin-left:3em" class="i2">
+#define F_A_HD_1
+#define F_A_AK_1
+#define F_B_HD_1
+#define F_B_HD_2
+#define F_B_AK_1
+</pre>
+<p style="margin-left:3em">
+In use, the FaultSeeds.h file will only contain a single #define fault line but
+your script will save a copy of the original and generate a new FaultSeeds.h containing
+only the desired fault.  Typically using a counter in a shell script to select each
+line sequentially is used, e.g.
+<pre style="margin-left:3em">
+#!/bin/bash
+cd $experiment_root/SUBJECT_NAME/source
+counter=1
+cp FaultSeeds.h FaultSeeds.save
+while [ $counter -lt `cat FaultSeeds.save | wc -l` ]
+do
+    #
+    # this selects the line by line number in FaultSeeds.h
+    # and creates a new FaultSeeds.h with only that fault
+    #
+    sed -n ${counter}p FaultSeeds.save > FaultSeeds.h
+    #
+    # EqualizeLineNumbers makes all line numbers agree
+    # between orig & seeded versions this eliminates false
+    # diffs due to line numbering in error outputs the zero
+    # (0) indicates that it should not apply any faults
+    #
+    while read LINE
+    do
+        java EqualizeLineNumbers $LINE 0 `echo $LINE | sed "s/\.cpp/\.java/"`
+    done < `find ./ -name "*.cpp"`
+    #
+    # this extracts the fault name, need this to examine FaultSeeds.org
+    #
+    fault_name=`awk '{print $2}' FaultSeeds.h`
+    file_fault=`grep "${fault_name}" FaultSeeds.org | awk '{print $2}'`
+    file_name=`grep "${fault_name}" FaultSeeds.org | awk '{print $3}'`
+    #
+    # this activates only the desired fault on only the desired file
+    #
+    java EqualizeLineNumbers $file_name $file_fault `echo $LINE | sed "s/\.cpp/\.java/"`
+    #
+    # execute the tests upon the now faulted subject here
+    # in this example the script runall.sh executes the test suite
+    #
+    ${experiment_root}/SUBJECT_NAME/scripts/runall.sh
+    counter=`expr ${counter} + 1`
+done
+</pre>
+The shell script example would sequentially activate each fault on the SUBJECT_NAME object
+and activate each fault present in the FaultSeeds.h file.  The java <i>EqualizeLineNumbers</i> class
+used in the example can perform the same actions as <b>cpp</b> but also provides line number adjustment to
+the original (unfaulted) version thus eliminating one source of nondeterministic output.  EqualizeLineNumbers
+is available in the Java tools on the SIR <a href="https://sir-public.github.io/SIR/tools.html">Download Tools</a> link.
+</p>
+
+<p>1.2.4. <b>Format of FaultSeeds.org</b></p>
+
+<p style="margin-left:3em">The FaultSeeds.org file contains all faults that reside in an object version
+in the following format:</p>
+<pre class="i2">
+[fault_id] [fault_order_in_file] [fault_file_name]
+[fault_id] [fault_order_in_file] [fault_file_name]
+[fault_id] [fault_order_in_file] [fault_file_name]
+    :
+</pre>
+
+<p class="i1">There are no empty lines, each line corresponds to exactly one fault.</p>
+
+<p>For each fault, you need to keep a record that includes:
+<dl>
+<li>
+Fault ID</li>
+<li>the order of the fault in the source file</li>
+<li>the name of the source file with path information relative to the FaultSeeds.h file</li>
+</dl>
+Historically, the <i>fault_id</i> contained information about
+fault expressed in the format: F_ClassFileInitials_FaultSeederInitials_Number
+although this is not enforced.
+
+<p style="margin-left:3em">Using the example, FaultSeeds.org should be:</p>
+<pre class="i2">
+F_A_HD_1 1 A.cpp
+F_A_AK_1 2 A.cpp
+F_B_HD_1 1 B.cpp
+F_B_HD_2 2 B.cpp
+F_B_AK_1 3 B.cpp
+</pre>
+In this way the faulted source files can be easily found using the UNIX/LINUX
+<code>find</code> command and fault numbering can increment in a simple
+numeric sequence.  The historic fault_id naming methodology is
+most useful when multiple people are inserting faults into multiple source files.
+</p>
+
+<p>1.2.5. <b>Iterate over faults</b></p>
+
+<p>We typically aim to begin with approximately 20 faults per version.</p>
+
+<p>A total of Z faults (Z = MIN (number of diffs in version / 2, 10)) should be
+generated per version. Thus you will seed 10 faults per version or less if the
+number of differences is smaller than 20. Repeat the process in 1.2 until Z
+faults are found.</p>
+
+<p>2. <b>Selecting faults to keep for experiments</b></p>
+
+<p>2.1. <b>Common fault filtering</b></p>
+
+<p>Since two programmers do the seeding process independently, some faults may be
+repeated. Repeated faults will be removed after all Z faults have been inserted.
+Although the programmers could work together to avoid overlapping, this would
+hurt the validity and credibility of the process so we avoid this.</p>
+
+<p>The two programmers can perform this process by looking at the fault record,
+referring to the code when necessary to compare seeded faults that seem to be
+similar. If two seeded faults are identical, just add DUP to the fault record
+of one of the faults.</p>
+
+<p>2.2. <b>Exposure filtering</b></p>
+
+<p>The modified code from both programmers needs to be joined. Note that only <strong>one</strong> 
+original section is necessary per program. This should be a simple and short
+(maximum 10 modifications) cut/paste process but needs to be done carefully.
+Make sure you compile, link and test your program as you did in 1.2.4.
+Then, run the test suite on each version to proceed with the filtering. We will
+filter out two types of faults:</p>
+
+<p>2.2.1. <b>Faults that are exposed by more than X% of the tests</b></p>
+
+<p>Overly expressive faults are those faults that are removed because they are
+considered too easy to find (which are
+unlikely to be introduced by an experienced programmer, and if they are
+introduced, are likely to be detected during unit testing). If a seeded fault
+is exposed by more than X percent of the tests, then add <strong>easy</strong> to the fault
+record of the faults.</p>
+
+<p>2.2.2. <b>Faults that are not detected by any tests</b></p>
+
+<p>These non-expressive faults afford two alternatives depending on time availability.
+If developing a test to expose the fault would take less than Y hours, then write
+the new test and verify that it works. If developing a test takes more than Y hours, the
+write an N-EXP next to the fault description to indicate it is not exposed.  The number
+of hours, Y, is discretionary since only you know how much effort is required and the
+amount of time available.</p>
+
+<p>Ultimately after filtering we want 3-8 faults per version. Note that we can
+include only one fault per line changed.</p>
+
+<p>2.3. <b>Final Setup</b></p>
+
+<p style="padding-bottom:1em">Keep in the header file (FaultSeeds.h) only those fault-ids
+that were not filtered/discarded due to their being non-expressive or overly-expressive.
+</p>
+<p>2.3.1. <b>Use the C preprocessor to activate your faults</b></p>
+<p>
+When you create your seeded versions, use a unique filename extension (typically we use
+the .cpp extension regardless of the original source type) with the original source
+file name (e.g. jtcas.java is the original and jtcas.cpp has the faults activated within
+cpp directive blocks.)   By inserting only the desired fault into the FaultSeeds.h
+you can cause only that fault to be inserted.  A shell script can be used to copy the
+original FaultSeeds.h to a saved copy and extract only the desired fault activation line
+from the file.  Alternatively, you can use a script to remove 
+<code>
+</code>
+<p>
+Test the program and then move on to the next version!</p>
+
+<p>2.4. <b>Mutation Fault Seeding</b></p>
+<p style="padding-bottom:1em">
+
+
+</body>
+</html>
+

@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Invariant Checking - Java Examples Handbook</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Invariant Checking - Java Examples Handbook</h2><P CLASS="western" style="text-align:center">July 29,
+2009</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">These artifacts (Array-Partition,
+Binary-Search-Tree, Doubly-Linked-List, Sorting, Vector, Binary-Heap, Disjoint-Set,
+Red-Black-Tree, and Stack) are Java examples targeted to evaluation of Java symbolic
+execution and test case generation tools such as Kiasan, JPF, and Jcute.  Each
+example is typically one class (in some cases, auxiliary classes are
+included) with invariant specifications given in the form of
+executable Java methods (boolean functions).
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">If you use these
+examples in your research, we would appreciate it if any resulting
+papers could cite one or both of the papers listed in the <B>References</B>
+below &minus; in addition to citing the SIR repository.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>I.	Motivation</B></P>
+<P><IMG SRC="Invariant-Checking-Java-Example-Handbook_html_144ef511.png" NAME="graphics1" style="float:right" WIDTH=160 HEIGHT=130 alt="Binary Tree Graph"></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>I.1	Contract
+Checking in Object-Oriented Languages</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">In development contexts
+that emphasize reusable components, it is important for development
+methodologies and processes to be supported by the following
+capabilities: (1) specification notations such as those used in the
+Design-by-Contract (DBC) paradigm that provides ``software
+contracts'' to specify the assumptions that a component makes about
+its context and the behavior/functionality of the services that the
+component guarantees to provide to clients, and (2) tools for
+automatically checking that clients conform to component contract
+assumptions and that a component's implementation provides
+functionality that satisfies what its contract guarantees.  These
+capabilities can be difficult to provide in OOP languages due to the
+extensive use of dynamically created heap objects, where one has to
+be able to precisely reason about objects, their data, and the
+relationships between them. We refer to invariants and functional
+behavioral specifications on complex heap data structures as <I>strong</I>
+properties as they are hard to analyze due to aliasing issues (e.g.,
+equivalence of object structures); <I>lightweight </I>properties such
+as simple relationships between scalar values and variable null-ness
+are a counterpart of strong properties that are also important to
+specify and enforce as an integral part of the development process.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Tools such as ESC/Java
+that are founded on theorem-proving techniques have made significant
+contributions in the area of automated contract checking.  However,
+ESC/Java and related tools have significant difficulties in
+supporting checking of strong properties of heap-manipulating
+programs; they provide weak support for generation of informative
+counter-examples, and they lack integration with existing quality
+assurance mechanisms such as testing.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>I.2	<IMG SRC="Invariant-Checking-Java-Example-Handbook_html_144ef511.png" NAME="graphics3" style="float:right" WIDTH=160 HEIGHT=130 alt="Binary Tree Graph">
+Unit Testing in Object-Oriented Languages</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Unit testing -- a
+quality assurance method in which individual software system modules
+(i.e., <I>units</I>) are tested in isolation, is an integral part of
+many development processes. Successful unit testing requires several
+important steps.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">First, a suite of <I>unit
+tests</I> must be created that call the public methods of the unit
+with method input parameter values that drive the execution of the
+unit down particular execution paths. The number of unit tests and
+choice of parameter values are usually driven by multiple factors
+including:  (1) the need to cover all the different combinations of
+values that might get  passed into the unit when it is deployed
+within the context of a complete system (i.e., <I>context value
+coverage</I>), and (2) the need to obtain a certain level of  <I>code
+coverage</I> for the unit (e.g., certain levels of statement or
+branch coverage). Factor (1) may be aided by documentation about a
+unit's required behavior or by formal or informal unit interface
+contract specifications (e.g., such as those that result for a
+Design-By-Contract methodology).  In the presence of such
+specifications, the test suite construction goals associated with (1)
+can be presented as aiming to achieve a certain level of
+specification coverage.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Second, one must design
+a collection of <I>test oracles</I> that can be invoked to
+automatically determine if the output of a test is correct.  As with
+(1) above, the construction of oracles can be guided by the presence
+of documentation or contract specifications (e.g., the <I>post-condition</I>
+of a method contract can often be directly translated into a test
+oracle).  
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Third, because units
+are tested in isolation, some sort of executable behavior must be
+defined for any method invocations that the unit makes into the
+enclosing context (we view such units as having incomplete
+computation structures -- open systems). Such behavior is often
+implemented in what are termed <I>mock objects</I> -- dummy objects
+with method stubs that implement fragments of the functionality that
+exists in the <I>real objects</I> that the unit interacts with when
+deployed in a system context.  The partial functionality of the mock
+object might: (a) use assertions to check for properties of parameter
+values flowing from the unit into the mock object, (b) simulate side
+effects that might occur during the execution of the context method,
+(c) generate simulated method return values that get passed from the
+context back into the unit. Methodologies for constructing mock
+objects are very ad-hoc (e.g., there is hardly ever an attempt to
+relate the behaviors of mock and real objects as
+over/under-approximations), and the degree to which the functionality
+of real object is captured by the mock object varies widely.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>I.3	<IMG SRC="Invariant-Checking-Java-Example-Handbook_html_144ef511.png" NAME="graphics4" style="float:right" WIDTH=160 HEIGHT=130 alt="Binary Tree Graph">Symbolic
+Execution for Contract Checking and Unit Test Case Generation</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Recent efforts have
+demonstrated that symbolic execution can serve as a basis for
+checking strong contract properties and invariants of complex
+heap-based data structures and for supporting automated</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">test case generation.
+One key advantage of symbolic execution over real/concrete execution
+(e.g., traditional testing) is that one can avoid the burden of
+constructing numerous concrete input parameter values and instead use
+symbolic values and constraints to compactly represent sets of
+possible input values.    Once the symbolic execution algorithm as
+traversed a path in a method and accumulated symbolic constraints
+over a set of symbolic values, the constraints can be solved to find
+a concrete <I>representative</I> &minus; a binding of symbolic values to
+concrete values that satisfies the accompanying constraints, and this
+representative can be turned into a concrete test case for the method
+that drives execution along a particular path (the path walked by the
+symbolic execution algorithm when constructing the current collection
+of symbolic values and constraints).</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Because symbolic
+execution is typically implemented as a <I>path-sensitive analysis</I>,
+it can require significant computational resources.   Thus, it is
+important to empirically validate the effectives of symbolic
+execution for both contract checking and test case generation.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>II.	<IMG SRC="Invariant-Checking-Java-Example-Handbook_html_144ef511.png" NAME="graphics5" style="float:right" WIDTH=160 HEIGHT=130 alt="Binary Tree Graph">An
+Overview of the Artifacts</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The artifacts in this
+collection were used to evaluate the Kiasan symbolic execution and
+unit test case generation algorithms presented in the references
+below.   Some of the examples come from earlier papers on symbolic
+execution and test case generation; others come from Java collections
+library or from data structures textbooks. 
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The examples are
+organized into the following groups (corresponding to directories in
+the distribution files):</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<UL>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Array Partition
+	(Quicksort)</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Binary Heap 
+	</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Binary Search Tree</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Disjoint Set</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">DLL
+	(doublely-linked list)</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Red Black Tree</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Sort (a collection
+	of five sorting algorithms)</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Stack</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Vector</P>
+</UL>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Each of the examples
+above has two documentation files associated with it.  
+</P>
+<UL>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Read Me file --
+	Describes the origin of the example as well as important features of
+	the example.</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Code Samples file
+	-- contains the &quot;specifications&quot; given in the form of code
+	fragments with annotations describing the attachment of invariants.</P>
+</UL>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The &quot;specification&quot;
+in each file are typically stated in terms of a &quot;RepOK&quot; method
+that encodes the invariant for data structure, along with some
+additional annotations recognized by the Kiasan tool.   The
+Kiasan-specific annotations can easily be modified to match the input
+of another symbolic execution tool.   We plan to eventually
+re-release these examples with the specifications encoded in the Java
+Modeling Language (JML)</P>
+<P>
+Each of the examples is provided with two versions of the source code.
+The original version, which supports the use of the Kiasan analysis tool,
+is located within the <code>Kiasan/code/Kiasan-<em>subject-name</em>-src</code> 
+directory of each subject.  The Kiasan analysis tool is available for
+download from <a href="https://code.google.com/p/sireum/" target="_blank">https://code.google.com/p/sireum/</a>.
+</P>
+<P>
+The second version of source code provided removes dependencies on the
+Kiasan libraries allowing execution of this version using standard Java
+compilation/run sequences.  This version provides annotations of the JML
+contract specifications applicable.  These allow the end-user to define
+their own contract specifications from the provided JML annotation for
+performing analysis using their own framework.  This second version of subject
+source is located under <code>Kiasan/code/<em>subject-name</em>-src</code>.
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>III.	Issues in
+Evaluation</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The references below
+contain details regarding particular issues investigated in
+experiments with the artifacts.   Generally the experiments aim to
+assess the computational cost (memory, time, number of internal
+states in the checking algorithm) associated with achieving a certain
+level of quality of the analysis (usually measured in some form of
+coverage &minus; typically, branch coverage).   Symbolic execution is
+usually presented as an <I>under-approximation</I> in which the
+analysis is bounded in some way by the depth of execution path
+explored or size of statespace (e.g., number of objects of a
+particular type).  
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">We have enclosed in
+this distribution the extended version of the two papers below that
+give the details of the experiments carried out using these
+artifacts.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>Acknowledgements:</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The following people
+contributed to the construction of the code examples and
+documentation in this distribution:  William Deng, Robby, Andrew
+King, Sam Procter, John Hatcliff. 
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><B>References:</B></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<OL>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Xianghua (William)
+	Deng, Robby, John Hatcliff. &quot;Kiasan/KUnit: Automatic Test Case
+	Generation and Analysis Feedback for Open Object-oriented Systems&quot;,
+	Proceedings of the 2007 International Conference on Testing:
+	Academic and Industrial Conference: Practice and Research
+	Techniques, IEEE Press, September 2007. 
+	</P>
+	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Xianghua Deng,
+	Robby, and John Hatcliff. &quot;Towards A Case-Optimal Symbolic
+	Execution Algorithm for Analyzing Strong Properties of
+	Object-Oriented Programs&quot;, Proceedings of the 2007
+	International Conference on Software Engineering and Formal Methods,
+	September 2007. 
+	</P>
+</OL>
+
+</body>
+</html>
+

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of SPL Object Preparation: Source Faults using Overlays</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<!-- Counters cannot be implemented with CSS because the browser support
+just isn't there. -->
+
+<h2 style="text-align:center">SPL Overlaying Faults</h2>
+<p>1. Source Code Overlays</p>
+
+<p>
+Since some SPL objects can utilize preprocessor directives to implement the
+composition of the end-products the normal process of placing cpp directives
+into a copy of the original source file may interfere with the SPL product build
+process.  To avoid this an alternative method is to create a subdirectory
+for each fault and put the fault containing source file into a directory
+tree that is exactly the same as the unmodified version of the SPL source directory.
+Using this method the directory tree and source file can then be copied directly
+over the original version and the file containing the fault overwrites the
+original source file.
+</p>
+<p>Example:</p>
+If your source code has a A.java and B.java having the following directory
+tree in the original version:
+<pre class="i2">
+object_experiment_root_directory
+|_______verisions.alt
+        |________orig
+                 |_______ v0
+                          |_______componentA
+                                  |_______ src
+                                           |______componentA
+                                           |      |__________A.java
+                                           |
+                                           |______componentB
+                                                  |__________B.java
+</pre>
+<p>
+The faulted version of A.java (and only this file) containing the first fault
+would then be placed under the <code>versions.alt/seeded/vK</code> directory
+branch using a subdirectory at the same level as the source
+directory and the original source directory name appended with the fault number.
+This &quot;sparse&quot; directory structure should maintain the
+subdirectory pathing of the original object's directory tree
+with the only fault containing source file present in the tree.
+A tree diagram of the overlay method would look like this:
+<pre class="i2">
+object_experiment_root_directory
+|_______verisions.alt
+        |________seeded
+                 |________v1
+                 |        |_______ object-project-name        // original code tree
+                 |        |        |______src
+                 |        |        |      |______componentA      
+                 |        |       ...     |      |__________A.java   // original sources
+                 |        |               |      |__________another_source_file.java
+                 |        |               |      |
+                 |        |               |     ...
+                 |        |               |
+                 |        |               \______componentB          // original sources
+                 |        |                      |__________B.java
+                 |        |                      |__________more_source.java
+                 |        |                      |
+                 |        |                     ...
+                 |        |        
+                 |        |_______object-project-name_1        // fault 1 directory
+                 |        |       \______src
+                 |        |              \______componentA      
+                 |        |                     \___________A.java   // faulted version of A.java
+                 |        |
+                 |        |_______object-project-name_2        // fault 2 directory
+                 |        |       \______src
+                 |       ...             \______componentB
+                 |                              \___________B.java  // faulted version of B.java
+                 |________v2
+                 |        |_______object-project-name
+                 |        |       |______src
+                 |        |       |      |_____componentA
+                 |        |      ...     |     \____________A.java
+                 |        |              |       |__________another_source_file.java
+                 |        |              |       |
+                 |        |              |      ...
+                 |        |              \_____componentB
+                 |        |                      |__________B.java
+                 |        |                      |__________more_source.java
+                 |        |                      |
+                ...      ...                    ...
+</pre>
+<p>
+This is a generalized representation.  SPL objects in the repository should
+reflect the original structure of the directories under the object-project-name
+directories to enable reuse of the original build scripts.
+The contents of the original object-project-name directory should have
+all the source files needed to build the end-products with the possible exception
+of any configuration files used to define the products.  These configuration
+definition files will be stored in a the <code>configurations</code> directory.
+</p>
+<p>
+It should be noted that the base (unfaulted) version of the source need
+not be stored in the <code>seeded</code> directory tree when the overlay
+method is used because it is available under the <code>orig</code> directory
+tree already.  Eliminating it from this branch can reduces the disk storage
+required for the collection at the expense of a more commplicated fault
+installation process.  If the unfaulted version is not present in this
+directory then a CONTENTS or README file should indicate the location
+of the unfaulted versions used and scripts provided that automate the
+fault insertion procedures.
+</p>
+<p>1.1. Activating the fault</p>
+
+<p>
+To activate the fault a build script would copy the non-faulted original
+version into the <code>versions</code> or <code>source</code> directory.
+Once in place, the faulted version of source code can be copied over this
+original version of the source.  Once copied, the compose/build step can be
+performed on this collection of source files to make the end-products.
+</p>
+<p>1.2. Fault localization</p>
+<p>
+SPL objects that use the overlay technique are still required to provide
+a <code>FaultSeeds.h</code> and a <code>FaultSeeds.org</code> file
+to indicate the actual fault/file location.  The fault numbering applied
+to the directory names (see above) should be based upon the order the faults
+appear in the <code>FaultSeeds.h</code> file.
+</p>
+
+</body>
+</html>
+

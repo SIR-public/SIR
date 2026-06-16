@@ -1,0 +1,549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Concise Object Handbook: Object Directory Specification</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+figure {
+    display: inline-block;
+    border: 1px gray;
+    float: center;
+    margin: 10px 10px 10px 10px;
+}
+img {
+    vertical-align: top;
+}
+figure figcaption {
+    border: 1px gray;
+    text-align: center;
+}
+TABLE.coll {
+  border-collapse: separate;
+  border-spacing:0 5px;
+}
+TD.sp10 {
+  padding-bottom: 0px;
+  padding-top: 2px;
+  padding-left: 8px;
+  text-align: left;
+}
+TH.spc10 {
+  padding-bottom: 0px;
+  text-align: center;
+}
+TH.sp10 {
+  padding-bottom: 0px;
+  text-align: left;
+}
+TR.btpadding>th {
+  padding-bottom: 1px;
+}
+TR.toppadding {
+  margin-top: 1px;
+} 
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Concise Object Directory Specification</h2><p class="i1">
+The basis for the concise object directory layout is the
+standard SIR object directory tree depicted in <i>Figure 1</i>.
+In standard SIR subjects the version subdirectories under the
+<b>versions</b> or <b>versions.alt</b> directories contain
+the source code collection of that version/variant of the
+testing subject.
+</p>
+<div class="i1">
+<table>
+<tr>
+<td>
+<figure>
+<img src="SIRdirLayout.png" alt="Standard SIR Directory Layout" width="140" height="420"/>
+<figcaption><i>Figure&nbsp;1</i></br><b>Standard SIR</br>Object</br>Directory Tree</b></figcaption>
+</figure>
+</td>
+<td>
+<p class="i1">Concise packaged objects differ from traditional SIR subjects
+in how the versions are represented.  In all other regards,
+each Concise packaged object has the same directory
+layout as the other SIR objects. Each object has its own top level
+<em>subject-name</em> directory, named to identify the object
+uniquely on the SIR for ease of reference.
+</p>
+
+<p class="i1">The Concise packaged object directory is organized into
+subdirectories (which in turn may contain subdirectories)
+according to the same specific format used for other
+SIR subjects, enabling the writing of generic tools and
+scripting for experiment provisioning by version.  This
+also aids in locating specific version data and applicable
+tests for a version.
+</p>
+
+<p class="i1">This document describes the Concise packaging of the
+object directory organization in
+terms of its subdirectories, and what they contain.</p>
+
+<p class="i1">This organization is used for objects where we have a sequence
+v1, v2, v3... vK of versions, where each vK+1 is 
+a derivative of, or later revision of the previous version vK.
+Versions typically reflect an evolution of a testing subject
+over time.
+Versions can also represent different variants having
+distinct properties or faults applied.</p>
+
+<p class="i1">In general, any directory or subdirectory that contains files
+whose function may not be obvious, or that depart from naming
+conventions, should contain a CONTENTS file describing those files.
+A README file should also be provided describing the contents
+and how they are intended for use.</p>
+</td>
+</tr>
+</table>
+</div>
+<p class="i1">The subdirectories of an object are as follows:</p>
+<table>
+<tr>
+<td style="vertical-align: top">
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<figure>
+<img src="SIRlinkLayout.png" alt="SIR Concise Link Style Layout" width="150" height="210"/>
+<figcaption><i>Figure&nbsp;2</i></br><b>Concise Link</br>Object Layout</b></figcaption>
+</figure>
+</br>
+</br>
+</br>
+</br>
+<figure>
+<img src="SIRgitLayout.png" alt="SIR Concise Git Style Layout" width="180" height="260"/>
+<figcaption><i>Figure&nbsp;3</i></br><b>Concise Git</br>Object Layout</b></figcaption>
+</figure>
+</td>
+<td>
+<ol>
+<li><b>source</b>
+<p>An empty directory. During experiments, a version of the program 
+that you're working with is placed in here.  For subjects that
+employ public repositories using version control, e.g. Git or Mercurial
+repositories, a copy of the repository is cloned into this location
+and kept there for creating versions of the object via the
+mechanisms provided by the repository, e.g. using the
+&quot;<i>git checkout</i>&quot;
+<!-- or the &quot;<i>hg up tagname</i>&quot;-->
+command to select the desired version.  For
+subjects using prepackaged versions stored as Zip files, the
+contents of the source directory are deleted after 
+we're finished with it.  The scripts provided with the object (see
+the <b>scripts</b> subdirectory section below) are intended
+to perform the download/clone action using the version
+specific information provided within the <b>versions</b> directory
+described below.</p>
+</li>
+<li><b>versions.alt</b>
+<p>May be used to contain variants/versions in lieu of using the <b>versions</b>
+directory.  If this directory is used, the installation scripts will
+need to reference it instead of the <b>versions</b> directory, so
+check what is being used by the install scripts.  Either <b>verisons.alt</b>
+or <b>versions</b> will contain subdirectories containing the web URL
+links to the archive for the particular version, or the Git URL and
+commit ID or specific tag needed to configure the subject from a
+Git or Mercurial repository.  Figures 2 and 3 graphically describe how the URL
+files discussed below are provided within the directory layout of each
+concise subject.
+</p>
+</li>
+
+<li><b>versions</b>
+<p>
+For Concise packaged subjects, the versions directory contains subdirectories in
+the form:
+<div>
+v1,v2,v3,...vK
+</div>
+where v1 contains the first, earliest version, of a subject and v2 contains
+the next newer version.  Thus, vK version would contain the most recent version
+expressing an evolutionary progression of the subject source.  Each of these
+subdirectories would contain a file or files describing the web resource
+locations needed to obtain the source for that version.  The files found
+there will be named:
+</p>
+<table>
+<tr>
+<th class="spc10">File Name</th><th class="spc10">Contents</th>
+</tr>
+<tr class="btpadding">
+<td class="sp10"><b>link</b></td><td class="sp10">A web URL for direct download of a source files archive (zip or tar.gz form) Multiple
+URLs can be present in this file when the source file archive is available from multiple locations on
+the web</td>
+</tr>
+<tr class="btpadding">
+<td class="sp10"><b>giturl</b></td><td class="sp10">A web URL in Git format for use by the <b>git</b> command to clone the repository
+Multiple URLs can be placed in this file when the Git project is available from different Git repository
+hosts on the web</td>
+</tr>
+<tr class="btpadding">
+<td class="sp10"><b>gitcommit</b></td><td class="sp10">The Git commit identifier number used to checkout the version of the object</td>
+</tr>
+<!--<tr>
+<td>hgurl</td><td>The web URL in Mercurial format for use by the <b>hg</b> command to clone the repository.
+The capabilities to support </td>
+</tr>
+<tr>
+<td>hgtag</td><td>The Mercurial tag identifier for used to checkout the specific version of the object</td>
+</tr> -->
+</table>
+<p>
+This is an extensible specification. The existing <i>functions.sh</i>
+installation script library currently
+supports HTTP GET source archive download and Git project source
+clone operations.  Additional
+version control mechanisms, e.g. Mercurial or SVN, may be supported
+in the future.
+</p>
+<p>
+This is an example of the content of a <b>link</b> file.
+</p>
+<samp>
+https://git.unl.edu/Software_Artifact_Infrastructure_Repository/phpaddressbook/raw/master/v1.zip
+</samp>
+<p>
+This example references version 1 of the phpaddressbook subject from a repository
+hosted on the <samp>git.unl.edu</samp> server.  Note that the <b>link</b> file expects a
+reference URL to be on a single line, but multiple URLs can be placed within it
+separated by line-feed/new-line characters.  In this example we hosted the 
+HTTP GET download
+version from a Git server, but any hosting server that can support the HTTP GET
+protocol can be used.  To see how we configured the Git project to support
+the <b>link</b> style reference
+you can visit the SIR's concise PHP Addressbook project 
+<a href="https://git.unl.edu/Software_Artifact_Infrastructure_Repository/phpaddressbook" target="_blank">here</a>.
+</p>
+<p>
+Specification of a Git project via the <b>giturl</b> and <b>gitcommit</b> files
+is similarly simple.  An example of the contents of a <b>giturl</b> file:
+</p>
+<samp>
+https://git.unl.edu/Software_Artifact_Infrastructure_Repository/MyMovieLibrary.git
+https://github.com/ndbills/MyMovieLibrary.git
+</samp>
+<p>
+In this example we show two Git project links separated by line-feeds/new-lines.
+This is how the <b>giturl</b> can be used. 
+to specify multiple locations to download the object source code.  The <b>gitcommit</b>
+file contains only one line that contains the Git commit identifer specific
+to the version of source used for that version of the subject's original experiment.
+An example contents of a <b>gitcommit</b> file would be:
+</p>
+<samp>
+ab3d1899150255f67b8c9bedc80e9ff6ae8795da6
+</samp>
+<p>
+This is a hash-value that uniquely defines the version within the Git project.
+</p>
+</li>
+
+<li><b>testplans.alt</b>
+
+<p>Testing information for objects.</p>
+<p>Concise subjects may use this directory or the <b>testplans</b> directory
+to store the tests applicable to the object.  Typically these tests
+are specific to the experiment performed by the original researcher
+and are distinct from any tests packaged with the original source
+obtained from the remote repository resource.
+
+<p>If used, this directory contains subdirectories v1, v1, ... vK, each
+of which contains testing information for that version.</p>
+<!--The testplans.alt directory may also contain a testscript subdirectory.</p>-->
+
+<p>Further recommendations on how to use this directory are outlined
+in the discussion on the <b>testplans</b> directory below.
+<!--
+<p>To avoid keeping multiple copies of identical files, we have organized
+the vK subdirectories into three types of files:</p>
+
+<ul>
+<li>General Files - .tsl, .frame and .universe files as follows:
+  <ul>
+  <li>tsl specification files (.tsl extension) 
+     <p>These files are named vK_n.tsl or vK.tsl where K=0,1,2... for
+     different versions and n=1,2,3... for the different tsl specs.
+     For example, if we are in version v1 and there are two tsl
+     specification files then these files will be named v1_1.tsl
+     and v1_2.tsl.</p></li>
+  <li>sets of test frames generated from .tsl files (.frame extension)
+     <p>These files are named vK_n.frame or vK.frame, generated from
+      vK_n.tsl or vK.tsl files respectively. Here K=0,1,2... for
+      different versions and n=1,2,3... for tsl specs.  For example,
+      the frame file generated from vK_1.tsl will be named vK_1.frame.</p></li>
+  <li>STImpL files (.tsl.universe, .cov.universe, or .junit.universe extension)
+     <p>A STImpL file is a file listing your test cases. A program
+     called &quot;make-test-script&quot; (<code>mts</code>) transforms STImpL files into
+     various types of scripts that can be used to automatically execute
+     the tests or gather traces for the tests. There are two types of
+     STImpL files:</p>
+     <ul>
+     <li>vK_n.tsl.universe or vK.tsl.universe where K=0,1,2,...
+     for different versions and n=1,2,3,... for different tsl
+     specification files. These files contain test cases
+     generated from tsl test frames.</li>
+     <li>vK_n.cov.universe or vK.cov.universe where K=0,1,2....
+     for different versions and n=1,2,3... for different
+     coverage files.  These files contain additional tests
+     that provide some additional code coverage.</li>
+     <li>vK.class.junit.universe where K=0,1,2,... for different
+     versions for JUnit test cases.</li>
+     </ul>
+     <p>Depending on the object, a STImpL file consists of a set of
+     test case files, not a list of test cases.  That is, each test
+     case exists as a separate file. An example can be found in the
+     <code>siena</code> object.</p>
+  </ul></li>
+<li>test suite directories (containing multiple test suites, typically
+these just contain a subset of the lines in some STImpL files).
+<p>These may be tarred and gzipped due to size. A CONTENTS file should
+identify the meaning of these directories.</p></li>
+<li>testscript subdirectory
+<p>If there are any startup or exit scripts present in the
+STImpL file (defined below) then they are stored in this directory.</p></li>
+</ul>
+
+<p>CONTENTS files should be provided that will distinguish the
+different tsl specifications and STImpL files.</p>
+</li>
+-->
+<li><b>testplans</b>
+<p>
+The <b>testplans</b> directory can be used instead of the <b>testplans.alt</b>
+directory to contain tests specific to the original research performed
+on the object.  These tests typically are distinct from any tests
+packaged with the object stored in the repository.  The tests however
+may augment the packaged tests as well.  Usage of these tests should
+be documented in a README and CONTENTS files so future users of the
+tests will have guidance on how to use them in reproducing the
+original experiments done on the object.  Segmenting test suite
+collections by version is recommended using subdirectories v1 to vK
+as described in the <b>versions</b> directory section above.
+</p>
+
+</li>
+
+<li><b>traces.alt</b>
+<p>
+Currently this directory is unused, but it is provided to permit
+researchers a location to hold any trace data they may wish to
+provide or store that relates to the experiment execution.
+</p>
+<p>
+If used, it is suggested that the data for each version be
+stored in subdirectories, v1, v1, ... vK that correspond to
+the version numbers used in the <b>versions</b> or <b>versions.alt</b>
+directories described earlier.
+</p>
+<!--
+<p>Contains subdirectories v1, v1, ... vK for the versions of the object;
+these subdirectories may hold trace files.</p>
+</li>
+
+<li><b>traces</b>
+
+<p>An empty directory, used during some experiments to hold traces.</p>
+</li>
+-->
+<li><b>inputs</b>
+
+<p>Files containing inputs or startup directories used by programs in various
+tests. These could be grouped into subdirectories or distinguished by naming
+conventions if helpful.  Segmentation by version subdirectories may also
+be used here allowing automated installation scripts to source the correct
+input needed for particular tests or installations.</p>
+</li>
+
+<li><b>outputs.alt</b>
+
+<p>Provides a place to permanently store the outputs of test runs. This is
+useful for regression testing where new outputs are compared
+('diffed') against previous outputs.</p>
+
+<p>This directory could contain subdirectories v1, v1, ... vK to differentiate
+between versions.</p>
+</li>
+
+<li><b>outputs</b>
+
+<p>An empty directory, used during some experiments to hold test outputs.</p>
+</li>
+
+<li><b>docs</b>
+
+<p>Documentation about the object. Use any subdirectories that
+are useful. Possibly, v1, v1, ... vK directories will help.</p>
+</li>
+
+<li><b>originals</b>
+
+<p>Original materials obtained on the objects.  Subdirectories are used
+if necessary (e.g. v1, v1, ... vK), and a CONTENTS file will describe
+the purpose of the subdirectories.</p>
+</li>
+
+<li><b>scripts</b>
+<p>The directory from which experiments are run or installed.  The
+scripts provided here execute the download or clone operation from the
+remote source code repository.  The <i>functions.sh</i> script contains
+functions that download the source code into the <b>source</b> directory
+and for Git subjects apply the correct commit identifier to select the
+version.  
+<!--<p>The directory from which experiments are run. This directory may
+also contain saved scripts, such as runall.sh and gettraces.sh
+scripts that run all tests in the STImpL specification. Subdirectories
+can be used if helpful (e.g. v1, v1, ... vK containing scripts
+for each version).</p>-->
+</li>
+
+<li><b>info</b>
+
+<p>Other information about the program, especially information gathered
+by analysis tools and requiring saving for experiments.  In particular,
+we have found it useful to include subdirectories v1, ... vK and
+&quot;common&quot; to store version-specific and object-specific information,
+respectively.</p>
+
+<p>The principle information to be found in the version-specific directories
+is the fault matrix data, as follows:</p>
+
+<p>Each vK subdirectory in info may contain fault matrix information for that
+version.  The fault matrices have the following naming convention:</p>
+<ol style="list-style-type:lower-alpha">
+<li>If a fault matrix file is generated from a single STImpL file 
+then it is named fault-matrix.&lt;universe-file&gt;. For example the 
+fault matrix file generated by running on the v1_1.tsl.universe 
+file will be named fault-matrix.v1_1.tsl.universe.</li>
+<li>If a fault matrix file is generated from the concatenation of two 
+or more STImpL files then it is named
+fault-matrix.&lt;universe-file-1&gt;.&lt;universe-file-2&gt;.---.&lt;universe-file-n&gt;
+where &lt;universe-file-1&gt; is the name of the 1st STImpL file
+&lt;universe-file-2&gt; is the name of the 2nd STImpL file and
+so on.</li>
+<li>
+If a fault matrix is generated by ad-hoc or some other test
+suite framework, you may want to overlay the expected results of the tests
+onto a template similar to that used for <a href="https://sir-public.github.io/SIR/fault-matrix-interpretation.html">
+Fault Matrices</a>.  Using this format allows for automated
+interpretation using the tools developed by the SIR.  If you find
+this template/format difficult you should define a structure
+for your fault matrix that makes sense for the subject and
+document that within the <b>info</b> directory path of the
+subject.  Again segment as needed into separate version-specific
+fault matrix files to aid users in what tests are
+affected by what faults.
+</li>
+</ol>
+
+<p>Further information on fault matrices and file names is provided
+in the main Java handbook.</p>
+</li>
+
+<li><b>testdrivers</b>
+
+<p>Contains test programs which make the application run.</p>
+</li>
+</ol>
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+

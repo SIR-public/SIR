@@ -84,8 +84,7 @@ body {
 <div id="content">
 <h2 style="text-align:center">Invariant Checking - Java Examples Handbook</h2><P CLASS="western" style="text-align:center">July 29,
 2009</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">These artifacts (Array-Partition,
 Binary-Search-Tree, Doubly-Linked-List, Sorting, Vector, Binary-Heap, Disjoint-Set,
 Red-Black-Tree, and Stack) are Java examples targeted to evaluation of Java symbolic
@@ -93,14 +92,11 @@ execution and test case generation tools such as Kiasan, JPF, and Jcute.  Each
 example is typically one class (in some cases, auxiliary classes are
 included) with invariant specifications given in the form of
 executable Java methods (boolean functions).
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>I.	Motivation</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>I.1	Contract Checking in Object-Oriented Languages</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">In development contexts
 that emphasize reusable components, it is important for development
 methodologies and processes to be supported by the following
@@ -131,18 +127,15 @@ supporting checking of strong properties of heap-manipulating
 programs; they provide weak support for generation of informative
 counter-examples, and they lack integration with existing quality
 assurance mechanisms such as testing.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>I.2 Unit Testing in Object-Oriented Languages</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">Unit testing -- a
 quality assurance method in which individual software system modules
 (i.e., <I>units</I>) are tested in isolation, is an integral part of
 many development processes. Successful unit testing requires several
 important steps.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">First, a suite of <I>unit
 tests</I> must be created that call the public methods of the unit
 with method input parameter values that drive the execution of the
@@ -160,18 +153,15 @@ Design-By-Contract methodology).  In the presence of such
 specifications, the test suite construction goals associated with (1)
 can be presented as aiming to achieve a certain level of
 specification coverage.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">Second, one must design
 a collection of <I>test oracles</I> that can be invoked to
 automatically determine if the output of a test is correct.  As with
 (1) above, the construction of oracles can be guided by the presence
 of documentation or contract specifications (e.g., the <I>post-condition</I>
 of a method contract can often be directly translated into a test
-oracle).  
-</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+oracle).  </P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">Third, because units
 are tested in isolation, some sort of executable behavior must be
 defined for any method invocations that the unit makes into the
@@ -190,15 +180,14 @@ objects are very ad-hoc (e.g., there is hardly ever an attempt to
 relate the behaviors of mock and real objects as
 over/under-approximations), and the degree to which the functionality
 of real object is captured by the mock object varies widely.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>I.3 Symbolic Execution for Contract Checking and Unit Test Case Generation</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">Recent efforts have
 demonstrated that symbolic execution can serve as a basis for
 checking strong contract properties and invariants of complex
 heap-based data structures and for supporting automated</P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">test case generation.
 One key advantage of symbolic execution over real/concrete execution
 (e.g., traditional testing) is that one can avoid the burden of
@@ -213,30 +202,26 @@ representative can be turned into a concrete test case for the method
 that drives execution along a particular path (the path walked by the
 symbolic execution algorithm when constructing the current collection
 of symbolic values and constraints).</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">Because symbolic
 execution is typically implemented as a <I>path-sensitive analysis</I>,
 it can require significant computational resources.   Thus, it is
 important to empirically validate the effectives of symbolic
 execution for both contract checking and test case generation.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>II. An Overview of the Artifacts</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">The artifacts in this
 collection were used to evaluate the Kiasan symbolic execution and
 unit test case generation algorithms presented in the references
 below.   Some of the examples come from earlier papers on symbolic
 execution and test case generation; others come from Java collections
-library or from data structures textbooks. 
-</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+library or from data structures textbooks. </P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">The examples are
 organized into the following groups (corresponding to directories in
 the distribution files):</P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 </P>
 <UL>
@@ -256,6 +241,7 @@ the distribution files):</P>
 </UL>
 <P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 </P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">Each of the examples
 above has two documentation files associated with it.  
 </P>
@@ -269,6 +255,7 @@ above has two documentation files associated with it.
 </UL>
 <P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 </P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">The &quot;specification&quot;
 in each file are typically stated in terms of a &quot;RepOK&quot; method
 that encodes the invariant for data structure, along with some
@@ -277,6 +264,7 @@ Kiasan-specific annotations can easily be modified to match the input
 of another symbolic execution tool.   We plan to eventually
 re-release these examples with the specifications encoded in the Java
 Modeling Language (JML)</P>
+
 <P>
 Each of the examples is provided with two versions of the source code.
 The original version, which supports the use of the Kiasan analysis tool,
@@ -284,6 +272,7 @@ is located within the <code>Kiasan/code/Kiasan-<em>subject-name</em>-src</code>
 directory of each subject.  The Kiasan analysis tool is available for
 download from <a href="https://code.google.com/p/sireum/" target="_blank">https://code.google.com/p/sireum/</a>.
 </P>
+	
 <P>
 The second version of source code provided removes dependencies on the
 Kiasan libraries allowing execution of this version using standard Java
@@ -293,11 +282,13 @@ their own contract specifications from the provided JML annotation for
 performing analysis using their own framework.  This second version of subject
 source is located under <code>Kiasan/code/<em>subject-name</em>-src</code>.
 </P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 </P>
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>III.	Issues in Evaluation</B></P>
 <P CLASS="western" STYLE="margin-bottom: 0in"><BR>
 </P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">The references below
 contain details regarding particular issues investigated in
 experiments with the artifacts.   Generally the experiments aim to
@@ -310,27 +301,23 @@ analysis is bounded in some way by the depth of execution path
 explored or size of statespace (e.g., number of objects of a
 particular type).  
 </P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+	
 <P CLASS="western" STYLE="margin-bottom: 0in">We have enclosed in
 this distribution the extended version of the two papers below that
 give the details of the experiments carried out using these
 artifacts.</P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
+	
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>Acknowledgements:</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in">The following people
 contributed to the construction of the code examples and
 documentation in this distribution:  William Deng, Robby, Andrew
 King, Sam Procter, John Hatcliff. 
 </P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <P CLASS="western" STYLE="margin-bottom: 0in"><B>References:</B></P>
-<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
-</P>
+
 <OL>
 	<LI><P CLASS="western" STYLE="margin-bottom: 0in">Xianghua (William)
 	Deng, Robby, John Hatcliff. &quot;Kiasan/KUnit: Automatic Test Case

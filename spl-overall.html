@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: SPL Object Handbook</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+h4 {
+  font-size: small;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">SPL Object Handbook</h2>
+<h3><a name="Contents"></a>Table of Contents</h3>
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#2">Object Selection</a></li>
+<li><a href="#3">Object Organization</a></li>
+<li><a href="#4">General Object Setup</a></li>
+<li><a href="#5">Test Creation</a>
+  <ol style="list-style-type:upper-alpha">
+  <li><a href="#5A">TSL Specification</a></li>
+  <li><a href="#5B">Test Script Generation</a></li>
+  <li><a href="#5C">Test Execution</a></li>
+  </ol></li>
+<li><a href="#6">Test Histories and Timings</a></li>
+<li><a href="#7">Fault Seeding and Fault Matrices</a></li>
+</ol>
+
+<h3><a name="Overview"></a>1. Overview</h3>
+
+<p>
+This document describes the organization of a typical small to medium size
+software product line (SPL) as an experiment object.
+Be aware that some aspects of the preparation process vary depending on the
+types of analyses and experiments for which the object is expected to be of
+primary interest.  Also bear in mind that an SPL may have associated tools,
+platform emulators, or pre-processing packages that are required to instantiate
+the SPL for compilation, product composition, and testing.
+</p>
+
+<p>The objects in the repository have been designed with support of a certain
+experimentation workflow in mind. However, we have attempted to create a design
+that is generic enough to allow customization to other workflows as appropriate.
+One approach to conducting an experiment with the infrastructure is the
+following:</p>
+<ol>
+<li>Download or create a new copy of one or more objects in a local space
+for the experiment.</li>
+<li>Set the environment variable &quot;<code>experiment_root</code>&quot;
+to reflect the location of the experiment object. This variable should
+provide the absolute path to the directory into which you have placed the
+SIR object directory. This enables scripts and tools provided by the
+infrastructure to resolve needed paths without hardcoding system
+specific paths.</li>
+<li>Determine the artifacts that you want to utilize, such as specifications,
+versions, seeded faults, and inputs.</li>
+<li>Download any necessary composition, compiliation, or framework
+packages required by the object.</li>
+<li>Create scripts that can leverage the common organizational
+structure of the objects to perform the desired experimentation tasks on a
+version of the object, and that can further leverage the infrastructure by relying
+on common locations for outputs.</li>
+<li>Finally, create a top-level script that will perform the experimentation
+tasks across all versions of an object.</li>
+</ol>
+<p>In this way, the object infrastructure facilitates a high degree of automation,
+enabling experiments that can more rapidly gather much larger amounts of reliable
+data, in turn leading to results with stronger claims of significance and fewer
+threats to validity. In some experiments, one can even consider a master script
+that automatically executes the experiment tasks across multiple objects.</p>
+
+<p>The SIR provides a number of tools to help you conduct experiments on the object
+programs. The above is only one example of a process for using the infrastructure;
+many others are possible. However, regardless of the process you choose,
+<strong>you should always perform step 2 above if you intend to use the tools
+provided by the infrastructure.</strong></p>
+
+
+<h3><a name="2"></a>2. Object Selection</h3>
+
+<p>To populate the repository, we sought SPL objects that satisfied guidelines similar
+to those applied to our Java objects.  We desire that the SPL object possess sufficent
+complexity so that the products produced by the SPL are themselves non-trival programs.
+Another aspect we considered in selecting objects is the extent of variablility
+manifest in the feature model of the SPL.  Overly simplistic SPL's were
+deemed uninteresting because of their limited product compositions (variability in space.)
+We also sought SPL objects that had multiple versions with new features or
+capabilities added to
+each version thus providing an analog to how real&minus;world SPLs evolve to
+target particular market niches or technological improvements, thus expressing
+the <i>variability in time</i> property of an SPL.
+</p>
+
+<p>
+We prefer SPL objects that generate outputs that can be easily (and automatically)
+checked by comparison with saved outputs.  Deterministic outputs are of paramount
+concern and the removal of the causes of non&minus;determinisms from the code
+has been done to the objects provided.  
+Due to the limited number of SPL objects available for study,
+some objects may in the future rely upon screen dumps.  In these objects the
+test harness will typically be responsible for the binary file comparison 
+required to verify test results.  Programs involving concurrency and thread
+use are also permissible but care must be exercised in the preparation to enforce
+deterministic output ordering for comparisons.
+</p>
+
+<h3><a name="3"></a>3. Object Organization</h3>
+
+<p>Objects in the repository are organized into a format that
+supports experimentation activities, which is described here:</p>
+
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/spl-object-dir-spec.html">SPL object directory specification</a></p>
+<p>
+This specification is based upon the directory hierarchy of the Java objects
+provided by the SIR with additional structure to support specifying the
+composition of each SPL product.
+</p>
+
+<h3><a name="4"></a>4. General Object Setup</h3>
+
+<p>
+Each SPL source collection has been packaged in a fashion to allow instantiation
+of the products that can be composed from the available components.
+Scripts and README files are provided to perform or describe the
+tasks required to compose the SPL into the products.
+Some objects may as well provide object specific configuration files tailored
+to make each product, usually to enable automated production and testing.
+</p>
+
+<p>
+As noted earlier, SPL objects may have dependencies on tools or frameworks that
+may not be delivered within the SIR object package.  README files created by
+the preparer should indicate the source of these external deliverables and
+indicate how these are used in the SPL composition and testing procedures.
+Whenever possible these ancillary packages are packaged with the SPL object but
+due to licensing constraints are left as elements to be collected by the
+experimenter.  Customizations to these supporting components is permissible
+to remove non&minus;determinism during experimentation as noted below.
+
+<!--
+may not work on alternate platforms without modification. It is possible,
+however, to inspect the original distributions of the objects provided in
+the tar packages, and use those materials to prepare such objects for use on
+other platforms. Some additional remarks regarding make can be found
+<a href="configuration-support.php">here</a>. -->
+</p>
+
+<p>
+SPL objects in the repository may have been modified to provide deterministic output.
+<!-- and to guarantee that all outputs appear on <code>stdout</code>.  -->
+These modifications are necessary to allow automated regression testing with automated
+checking of outputs via output differencing, and are motivated in part
+by the sheer volume of data that is typically generated.  In the case of SPL
+testing, supporting tools and frameworks can add additional sources of
+non&minus;deterministic output.  In these cases the object preparer may 
+provide a modified version of the tool or framework that is modified to remove
+the non&minus;determinisms or segments of code to be applied to the tool
+or framework and instructions on how to insert this code.
+
+A general treatment of techniques used by test engineers in preparing
+other SIR test objects can be found in:
+</p>
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/nondet-stderr.html">Removing sources of nondeterminism</a></p>
+
+
+<h3><a name="5"></a>5. Test Creation</h3>
+
+<p>
+We want the test suites for SPL objects in the repository to be constructed
+using either a TSL specifications methodology or through concrete composition
+of the abstract cases outlined in use cases provided with the object.
+The current objects however do not fully reflect this philosophy but
+instead provide a set of tests that reflect a simplified functional test
+suite providing minimal coverage.  This deficit stems from the limited
+requirements supplied by the original authors.  Normally,
+because an SPL must provide a set of requirements as part of the necessary
+non-code assets, the use cases are either derived by the original SPL
+authors or were created by the SIR object preparer using the requirements
+provided.  Future SIR objects will be required to provide tests suites that
+reflect a test methodology commonly used with industrial-grade objects.
+</p>
+<p>
+In general, the tests applicable to a particular version and product of
+an SPL will have either a TSL specification in the form of a STImpL (universe)
+file or via provided script files that execute single test frames or a suite
+of applicable test frames.  Notation of the applicable version and product
+should be included in the file name however some tests from earlier versions
+or other product compositions may be applicable in keeping with the test
+reuse philosophy of SPLs.
+</p>
+<ol style="list-style-type:upper-alpha">
+<li><a name="5A"></a>TSL Specification
+<p>While several legacy objects in the repository support TSL test specifications
+it should be noted that this type of test specification analysis has not been applied
+to any of the SPLs currently available from the SIR.
+The TSL specification was developed to support functional level testing
+of programs or systems and is applicable to SPLs if the proper level of categorization
+and partitioning is done to separate the functional units and their constraining parameters
+or conditions applied to form the test frames.  However it should be noted that
+the STImpL (Simple Test Implementation Language) file format may not support
+the actions necessary to setup and execute
+a test of an SPL in which case static test suites are provided instead.
+</p>
+<p>
+If a TSL specification is provided with the SPL, the test suites can be created
+using the <code>mts</code> tool.  Execution of the script file generated
+will run the suite of tests applicable to the version and product
+that the STImpL file applies to.
+</p>
+<p>Should you wish to author new or modify existing TSL specifications
+for objects in the repository, you will first want to
+familiarize yourself with how TSL specifications are constructed. The process
+is described in the following paper:
+"<a href="https://portal.acm.org/citation.cfm?id=62964">The Category-Partition
+Method for Specifying and Generating Functional Tests</a>",
+Thomas Ostrand and Marc Balcer, Communications
+of the ACM, Volume 31, Number 6, June 1988, pp 676-686.
+(The paper is available in the ACM Digital Library online).
+You should then read the documentation describing the specifics of
+the TSL format that is processed by the tsl tool available from the
+repository (which is almost the same as the format described in the paper):</p>
+
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/tsl-spec.html">tsl specification</a></p>
+
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/stimpl-file-spec.html">STImpL file specification</a></p>
+</li>
+
+<li><a name="5B"></a>Test Script Generation
+<p>
+Test scripts for SPL objects that are currently not automatically
+generated (without STImpL files) provide scripts that execute each
+test as well as scripts that execute
+all tests in a suite applicable to the version and product composition.
+These SPL objects are required to have sufficient
+information provided through CONTENTS and README files so that a tester
+can execute
+these tests as a suite or individually.  In general test scripts should be
+named with information on the version and product to which the
+script applies, e.g. a file named MM05-13_t1.sh would be test 1 that applies
+to version 5, product (variant) 13 of the MM product.  README or
+CONTENTS files will provide guidance on the related use case or TSL test frame.
+</p>
+</li>
+<li><a name="5C"></a>Test Execution
+<p>
+Test execution on an SPL object is intended to be modular to the
+single&minus;test level as well as testing in a suite. 
+Tests using JUnit or similar testing frameworks typically are packaged
+by the original author as a suite for automated regression testing.
+Our preparation process modifies the way the tests within the test suite are
+executed so that each test can be executed manually and the outputs
+captured for pass/fail comparison.  When tests are provided via STImpL
+files, the <em>mts</em> tool creates a shell script containing all tests
+described in that file.  The individual tests can be run manually by
+extracting only those tests from the mts generated shell script.
+Since tests from STImpL files can have pre-test and post-test actions,
+these pre/post sequences need to be extracted along with the test
+for individual execution.
+</p>
+<p>
+For tests that do not use STImpL files a shell wrapping script should
+be provided that executes all tests that apply to that version and
+product combination.  Extracting individual tests from this arrangement
+requires the same attention to pre/post activities but typically
+this has already been done because the shell wrapping script will
+actually execute other shell scripts that contain the pre/post actions
+and the test action as a single test frame.  Executing the single test
+frame is accomplished by running this shell script.
+</p></li>
+</ol>
+<h3><a name="6"></a>6. Test Histories and Timings</h3>
+
+<p>
+Currently none of the SPL objects in the SIR provide test histories.
+A test history is a mapping from a program code entity (e.g. statement or branch)
+to the test cases that caused execution of that code.  Test histories may
+be provided in the future for these objects and if so these can be found within
+the <code>traces.alt</code> directory.
+</p>
+
+
+<h3><a name="7"></a>7. Fault Seeding and Fault Matrices</h3>
+
+<h4>Seeded Faults</h4>
+
+<p>
+SPL objects currently available from the repository are provided with
+<em>seeded</em> or <em>real</em> faults.  As stated in the SPL object directory
+specification these faulted source versions are found in the directory
+<code>versions.alt/seeded</code> located under the main directory of the
+object.  The seeded faults are activated either using preprocessor directives
+that select the faulted code or an overlay method where the original source
+file is replaced by the faulted version source file.  Implementations of seeded
+faults that use the preprocessor method will have an associated &quot;FaultSeeds.h&quot;
+file defining the preprocessor symbol that activates that fault when the preprocessor
+is run on the fault seeded source code.  Instructions for building the faulted
+versions should be part of the README information supplied with the object but
+a general set of steps required are: copy faulted version into the source directory,
+run the preprocessor (typically cpp) asserting the fault desired, compile the
+source into the product variant (this may be via make files, ant build scripts
+or other methods as defined in the README), and finally execute the tests on
+the product.
+</p>
+<p>Since all SPL objects currently available from the repository are written in
+Java, the fault seeding procedures applicable to Java objects can be used to
+describe the experimental processes and support claims of validity.
+This process is described in the following document:</p>
+
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/spl-fault-seeding.html">SPL fault seeding process</a></p>
+<p>As additional SPL objects are added to the SIR, fault seeding processes
+for C objects or Java objects may be used.</p>
+<p>
+If your object uses <em>mutation</em> faults, it is expected that the
+documentation supplied with the object contains sufficient information to
+allow users to recreate mutated versions of the object.  This information
+will include the name of the mutation tool and links to the publicly available
+mutation tool.  The object should also have scripts that will perform the
+mutation and/or directions on how to use the mutation tool in order to replicate
+the mutants.  Each mutant version should provide a file that describes the
+applied mutation, typically in terms that the mutation tool can use in
+performing the mutation.
+</p>
+<h4>Fault Matrices</h4>
+
+<p>
+Fault matrices summarize the relationship of test cases to faults
+(e.g. they correlate faults to the test cases that reveal those faults).
+We do not guarantee these fault matrices as authoritative for any 
+platform or environment other than the one under which they were generated.
+Currently the SPL objects provide fault matrices generated by the original preparer
+but it is recommended that users generate their own fault matrices following
+the guidelines expressed in the document:
+</p>
+<p class="i1">
+<a href="java-fault-matrix.php">Java fault matrix generation</a></p>
+<!-- Objects are also provided with fault matrices that summarize the relationship
+of test cases to faults (e.g. they correlate faults to the test cases that reveal
+those faults). We do not guarantee these fault matrices as authoritative for any
+platform or environment other than the one under which they were generated. For this
+reason, we generally encourage users to generate their own fault matrices, a process
+that is described in the following document:
+</p>
+<p class="i1">
+<a href="https://sir-public.github.io/SIR/c-fault-matrix.html">C fault matrix generation</a></p>
+ -->
+
+</body>
+</html>
+

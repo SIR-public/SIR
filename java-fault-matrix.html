@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Java Object Handbook: Creating a Java Fault Matrix</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Creating a Java Fault Matrix</h2>
+<p>A fault matrix file contains information about the faults exposed by the
+test cases in a STImpL file for a particular version of an object. It gives
+mappings between faults and the test cases that expose them. The steps to
+generate a fault matrix file are given below.</p>
+
+<p>Steps to generate a fault matrix file:</p>
+<ol>
+<li>Make sure that the <code>javamts</code> and <code>gen_fault_matrix</code> tools are present in the
+current path.  To download these tools see: <a href="https://sir-public.github.io/SIR/tools.html">tools</a></li>
+<li>Set enviroment variable <code>experiment_root</code> to point to the parent directory
+of the object's directory by typing <code>setenv experiment_root &lt;path&gt;</code>
+For example, suppose your object directory, say <code>siena</code>, is located at
+&quot;/cs_machine/exp_group/experiments&quot;, then the <code>experiment_root</code> is
+set by typing <code>setenv experiment_root /cs_machine/exp_group/experiments</code>.</li>
+<li>Run the tool to create the fault matrix file by typing:
+<pre class="i1">
+make_fault_matrix_with_names.sh &lt;program object&gt; 
+    &lt;installation script&gt; &lt;version start&gt; &lt;number of versions&gt; 
+    &lt;STImpL path&gt; &lt;test STImpL file&gt; &lt;executable file&gt;
+    &lt;fault matrix file&gt; [&lt;line_adjust&gt;]
+</pre>
+<p>
+<code class="i1">&lt;program object&gt;</code> : name of program object directory.<br>
+<code class="i1">&lt;installation script&gt;</code> : name of object installation script,
+which resides in &quot;$experiment_root/object/scripts&quot;.<br>
+<code class="i1">&lt;version start&gt;</code> : the version starting from which we want to
+create a fault matrix file.<br>
+<code class="i1">&lt;versions&gt;</code> : the total number of versions for which we want
+to create fault matrix files.<br>
+<code class="i1">&lt;STImpL path&gt;</code> : path name which contains STImpL files (normally,
+&quot;testplans.alt&quot;, see the README in the
+<!-- <a href="../php/common/download.php?ac=pub&amp;key=sir/tools&amp;file=java-tools.tar.gz">Java Tools</a> -->
+<a href="tools.php#javatools">Java Tools</a> -->
+package for an exception).<br>
+<code class="i1">&lt;test STImpL file&gt;</code> : name of the test STImpL file (either
+.tsl.universe or .cov.universe file)<br>
+<code class="i1">&lt;executable file&gt;</code> : the main program to be run and input
+for <code>javamts</code>. If you run testdrivers instead of the  main program, then you should give
+NULL for this parameter.<br>
+<code class="i1">&lt;fault matrix file&gt;</code> : name of the fault matrix file
+to create.<br>
+<code class="i1">[&lt;line_adjust&gt;]</code> : optional argument
+(no value or "1" is given). See NOTE at the end of this document for more details.
+</p>
+</li>
+</ol>
+
+<p>We will look at the <code>siena</code> object as an example.</p>
+
+<p>In <code>siena</code>, faults are seeded from version v1 onwards and the STImpL file
+v0.tsl.universe is inherited accross all the versions, i.e. from v1 to v7.</p>
+
+<p>The name of the fault matrix file to create is fault-matrix.v0.tsl.universe
+(described in the <a href="https://sir-public.github.io/SIR/java-object-dir-spec.html">Java object directory specification</a>).
+To run the tool we type:</p>
+<pre class="i1">
+make_fault_matrix_with_names.sh siena install_seeded.sh 1 7 
+    testplans.alt v0.tsl.universe NULL fault-matrix.v0.tsl.universe 1
+</pre>
+
+<p>This command creates the fault matrix files for the test STImpL file
+v0.tsl.universe on versions v1 to v7 and stores them in the object's info
+directory, under subdirectories v1 to v7.</p>
+
+<p>Note that to create a fault matrix, this tool executes each version on
+each test in the STImpL file and this may take some time!</p>
+
+<p>NOTE: <strong>When and why you need the &lt;line_adjust&gt; option</strong></p>
+<p>When you seed faults in a Java source file and preprocess it (<code>cpp</code>)
+in order to run that faulty version, it may cause differences in the
+total number of lines or shift lines between the original and faulty
+versions. Normally this isn't an issue, but test cases that print
+exception stack traces may report false-positive output differences
+when comparing outputs between the original and faulty versions. This
+occurs when a fault does not affect the output of a test case semantically,
+but causes a change in the line numbers printed in a stack trace.
+
+<p style="padding-bottom:1em">To prevent this problem, the <code>line_adjust</code> options
+applies a utility to equalize line numbers between the original and
+faulty versions. To use this option, your installation script
+must be modified to handle this equalization of line numbers. That is,
+the initial .cpp files containing all of the fault-ids (where no faults
+are turned on yet) also need to be line adjusted (this is necessary to
+handle the case where an injected fault inserts new code into the object).</p>
+<p>An example of the use of the line adjustment option can be found in the
+<a href="tools.php#javatools">Java Tools</a> package.</p>
+
+</body>
+</html>
+

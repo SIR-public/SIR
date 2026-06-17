@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of C Object Preparation: Test and Script Validation</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/index.php" style="font-size:large">Get Access!</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Test and Script Validation</h2>
+<p>Either after an object is done, or as you complete the work on each version,
+complete the following test and script validation tasks on the universe
+files present in the version(s).</p>
+
+<ol>
+<li>To make sure we can automatically run all tests and save their outputs,
+for use in automated testing and output validation, on each version:
+  <ul>
+  <li>run MTS creating a runall script,</li>
+  <li>run the script and verify that it executes all your tests, saving outputs as it should
+      <ul>
+      <li>initially try &quot;runall&quot; with output going to your screen, and see if anything
+      other than &quot;&gt;&gt;&gt;executing test k&quot; comes out.</li>
+      <li>next try &quot;runall&quot; redirecting output to a &quot;runall.log&quot; file and see
+      if anything gets output to the screen. It shouldn't. Check the log after and see if
+      anything seems odd.</li>
+      <li>after running the version, save the outputs directory someplace, let's say in an
+      &quot;outputs&quot; subdirectory you'll create in the directory for that version.</li>
+      </ul></li>
+  </ul></li>
+<li>To further test our ability to automate test execution with output differencing:
+  <ul>
+  <li>run <code>mts</code> creating a runall-and-diff script, (ask it to do
+  &quot;differences&quot; against the output directory you saved previously
+  for that version)</li>
+  <li>run the script created:
+    <ul>
+    <li>verify that it executes all your tests, saving outputs as it should</li>
+    <li>verify that it reports no differences</li>
+    <li>try this with the output-to-screen and output-redirected approach</li>
+    </ul></li>
+  </ul>
+
+  <p style="left:inherit">(The following steps assume the use of Aristotle to measure coverage,
+  similar steps could be taken if other coverage tools are used.)</p>
+  </li>
+
+<li>To test whether instrumentation works and that we can obtain traces, on each version:
+  <ul>
+  <li>create an instrumented executable.</li>
+  <li>run <code>mts</code> creating a trace script using that executable</li>
+  <li>run the trace script created:
+    <ul>
+    <li>verify that it executes just like a runall script in all respects, with either
+    output-to-screen and output-redirected</li>
+    <li>verify that after execution there are traces, one per test, in  your traces
+    directory. Do ls -l on these and verify that no trace files are size &quot;0&quot;.</li>
+    <li>run the th_builder on the trace dir, verify that it completes</li>
+    <li>run the th_printer on the th file created, verify that it completes</li>
+    <li>repeat this for both statement and branch traces</li>
+    </ul></li>
+  </ul></li>
+
+<li>To verify that instrumentation doesn't inadvertenly alter program behavior, on each version:
+  <ul>
+  <li>Repeat step 2, but this time, when you ask <code>mts</code> to make the
+  runall-and-diff script, give it your <strong>instrumented executable</strong> name.</li>
+  <li>Have it do the diffs against the output directory you saved
+  from the runs in step 2. Do this for both branch and statement traces.</li>
+  <li>Verify that the tests are creating the same outputs under the instrumented version
+  that they did under the non-instrumented one.</li>
+  </ul></li>
+
+<li>Generate a fault matrix for the object. Then generate it again and check that there are no differences;
+differences may indicate a source of non-determinism.</li>
+</ol>
+
+</body>
+</html>
+

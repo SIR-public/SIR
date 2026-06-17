@@ -1,0 +1,434 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of C Object Preparation</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Handbook of C Object Preparation</h2>
+<h3><a name="Contents"></a>Table of Contents</h3>
+
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#2">Object Selection</a></li>
+<li><a href="#3">Object Organization</a></li>
+<li><a href="#4">Aristotle Usage</a></li>
+<li><a href="#5">Initial Object Setup</a></li>
+<li><a href="#6">Test Creation</a>
+  <ol style="list-style-type:upper-alpha">
+  <li><a href="#6A">TSL Specification</a></li>
+  <li><a href="#6B">TSL Test</a></li>
+  <li><a href="#6C">Test &amp; Script Validation</a></li>
+  <li><a href="#6D">Expect Script Specification</a></li>
+  </ol></li>
+<li><a href="#7">Coverage-Based Testing</a></li>
+<li><a href="#8">Gathering&nbsp;final test histories and test timings</a></li>
+<li><a href="#9">Fault Localization</a></li>
+<li><a href="#10">Generating Fault-Matrices</a></li>
+</ol>
+
+<h3><a name="Overview"></a>1. Overview</h3>
+
+<p>This document describes the steps we follow to set up a
+typical, less than 30 KLoc C program as an experiment object. 
+It is written primarily as a set of instructions to persons
+who have set up these objects, and who continue to set up
+others, but it is also valuable as an aid to understanding 
+the object setup, and choices made in that setup.</p>
+
+<p>NOTE: In this document we focus on the "new" organization 
+for C objects.  Some details on the previous organization
+is available in the
+<a href="c-overall-full.php#appendix">Appendix to this Document</a>.</p>
+
+
+<h3><a name="2"></a>2. Object Selection</h3>
+
+<p class="i1">We seek C objects with qualifications as described in:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/c-object-requirements.html">object-requirements</a></p>
+
+<p class="i1">Initially, we want objects that definitely meet the
+four 1st-tier required-qualities, and that appear to meet 
+(or can't be determined not to meet) the three 2nd-tier 
+required-qualities.</p>
+
+<p class="i1">After we have a collection of these, we determine which
+of these are worth considering further by seeing if they
+do in fact meet the 2nd-tier requirements.
+Completing this task requires downloading the objects.</p>
+
+<p class="i1">Also part of this task is ensuring that you can build and
+run all versions of the program that we are considering using,
+and seeing what sort of output is involved. We need outputs
+that can be easily automatically checked by comparing with
+saved outputs. So, programs that manipulate the screen
+or produce graphical output where we'd have to save 
+screen-dumps are not good candidates at this time. Programs 
+that produce text output to the screen and/or output to files 
+are fine.  We also desire programs that are deterministic, or can
+be made so (see item 5.c below). This means that programs
+involving concurrency and heavy thread use might not be suitable.</p>
+
+<h3><a name="3"></a>3. Object Organization</h3>
+
+<p class="i1">After selecting objects we organize them into a format
+that supports later experimentation.</p>
+
+<p class="i1">We have an agreed-on format described in file:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/c-object-dir-spec.html">object-dir-spec</a></p>
+
+<p class="i1">Read this format file and look at existing objects for examples.
+You'll be starting by working in the &quot;versions&quot; area, then later in
+&quot;inputs&quot; and &quot;testplans&quot; and &quot;scripts&quot;, as we
+get to later tasks.</p>
+
+<p class="i1"><strong>Note:</strong> It is important that you set the
+environment variable &quot;<code>experiment_root</code>&quot; before working with
+any of the SIR objects. This variable should provide the absolute path to the
+directory into which you have placed the SIR object directories. This enables
+scripts and tools to resolve needed paths without hardcoding system
+specific paths.</p>
+
+<h3><a name="4"></a>4. Coverage tools.</h3>
+
+<p class="i1">We have used Aristotle to gather test coverage data for C object programs,
+as follows.</p>
+
+<p class="i1">(Note: the Aristotle system that we use is not at this time publicly
+available, but other coverage tools could be substituted, and instructions on
+heir use substituted here.)</p>
+
+<p class="i1">The instructions for use of Aristotle are:</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>Configure your account to run Aristotle tools.</li>
+<li>Now, to learn how to use several specific Aristotle tools that you'll
+need, see the file:
+
+<p><a href="https://sir-public.github.io/SIR/aristotle-tool-instrs.html">aristotle-tool-instrs</a></p>
+</li>
+
+<li>Finally, see if the specific tools and process outlined in the
+instructions you just followed work on <strong>your</strong> object.
+One issue here will be step 3 of those instructions -- you may have
+to add things to your compilation command to get your program to compile
+and link.</li>
+</ol>
+
+
+<h3><a name="5"></a>5. Initial Object Setup</h3>
+
+<p class="i1">For programs in the less than 20K range, we put them into single files
+to accommodate the Aristotle tool, which analyzes only single files.</p>
+
+<p class="i1">(Note: It should be possible to accommodate multiple-file objects
+in this same infrastructure, if not using Aristotle, by including
+Makefiles for them.   If these yield single executables they could
+likely be handled without special effort by our make-test-script tools.)</p>
+
+<p class="i1">To create single-file object versions, we cat all the .c files
+that make up that version into one file. Header files can remain 
+in multiple files. So the vk directory for version k contains
+a set of zero or more header files, and one .c file.</p>
+
+<p class="i1">Of course, there are many complexities here. Putting .c files together
+may cause some problems, especially with global declarations at the
+tops of files, and multiple header file inclusions. These problems
+have to be resolved, but ultimately, any program that builds from 
+multiple .c files should be able to reduce to one that builds from
+a single .c file.</p>
+
+<p class="i1">Provide a Makefile that builds each version. It should initially
+require only a simple compilation command, perhaps with includes of
+libraries, since the source is in one file.  Next, to build the
+instrumented version of the source program the Makefile should be 
+modified to take the build-st and build-bt targets, as described
+in section 2 of the <a href="c-object-dir-spec.php">object-dir-spec</a>.</p>
+
+<p class="i1">IMPORTANT: we want the versions to look as similar to each other as
+possible.  Put them all together in the same way. The diffs we see 
+when diffing your single file versions should be the same as those 
+we'd see if we diff'ed the pairs of files from the versions prior to 
+their concatenation.</p>
+
+<p class="i1">For some objects, we might decide to also exempt certain libraries
+provided with the code from the merging step, and keep those libraries
+separate, and assume that we're testing the code that is not 
+included in the libraries.</p>
+
+<p class="i1">Note that for some program versions, for example make, we have
+inadvertently disabled configuration support for compiling on 
+multiple platforms, and the programs may not work on such others.
+It is possible, however, to look at the original distributions
+of objects contained in the tar packages, and use those materials
+to allow such objects to work on other systems.   Here are some
+<a href=https://sir-public.github.io/SIR/configuration-support.html>further comments about this</a>.</p>
+
+
+<h3><a name="6"></a>6. Test Creation</h3>
+
+<p>Tests for the C objects in the repository are constructed using one of two
+methods.  The primary (and preferred) method involves creating TSL
+specifications that are translated into test frames and subsequently
+into the actual tests.  The second method used by the C objects is
+expect-send scripts.  These test scripts utilize the
+<a href="https://core.tcl.tk/expect/index" target="_blank">Expect</a> tool
+which provides a script-based mechanism for testing command-line interactive
+objects.</p>
+
+<ol style="list-style-type:upper-alpha">
+<li><a name="6A"></a>TSL Specification Creation
+
+<p>TSL is a &quot;Test Specification Language&quot; used to write spec-based
+tests for a software system. When you write a test spec in this 
+language, we have a tool that translates your spec into
+&quot;test frames&quot;, from which you then generate tests.</p>
+
+<p>To accomplish this task you should first read a paper on TSL:
+&quot;The Category-Partition Method for Specifying and Generating
+Functional Tests&quot; Thomas Ostrand and Marc Balcer, Communications
+of the ACM, Volume 31, Number 6, June 1988, pp 676-686.
+(The paper is available in the ACM Digital Library online).</p>
+
+<p>Next, read the documentation on <strong>our</strong> TSL tool and TSL format
+(which is almost the same as the format described in the paper).
+This is contained in the file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/tsl-spec.html">tsl-specs</a></p>
+
+<p>What you need to do is write a TSL spec for your base version,
+based on its documentation. (Or perhaps this is multiple TSL
+specs, since each spec corresponds to some portion of the
+functionality of the system.)</p>
+
+<p>You need to ensure that this spec results in a sufficient but
+not excessive number of test frames. (For our 10 - 20K line
+programs, we decided that 500-2000 frames was the target range.)
+Add constraints to the TSL spec if necessary to reduce the 
+number of frames.</p>
+
+<p>Subsequent versions should be able to &quot;inherit&quot; this
+specification, or most of it, and may need additional tests based on new
+functionality, which can be encoded in an additional specification 
+added to that version, or in a further refined TSL spec.</p>
+</li>
+
+<li><a name="6B"></a>TSL Test Creation
+
+<p>Creating test cases involves determining what inputs and input
+files are required, setting up those input files, and encoding
+the tests in a <em>STImpL file</em>. A program called
+&quot;make-test-script&quot; (MTS) transforms STImpL files into
+various types of scripts that can be used to automatically
+execute the tests or gather traces for the tests.</p>
+
+<p>The format of the STImpL file, the types of scripts created by
+running MTS, and the usage of MTS, are described in file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/c-stimpl-file-spec.html">stimpl-file-spec</a></p>
+</li>
+
+<li><a name="6C"></a>Test and Script Validation
+
+<p>After you have created a STImpL specification for TSL tests, you
+should perform several validation tasks, that will help us determine
+if there are problems with the objects or tools.
+Details on the tasks are in:</p>
+
+<p><a href="https://sir-public.github.io/SIR/c-test-and-script-validation.html">test-and-script-validation</a></p>
+
+<p>Note that, as detailed in steps 1 and 2 of these instructions, this may
+reveal sources of nondeterminism. These need to be made deterministic.
+Also, all outputs must go to stdout, not stderr.  (These requirements
+are necessary to allow automated regression testing with automated
+checking of outputs via output-differencing; these requirements arise
+partly due to the sheer volume of data we deal with in our experiments,
+but they are also typical requirements faced by testers in everyday 
+testing activities, and the mechanisms we use to get around them are
+also used by test engineers in practice.) For details see:</p>
+
+<p><a href="https://sir-public.github.io/SIR/nondet-stderr.html">nondet-stderr</a></p>
+
+</li>
+<li><a name="6D"></a>Expect Script Specification
+<p>Expect scripts provide a mechanism to automate actions to an
+object's user interface and capture the resultant output generated by
+these actions.  Expect scripts contain a sequence of actions produced
+by send script operations, and expected results captured by expect script
+operations.  The expect script tests typically are constructed to generate
+an output compatible with file difference comparison tools (diff, cmp, etc.).
+Objects in the repository using expect scripts have shell scripts provided
+to automate the execution of the expect scripts and collect the test output
+files into the common output location specified in
+the <a href="https://sir-public.github.io/SIR/c-object-dir-spec.html">object directory specification</a></p>
+<p>Expect script creation is similar to TSL test creation in that a
+sequence of sent actions result in consistent expected results.
+Expect scripts differ from TSL however in that these scripts are standalone
+and do not require transformation by the MTS tools into functional scripts.  
+Generally, the same caveats noted for TSL scripts (object documentation based,
+with a sufficient but not excessive number of test frames) and storage of
+the test scripts follows the object directory specification guidelines.  It
+is prudent to provide shell or Perl scripts that automate process of copying
+and executing the expect scripts as part of the object package in order for
+others to reproduce your fault matrices and seeded fault comparisons.  Delivering
+README files within the scripts directory and the testplans.alt directories
+also help future users to run the expect test scripts suite upon the object.
+</p>
+</li>
+</ol>
+
+
+<h3><a name="7"></a>7. Coverage-Based Testing</h3>
+
+<p class="i1">Once all TSL tests have been created, to create coverage-based
+tests for branch coverage adequacy, see:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/coverage-testing.html">coverage-testing</a></p>
+
+<p class="i1">(These instructions assume use of Aristotle, but other tools could
+be substituted.)</p>
+
+<p class="i1">After creating the coverage based tests, repeat the validation tasks
+that were performed with TSL based tests with these new tests:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/c-test-and-script-validation.html">test-and-script-validation.</a></p>
+
+
+<h3><a name="8"></a>8. Gathering test histories and test timings</h3>
+
+<p class="i1">After performing all validation tasks for both TSL and coverage based tests,
+test histories can be generated as follows.</p>
+
+<p class="i1">(These instructions assume use of Aristotle, but other tools could
+be substituted.)</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/test-history.html">collecting test-history.</a></p>
+
+<p class="i1">After collecting final test histories, collect test timings as described in:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/test-time.html">test-timing.</a></p>
+
+
+<h3><a name="9"></a>9. Fault Localization</h3>
+
+<p class="i1">Next, we want to find or create faults. There are two approaches for doing
+this in the objects:</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>Find Existing faults, as described in:
+<p><a href="fault-localization.php">existing-faults</a></p>
+</li>
+<li>Seed faults, as described in:
+<p><a href="https://sir-public.github.io/SIR/c-fault-seeding.html">fault-seeding</a></p>
+</li>
+</ol>
+
+<h3><a name="10"></a>10. Generating Fault-Matrices</h3>
+
+<p class="i1">After seeding faults in the versions, we can generate fault-matrices
+summarizing the relationship of test cases to faults, as described in:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/c-fault-matrix.html">fault-matrices.</a></p>
+
+<hr>
+
+<h3><a name="appendix"></a>Appendix</h3>
+
+<p>Previous C objects were organized somewhat differently than the newer objects
+described above in this document. Some details are provided here.</p>
+
+<p><a href="https://sir-public.github.io/SIR/object-dir-old-spec.html">Object directory organization.</a></p>
+
+<p><a href="https://sir-public.github.io/SIR/siemens-info1.html">Types of test suites.</a></p>
+
+<p><a href="https://sir-public.github.io/SIR/siemens-info2.html">Additional information.</a></p>
+
+</body>
+</html>
+

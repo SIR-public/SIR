@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of Java Object Preparation</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+h4 {
+  font-size: small;
+}
+-->
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Handbook of Java Object Preparation</h2>
+<h3><a name="Contents"></a>Table of Contents</h3>
+
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#2">Object Selection</a></li>
+<li><a href="#3">Object Organization</a></li>
+<li><a href="#4">Test Creation</a>
+  <ol style="list-style-type:upper-alpha">
+  <li><a href="#4A">TSL-based Testing</a>
+     <ol style="list-style-type:lower-alpha">
+     <li><a href="#4Aa">TSL Specification</a></li>
+     <li><a href="#4Ab">TSL Test Creation</a></li>
+     </ol></li>
+  <li><a href="#4B">Coverage-Based Testing</a></li>
+  <li><a href="#4C">JUnit-Based Testing</a></li>
+  <li><a href="#4D">Test &amp; Script Validation</a></li>
+  </ol></li>
+<li><a href="#5">Gathering&nbsp;final test histories and test timings</a></li>
+<li><a href="#6">Fault Localization</a></li>
+<li><a href="#7">Generating Fault-Matrices</a></li>
+</ol>
+
+<h3><a name="Overview"></a>1. Overview</h3>
+
+<p>This document describes the steps we follow to set up a Java program as an
+experiment object. It is written primarily as a set of instructions to persons
+who set up these objects, and who continue to set up others,
+but it is also valuable as an aid to understanding the object
+setup, and choices made in that setup. Also be aware that some aspects of the
+preparation process vary depending on the types of analyses and experiments
+for which the object is expected to be of primary interest.</p>
+
+<h3><a name="2"></a>2. Object Selection</h3>
+
+<p class="i1">We seek Java objects with qualifications as described in:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/java-object-requirements.html">object-requirements</a></p>
+
+<p class="i1">Initially, we want objects that definitely meet our
+1st-tier required-qualities, and that appear to meet
+(or can't be determined not to meet) our 2nd-tier
+required-qualities.</p>
+
+<p class="i1">After we have a collection of these, we determine which
+of these are worth considering further to see if they
+do in fact meet the 2nd-tier requirements.</p>
+
+<p class="i1">Completing this task involves downloading objects that look
+like they have potential, and saving any objects that look like candidates in well-named
+directories. Completing this task requires downloading the objects.</p>
+
+<p class="i1">Also part of this task is ensuring that you can build and
+run all versions of the program that we are considering using,
+and seeing what sort of output is involved. We need outputs
+that can be easily automatically checked by comparing with
+saved outputs. So, programs that manipulate the screen
+or produce graphical output where we'd have to save
+screen-dumps are not good candidates.  Programs that produce
+text output to the screen and/or output to files are fine.</p>
+
+<h4 style="margin:30px">Concurrency</h4>
+
+<p class="i1">Programs that make use of concurrency (threading) may be of interest for
+experimentation involving analysis techniques related to validation and
+verification of such programs. Such programs were generally not suitable for
+many of our program analysis techniques (for single threaded programs), principally
+because those techniques depend on deterministic outputs.  Determinism
+of output remains a primary concern for any testing object and sources of
+non&minus;determinism should still be eliminated as  much as possible
+(see item 5.c below.)
+However, recent efforts in concurrency analysis frameworks like
+<a href="https://babelfish.arc.nasa.gov/trac/jpf">JavaPathFinder</a>
+have allowed inclusion of concurrency testing artifacts.  As the art of
+concurrent testing matures we expect more concurrency test subjects to
+be made available.
+</p>
+
+
+<h3><a name="3"></a>3. Object Organization</h3>
+
+<p class="i1">After selecting objects we organize them into a format that
+     supports later experimentation.</p>
+
+<p class="i1">We have an agreed-on format described in file:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/java-object-dir-spec.html">java-object-dir-spec</a></p>
+
+<p class="i1">Read this format file and look at existing objects for examples.
+You'll be starting by working in the "versions" area, then later
+in "inputs" and "testplans" and "scripts", as we get to later tasks.</p>
+
+<p class="i1"><strong>Note:</strong> It is important that you set the
+environment variable &quot;<code>experiment_root</code>&quot; before working with
+any of the SIR objects. This variable should provide the absolute path to the
+directory into which you have placed the SIR object directories. This enables
+scripts and tools to resolve needed paths without hardcoding system
+specific paths.</p>
+
+<h3><a name="4"></a><a name="4A"></a>4. Test Creation</h3>
+
+<p class="i1">Various testing mechanisms could be supported.   We intend to begin with
+TSL-based tests, code coverage-based tests, and JUnit tests.</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>TSL-Based Testing
+
+<ol style="list-style-type:lower-alpha">
+<li><a name="4Aa"></a>TSL Specification Creation
+
+<p>TSL is a "Test Specification Language" used to write spec-based
+tests for a product. When you write a test spec in this language,
+we have a tool that translates your spec into "test frames", 
+from which you then generate tests.</p>
+
+<p>To accomplish this task you should first read a paper on TSL:
+&quot;The Category-Partition Method for Specifying and Generating
+Functional Tests&quot;, Thomas Ostrand and Marc Balcer, Communications
+of the ACM, Volume 31, Number 6, June 1988, pp 676-686.
+(The paper is available in the ACM Digital Library online).</p>
+
+<p>Next, read the documentation on <strong>our</strong> TSL tool and TSL format
+(which is almost the same as the format described in the paper).
+This is contained in the file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/tsl-spec.html">tsl-specs</a></p>
+
+<p>What you need to do is write a TSL spec for your base version,
+based on its documentation. (Or perhaps this is multiple TSL
+specs, since each spec corresponds to some portion of the
+functionality of the system.)</p>
+
+<p>You need to ensure that this spec results in a sufficient but
+not excessive number of test frames. (For our 5 - 15K line
+programs, we decided that 200-500 frames was the target range.)
+Add constraints if necessary to reduce the number of frames.</p>
+
+<p>Subsequent versions should be able to "inherit" this specification,
+or most of it, and may need additional tests based on new
+functionality, which can be encoded in an additional specification
+added to that version, or in a further refined TSL spec.</p>
+</li>
+
+<li><a name="4Ab"></a>TSL Test Creation
+
+<p>Creating test cases involves determining what inputs and input
+files are required, setting up those input files, and encoding
+the tests in a &quot;STImpL File&quot;. A program called
+&quot;Java-make-test-script&quot; (javamts) transforms STImpL files
+into various types of scripts that can be used to automatically
+execute the tests or gather traces for the tests.</p>
+
+<p>The format of the STImpL file, the types of scripts created by
+running javamts, and the usage of javamts, are described in file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/java-stimpl-file-spec.html">java-stimpl-file-spec</a></p>
+</li>
+</ol>
+</li>
+
+<li><a name="4B"></a>Coverage-Based Testing
+
+<p><a href="https://sofyatool.github.io/SofyaTool/index.html" target="_blank">&#931;&#959;&#966;&#943;&#945; (Sofya)</a>
+is a publicly available system for analysis of Java that can be used to
+determine basic block coverage and create coverage adequate test suites.
+Please refer to the
+<a href="https://sofyatool.github.io/SofyaTool/doc/manual/user/tools.html#coverage" target="_blank">
+&#931;&#959;&#966;&#943;&#945; coverage tool documentation</a> for
+additional information.</p>
+</li>
+
+<li><a name="4C"></a>JUnit-Based Testing
+
+<p>In addition to traditional types of test suites, for some Java objects
+(ant, xml-security, jmeter, and jtopas), we provide JUnit test suites.
+JUnit is is a new Java testing framework, that allows automation of tests
+for classes, and that is increasingly being used with Java systems.
+JUnit test suites have been supplied with each Java program from its
+open source software host.</p>
+
+<p>Test cases are encoded in a STImpL file whose format is same as TSL
+STImpL file format.</p>
+</li>
+
+<li><a name="4D"></a>Test and Script Validation
+
+<p>After you have created a set of TSL tests or the coverage based
+tests, you should perform several validation tasks, that will help us 
+determine if there are problems with the objects or tools.
+Details on the tasks are given in file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/java-test-and-script-validation.html">test-and-script-validation</a></p>
+
+<p>Note that, as detailed in step 2 of these instructions, this
+may reveal sources of nondeterminism. These need to be
+made deterministic. For details see file:</p>
+
+<p><a href="https://sir-public.github.io/SIR/java-nondet-stderr.html">nondet-stderr</a></p>
+</li>
+</ol>
+
+<h3><a name="5"></a>5. Gathering final test histories and test timings</h3>
+
+<p>After performing all validation tasks for your tests, test histories
+and timings can be gathered. We'll be creating tools for this
+and will make them available and document their use here.</p>
+
+
+<h3><a name="6"></a>6. Fault Localization</h3>
+
+<p class="i1">Next, we need to find or create faults. There are two approaches
+for doing this in the objects:</p>
+
+<ol style="list-style-type:upper-alpha">
+<li>Find Existing faults, as described in:
+<p><a href="https://sir-public.github.io/SIR/fault-localization.html">existing-faults</a></p>
+</li>
+<li>Seed faults, as described in:
+<p><a href="https://sir-public.github.io/SIR/java-fault-seeding.html">fault-seeding</a></p>
+</li>
+</ol>
+
+<h3><a name="7"></a>7. Generating Fault-Matrices</h3>
+
+<p class="i1">After seeding faults in the versions, generate fault-matrices summarizing
+the relationship of test cases to faults, as described in:</p>
+
+<p class="i2" style="padding-bottom:1em">
+<a href="https://sir-public.github.io/SIR/java-fault-matrix.html">fault-matrices.</a></p>
+
+</body>
+</html>
+

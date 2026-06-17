@@ -1,0 +1,427 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of Concise Object Preparation</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+<style type="text/css">
+<!--
+h3 {
+  font-size: medium;
+}
+h4 {
+  font-size: small;
+}
+-->
+figure {
+    display: inline-block;
+    border: 1px gray;
+    float: center;
+    margin: 10px 10px 10px 10px;
+}
+img {
+    vertical-align: top;
+}
+figure figcaption {
+    border: 1px gray;
+    text-align: center;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Handbook of Concise Object Preparation</h2>
+<h3><a name="Contents"></a>Table of Contents</h3>
+
+<ol>
+<li><a href="#Overview">Overview</a></li>
+<li><a href="#2">Object Selection</a></li>
+<li><a href="#3">Object Organization</a></li>
+<li><a href="#4">Source Packaging</a></li>
+<li><a href="#5">Installation Scripting</a></li>
+<li><a href="#6">Object Test Inclusion</a></li>
+<li><a href="#7">Test and Script Validation</a></li>
+<li><a href="#8">Fault Localization</a></li>
+<li><a href="#9">Generating Fault-Matrices</a></li>
+</ol>
+
+<h3><a name="Overview"></a>1. Overview</h3>
+
+<p class="i1">This document describes the steps we follow to set up a subject of any
+programming language using the concise packaging format.
+It is written primarily as a set of instructions to persons
+who set up these objects,
+but it is also valuable as an aid to understanding the object
+setup, and choices made in that setup. Also be aware that some aspects of the
+preparation process vary depending on the types of analyses and experiments
+for which the object is expected to be of primary interest.</p>
+
+<h3><a name="2"></a>2. Object Selection</h3>
+
+<p class="i1">We recommend using the concise packaging format if
+your subject has the following properties:</p>
+<ul>
+<li>A large source code collection for each version</li>
+<li>Several versions of the subject are provided</li>
+</ul>
+<p class="i1">The concise packaging format is intended to alleviate large
+download size issues with repository subjects.  Our experience
+with providing subjects in the SIR indicates that a
+packaged subject using the directory structure form
+described in
+<a href="java-objectdir-spec.html">Java directory specification</a>,
+or the
+<a href="c-objectdir-spec.html">C Object directory specification</a>
+having an aggregate size in excess of 500 Megabytes (MB) may experience
+difficulty downloading successfully.  The concise
+packaging provides a way to use web URL references
+to provide versions of source code thus eliminating
+the need to provide them within the subject archive.
+</p>
+<p class="i1">
+In general the Concise object packaging conforms to the
+<a href="https://sir-public.github.io/SIR/java-overall-full.html">Java Object Handbook</a>
+recommendations.  The only variance to this packaging is how
+the source code is supplied with a concise object.
+</p>
+<p class="i1">
+Subjects in other languages, e.g. PHP, should follow the
+directory structure guidelines provided for Java.
+While the specification may refer to test specification
+methods that do not apply, you can reflect your test sources
+and required framework within that directory structure.
+<h3><a name="3"></a>3. Object Organization</h3>
+
+<p class="i1">Selected objects are organized into a format that
+supports later experimentation.  This is typical of all SIR
+subjects.</p>
+
+<!--<p class="i1">We have an agreed-on format described in:</p>-->
+<p class="i1">
+We have defined the general directory tree for concise subjects
+in the page:
+</p>
+<p class="i2"><a href="https://sir-public.github.io/SIR/concise-object-dir-spec.html">Concise Object Directory Specification</a>
+</p>
+<p class="i1">
+This page describes the general layout of the object directory tree and
+URL link files for the two styles of source reference, <b>link</b> and
+<b>giturl</b>, current supported.
+</p>
+<p class="i1">Read this specification file and look at existing
+concise objects for examples.
+You'll be starting by working in the "versions" area, then later
+in "inputs" and "testplans" and "scripts", as we get to later tasks.</p>
+
+<p class="i1"><strong>Note:</strong> It is important that you set the
+environment variable &quot;<code>experiment_root</code>&quot; before working with
+any of the SIR objects. This variable should provide the absolute path to the
+directory into which you have placed the SIR object directories. This enables
+scripts and tools to resolve needed paths without hardcoding system
+specific paths within the scripts.</p>
+<h3><a name="4"></a>4. Source Packaging</h3>
+<p class="i1">
+Packaging the source collections of concise testing objects is done
+in a different way than the traditional SIR subjects.  With concise
+packaging the source collections of each version/variant are placed
+on web accessible hosting servers instead of directly within the <b>verisions</b>
+or <b>versions.alt</b> directory tree.  Instead of providing the
+source collections, these directories contain web URL references to
+the web locations.  Two styles of source code reference URLs are
+described here.  The <b>link</b> style of URL reference utilizes
+the HTTP GET mechanism to download archives of source code collections
+from a web host.  The <b>giturl</b> style of URL reference allows
+hosting a source code collection as a Git project.  Refer to the
+Concise Object Directory Specification for more detail on URL
+specification.
+</p>
+
+<h4>4.1 Link Style Packaging of Concise Objects</h4>
+<p class="i1">
+For concise objects your source code needs to be packaged on a
+host server that allows download using the HTTP GET mechanism.
+This can be a private server that will be maintained in perpetuity,
+or a public server that allows users to upload source or archive
+files with owner control of content.  Large File Storage (LFS) hosts like
+<a href="https://github.com">Github.com</a>,
+<a href="https://www.bitbucket.org">Bitbucket.org</a>, and <a href="https://gitlab.com">
+gitlab.com</a>
+provide owner control and may be suitable to contain your source
+archive collection.  If your subject
+is exceeds the maximum size limits of these public repository hosts you
+may contact the SIR administrator to determine a hosting location.
+</p>
+<p class="i1">
+Once a hosting server location has been found, you will need to archive each
+version of the subject and upload these to the hosting server.  Each version
+archive should be a complete archive of the necessary source files for the
+test subject.  Any files that can be rebuilt on the end-user's system
+can be removed, thus reducing the size of the archive, provided you perform
+the rebuilding within your install script.
+</p>
+<table>
+<tr>
+<td style="vertical-align: top">
+<figure>
+<img src="SIRlinkLayout.png" alt="SIR Concise Link Style Layout" width="150" height="210"/>
+<figcaption><i>Figure&nbsp;1</i></br><b>Concise Link</br>Object Layout</b></figcaption>
+</figure>
+</td>
+<td>
+<p>
+Once your source collections are stored as archives on the web hosting server
+the provisioning of the SIR object is very simple.  For each version
+you have a source collection archive you create a directory named vN under
+the <b>versions</b> directory of the SIR directory tree,
+where N is the number of the version in sequential order starting from 1 (one).
+A subject with 10 versions would then have under the <b>versions</b> directory
+10 subdirectories named v1 through v10.  Within each of these directories you
+create a file named <b>link</b> that contains the URL needed to download
+the source collection archive from the web hosting server.  An example, if
+your web hosting server is github.com, to download a copy of a source archive
+stored there in the <i>your_user</i> owner's project named <i>test_object</i> 
+the direct link would be:
+<samp>
+https://github.com/your_user/test_object/blob/master/v1.zip
+</samp>
+You will need to gather the direct link address for each version and place that
+URL string into the <b>link</b> file under each version (vN) directory as
+depicted in <i>Figure 1</i>.  The direct link address will vary depending upon
+the host server and the example shown here is how GitHub would present an archive
+file for direct download.  Other hosting systems will differ so you will need to
+discover how each link is presented by your hosting server.  Often this can be done
+using a browser and the "Copy Link Location/Address" feature.
+</p>
+</td>
+</tr>
+</table>
+<h4>4.2 Git Style Packaging of Concise Subjects</h4>
+<p class="i1">
+The Git project style of packaging offers many benefits over the
+Link style.  If your source code collection is already hosted on a Git
+version control system the effort to prepare the source code is minimal.
+</p>
+<table>
+<tr>
+<td style="vertical-align: top">
+<figure>
+<img src="SIRgitLayout.png" alt="SIR Concise Git Style Layout" width="180" height="260"/>
+<figcaption><i>Figure&nbsp;2</i></br><b>Concise Git</br>Object Layout</b></figcaption>
+</figure>
+</td>
+<td>
+The Git project of your subject must be accessible to the public.  The project
+must also contain all versions used in the original experiment.  Each version
+must have a Git commit identifier (commit id) associated with it.  Once you have
+the project and commit ids it is a simple matter to put these values into the
+SIR version tree as shown in <i>Figure 2</i>.  For each version v1 though vN, the last
+version used in the original experiment, you place the Git clone URL into the
+<b>giturl</b> file of each version.  Creating one copy of this
+file and then copying it into all version subdirectories is the easiest way to
+replicate this value across all versions.  Next, you need to put the Git commit
+id for each version into the <b>gitcommit</b> file under each version subdirectory.
+If you have these listed in a single file it is easy to make a shell for-loop
+command line that takes each commit id line from the file and echo it into
+a <b>gitcommit</b> file within each version subdirectory.
+</td>
+</tr>
+</table>
+
+<h3><a name="5"></a><b>5. Installation Scripting</b></h3>
+<p class="i1">
+Installation scripting makes using concise packaged subjects easy for
+end users and is strongly encouraged.  We have created a concise SIR package
+example subject, the <a href="https://sir-public.github.io/SIR/concise_std_pkg.tar.gz">
+Concise Example Package</a>, that a subject preparer can use. 
+This package contains shell functions and examples of installation
+scripts using the functions to download source code archives using
+the Link style of packaging and Git project packaging.
+</p>
+<p class="i1">
+Within the installation scripts of this concise SIR package example 
+subject the <i>functions.sh</i> file provides many standardized
+functions in addition to those used to download subjects.  Also
+provided are functions to copy source code collection archives
+when the tradtional SIR packaging is used along with functions
+that can automate provisioning an SQL server on Linux systems.
+We recommend examining the <i>functions.sh</i> code to familiarize
+yourself with the way the functions provided operate and modify
+or add to them for your specific needs.  Several subjects utilize
+the functions and add additional subject-specific functions in
+a second functions library file to streamline installation.
+</p>
+
+<h3><a name="6"></a>6. Object Test Inclusion</h3>
+<p class="i1">
+Including tests into an object is as important as packaging the sources and
+various testing mechanisms can be used.   While some existing
+subjects in the SIR use TSL-based tests, others support
+code coverage-based tests, and JUnit tests.
+Tests supported may depend
+upon the object type, e.g. a web site object may have Selenium tests implemented
+using either the Selenium IDE (now deprecated) or Selenium WebDriver.  What
+ever testing mechanism or framework your object you will need to either provide
+a copy of the framework within your <b>testplans</b> or <b>testplans.alt</b>
+directory tree or sufficent documentation with the README file for another
+researcher to obtain a compatible testing toolkit.  Any custom tools you
+used should provide source code so users can build or port it on their system.
+</p>
+
+<h3><a name="7"></a><b>7. Test and Script Validation</b></h3>
+
+<p class="i1">After creating your package you should verify that the
+tests execute as expected against all the versions you are providing.
+You should also verify that all scripts provided work as intended and
+reset the values in your config.sh script to default values.  Ensure
+that your README file(s) provide sufficient information to guide a
+user in how to set configuration values and that any configuration
+values are sufficiently documented so a user will understand what
+is being configured by that setting.  A general guideline on
+how to perform test and script validation provided for Java
+subjects can be applied to most languages, that guidance is
+provided in the file:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/java-test-and-script-validation.html">test-and-script-validation</a></p>
+
+<p class="i1">Note that, as detailed in step 2 of these instructions, this
+may reveal sources of nondeterminism. These need to be
+made deterministic. We have some guidance on how to eliminate
+non-determinism from Java subjects in the file:</p>
+
+<p class="i2"><a href="https://sir-public.github.io/SIR/java-nondet-stderr.html">nondet-stderr</a></p>
+
+<p class="i1">
+This may help you find ways to eliminate non-deterministic output
+for automated test result comparison.  You may need to consult
+with the documentation of your test framework also if the
+recommendations we provide are insufficent or not applicable
+to your test suite.</p>
+
+<h3><a name="8"></a>8. Gathering final test histories and test timings</h3>
+
+<p class="i1">After performing all validation tasks for your tests and
+installation scripts, you may want to generate
+test histories and timings and specify an oracle for your tests.
+The oracle is important to users so they know what test results
+are expected.  For some subjects the tests are expected to all
+pass on each version.  You should document how your tests will behave
+for each version, or in a global document if all tests are expected
+to pass.  This can be easily done in a README file if you have
+a particular test methodology, e.g. test evolution experiments
+run the previous version's test suite, in which case you can state
+which ones are expected to fail.
+</p>
+<h3><a name="9"></a>9. Fault Localization</h3>
+
+<p class="i1">
+If you have introduced or real faults in your source, you
+should document where these faults exist.  This fault localization
+task helps users to create new tests and identify reasons for
+test failure.  For existing subjects in the SIR we have
+recommendations that you can read which may help you in
+documenting the known faults and seeded faults in your
+subject.  These existing recommendations are:
+<ol class="i0" style="list-style-type:upper-alpha">
+<li>Find Existing faults, as described in:
+<p class="i1"><a href="https://sir-public.github.io/SIR/fault-localization.html">existing-faults</a></p>
+</li>
+<li>Seed faults, as described in:
+<p class="i1"><a href="https://sir-public.github.io/SIR/java-fault-seeding.html">fault-seeding</a></p>
+</li>
+</ol>
+
+<h3><a name="10"></a>10. Generating Fault-Matrices</h3>
+
+<p class="i1">
+If seeded faults are provided in your subject you should generate
+a fault matrix indicating which seeded fault causes particular tests
+to fail.  For Java subjects we provide this guidance:</p>
+
+<p class="i2" style="padding-bottom:1em">
+<a href="https://sir-public.github.io/SIR/java-fault-matrix.html">Java-fault-matrices</a></p>
+<p class="i1">
+For other languages the recommendations for Java may be useful
+in creating a fault matrix that users can refer to.  The matrix
+format typical of other SIR subjects may be useful to you
+so you may want to review that format and choose how you
+want to relate your fault to test result information.
+</p>
+
+</body>
+</html>
+

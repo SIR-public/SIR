@@ -1,0 +1,842 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: C Object Handbook: STImpL File Specification</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir.csc.ncsu.edu/php/index.php" style="font-size:large">Get Access!</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Specifications for STImpL File and Make-Test-Script Program</h2>
+<p>A <em>STImpL</em> file is a file listing your test cases.</p>
+
+<p>We've created a program, make-test-script (<code>mts</code>), that takes a
+STImpL file (along with other parameters) and creates a
+script that automatically executes the tests listed in that file.</p>
+
+<p>Note that we implement a &quot;test suite&quot; as a subset (not necessarily 
+proper) of the lines in a STImpL file. So anything that works
+on a STImpL file should work on a test suite.</p>
+
+<p>This document contains specs for STImpL files, for the mts
+program, and for the scripts that program creates.</p>
+
+
+<ol style="list-style-type:upper-roman">
+<li>Format of a STImpL File.
+
+<p>Each line (string of characters terminated by newline) in the STImpL
+file represents a test case. For purposes of identifying test cases, 
+we typically consider the first line to represent test case number 1, 
+with numbers advancing sequentially through other lines. There is an 
+exception to this:traces begin with id 0, as do test histories. The kth 
+test is mapped to the (k-1)th trace.</p>
+
+<p>Note: Ideally each test case should be unique, but some earlier objects'
+STImpL files came to us are not completely unique.</p>
+
+<ol style="list-style-type:upper-alpha">
+<li style="padding-bottom:1em">Lines in the file contain one or more
+parameters, valid parameters and their meaning are as follows
+(text enclosed in &lt;&gt; stands for values that get put in,
+all other characters are literal):
+<p>
+<code class="i1">-P [&lt;parameter-string&gt;]</code>
+</p>
+<p class="i2">
+For use in supplying parameters.
+</p>
+<p class="i2">
+&lt;parameter-string&gt; represents the string of characters you 
+would type as parameters to the object program for that test
+case. These will not be &quot;interpreted&quot; in any way by make-test-script, 
+that program will simply copy this string verbatim and use it in
+generating a test script.
+</p>
+<p class="i2">
+Special steps must be followed if you wish to embed the
+name of some input or output file into a parameter string.  
+See 1.C below.
+</p>
+<p class="i2">
+For program runs (test cases) that require no parameters, 
+the -P option won't be used in the STImpL file line for that test.
+</p>
+
+<code class="i1">-I [&lt;input-file-name&gt;]</code><br>
+<p class="i2">
+For use in supplying standard-input only.
+</p>
+<p class="i2">
+&lt;input-file-name&gt; represents the name of a file that contains
+input to the program under test, that will be redirected to
+the program-under-test using the unix &quot;&lt;&quot; redirection mechanism
+</p>
+<p class="i2">
+This file name, however, must be a filename relative to the
+&quot;inputs&quot; subdirectory of the object program. I.e. if your
+input file is &quot;foo1.dat&quot; and resides directly in the &quot;inputs&quot;
+subdirectory for &quot;foo&quot; you would write &quot;-I [foo1.dat].
+If your input file is &quot;foo1.dat&quot; but you've placed it in
+a subdirectory of the inputs directory entitled &quot;stdinputs&quot;,
+you would write &quot;-I [stdinputs/foo1.dat].
+</p>
+<p class="i2">
+For program runs (test cases) that require no standard input, 
+the -I option won't be used in the STImpL file line for that test.
+There is no default input file.
+</p>
+<p class="i2">
+Note that &lt;input-file-name&gt; must be a string in legal unix
+filename syntax. In particular it can't contain any &quot;&gt;&quot; characters.
+</p>
+
+<code class="i1">-O [&lt;output-file-name]</code><br>
+<p class="i2">
+For use in redirecting standard-output only.
+</p>
+<p class="i2">
+&lt;output-file-name&gt; represents the name of a file that will hold
+standard output of the program under test, that output will be 
+redirected to this file using the unix &quot;&gt;&quot; redirection mechanism
+</p>
+<p class="i2">
+This file name, however, must be a filename relative to the
+&quot;outputs&quot; subdirectory of the object program. For example if
+your output file is to be &quot;foo1.out&quot; and is to be placed directly 
+in the &quot;outputs&quot; subdirectory for &quot;foo&quot; you would
+write &quot;-O [foo1.out]&quot;. If your output file is &quot;foo1.out&quot;
+but you want it placed in a subdirectory of the outputs directory entitled
+&quot;stdoutputs&quot;, you would write &quot;-I [stdoutputs/foo1.out].
+</p>
+<p class="i2">
+When the -O option is omitted, the test script will by default
+pipe all standard output to the outputs directory,
+creating a file named tk, where k is an integer representing
+the test number of this test (the number of the line in the 
+STImpL file that this test case was taken from).
+</p>
+<p class="i2">
+Note that &lt;output-file-name&gt; must be a string in legal unix
+filename syntax. In particular it can't contain any
+&quot;&gt;&quot; characters.
+</p>
+
+<code class="i1">-F [&lt;name-of-file-to-move&gt;|&lt;name-of-new-file&gt;]</code><br>
+<p class="i2">
+For use in causing output files created by the program to be moved 
+to the official outputs area.
+</p>
+<p class="i2">
+The -O parameter provides a way to specify where standard output
+should go, and when output files are specified as parameters they
+are handled in -P. But sometimes a program creates a file with
+a default name not specified as a parameter. We need to be 
+able to get this file to the outputs directory, potentially
+under a different name. The -F parameter allows this.
+</p>
+<p class="i2">
+The parameter takes two arguments inside the brackets, separated 
+by the &quot;|&quot; character. The &lt;name-of-file-to-move&gt; argument names
+the file created by the program under test. The &lt;name-of-new-file&gt; 
+names where you want this file moved.
+</p>
+<p class="i2">
+The &lt;name-of-new-file&gt; file name must be a filename relative to the
+&quot;outputs&quot; subdirectory of the object program.
+The &lt;name-of-file-to-move&gt; file name must be a filename relative to 
+the &quot;scripts&quot; subdirectory of the object program, where the test
+is being run from.  
+</p>
+<p class="i2">
+For example if you want your output file to be &quot;foo1.out&quot; and to 
+be placed directly in the &quot;outputs&quot; subdirectory for &quot;foo&quot; but
+your program will be putting it in the current directory (scripts)
+and calling it lex.yy.c, you would write &quot;-F[lex.yy.c|foo1.out]&quot;.
+</p>
+<p class="i2">
+At most three -F parameters can occur in a STImpL line, and
+each will be translated into code to move the named file.
+</p>
+<p class="i2">
+Finally, since this parameter activates a &quot;mv&quot; command,
+the &quot;file&quot; to be moved could just as well be a directory.
+</p>
+
+<code class="i1">-S [&lt;name-of-startup-script&gt; &lt;params&gt;]</code><br>
+<code class="i1">-X [&lt;name-of-exit-script&gt; &lt;params&gt;]</code><br>
+<p class="i2">
+If the program under test has special requirements it may be
+impossible to capture them with generic options such as those
+above. This pair of parameters will allow the tester to
+create pieces of script that should be executed before and/or
+after the program-under-test is run.
+</p>
+<p class="i2">
+Either or both of these parameters can be present.
+</p>
+<p class="i2">
+Typically, the &lt;name-of-startup-script&gt; and &lt;name-of-exit-script&gt; 
+arguments each name a file that contains some lines of C shell script.
+Such filenames must be filenames relative to the 
+&quot;testplans.alt/testscripts&quot; subdirectory of the object program.
+For example if your script file is to be &quot;test1startup.sh&quot; 
+then it has to be placed directly in the &quot;testplans.alt/testscripts&quot; 
+subdirectory for &quot;foo&quot; and you would write &quot;-S [test1startup.sh]. If 
+your script file is &quot;test1startup.sh&quot; but you want it placed in a 
+subdirectory of &quot;testplans.alt/testscripts&quot; entitled &quot;scripts&quot;, you 
+would write &quot;-S [scripts/test1startup.sh].&quot;
+</p>
+<p class="i2">
+If your script needs some parameters of some sort, you can
+supply them as shown above by &lt;params&gt;.
+</p>
+<p class="i2">
+If you use -S, mts inserts a line to execute the script you
+name, just prior to the line that executes the program under test.
+If you use -X, mts inserts a line to execute the script you
+name, just after the line that executes the program under test.
+So the script written by mts ends up invoking your scripts
+directly. You might need to know that in this case, these
+scripts are invoked as sub-shells, and on termination the
+environment is restored to its previous state. If that's
+not what you need, see &quot;-s&quot; and &quot;-x&quot; below.
+</p>
+<p class="i2">
+(Note: there's nothing stopping &lt;name-of-startup-script&gt;
+and &lt;name-of-exit-script&gt; arguments from naming binaries
+or executables of other, non-script, sorts, and the &lt;params&gt;
+as being parameters in those, if those binaries are executables
+and are in the proper testplans subdirectory.)
+</p>
+
+<code class="i1">-s [&lt;name-of-startup-script&gt;]</code><br>
+<code class="i1">-x [&lt;name-of-exit-script&gt;]</code><br>
+<p class="i2">
+These are like -S and -X, except faced with them, mts physically
+copies the lines from the named scripts into the script it creates.
+This may be needed if you need to run some lines that can't be
+run from a subshell. In this case, you can't use parameters.
+</p>
+<p class="i2">
+There's nothing stopping you from using both -S and -s, and/or
+both -X and -x, if you use both -S and -s they'll be processed
+(and result in lines in the script) in order -S, -s and if
+you use both -X and -x they'll be processed (and result in lines
+in the script) in order -x -X. (In other words, the -s and -x
+calls are nested within the -S and -X calls.)
+</p>
+
+<code class="i1">-C [comment]</code><br>
+<p class="i2">
+When present in a STImpL file spec, causes any text appearing
+inside the brackets to be ignored by make-test-script.
+Comments are used in a STImpL file to specify which STImpL
+line corresponds to which test frame.
+</p>
+</li>
+
+<li style="padding-bottom:1em">On each STImpL file line, at least one parameter
+must be given. Parameters may be listed in any order, all must begin with hyphen
+followed by a character with no spaces in between them. Zero or more spaces
+(blanks, not tabs) may appear after the hyphen/character pair, brackets must
+enclose and delimit the text between them, that text can include anything
+except for a newline or bracket. Parameters may be separated by zero or
+more spaces (blanks, not tabs), an end-of-line is interpreted to
+end the set of parameters, and the entire line cannot exceed 4096
+characters (adjustable by changing a constant). Parameters are
+case-sensitive (-I doesn't mean the same thing as -i).
+</li>
+
+<li>Instructions for naming input and output files in parameter strings.
+<ol>
+<li style="padding-bottom:1em">input files
+<p>Assume that all tests will be run from the &quot;scripts&quot; subdirectory
+of the object; i.e. if your object is &quot;calc&quot;, then tests
+will be run from &quot;calc/scripts&quot;. We'll generate our automated
+testing scripts in that directory and that's where we'll run
+those scripts from.</p>
+
+<p>So, if you want your input files to come from the inputs directory, 
+and need to specify them with parameters, you'd have to specify
+the path relative to the scripts directory in the parameter list.</p>
+
+<p>Example:</p>
+<p class="i1">Suppose your program foo opens and reads an input file,
+and this file is specified in a parameter -i&lt;inputfile&gt;,
+and suppose for one of the tests of foo you want it to 
+use a file &quot;myinput1.dat&quot;.</p>
+
+<p class="i1">Suppose you put &quot;myinput1.dat&quot; in a subdirectory of
+&quot;foo/inputs&quot; called &quot;inputfiles&quot;.</p>
+
+<p class="i1">Now, if you were running this program by hand on this
+test from the scripts directory you'd type:</p>
+<code class="i2">
+../source/foo.exe -i../inputs/inputfiles/myinput1.dat
+</code>
+<p class="i1">So, in your STImpL file spec for this you'd write:</p>
+<code class="i2">
+-P [-i../inputs/inputfiles/myinput1.dat]
+</code>
+</li>
+
+<li style="padding-bottom:1em">output files
+
+<p>There are two ways to get output files into the output directory
+when specifying them with parameters.</p>
+
+<p>However, only use of the first will support the use, later,
+of &quot;Runall-and-Diff&quot; (regression testing) scripts.</p>
+<ol style="list-style-type:lower-alpha">
+<li>Write the file to the local directory and include use of
+the -F option to cause it to be moved.
+
+<p>So considering the example from C.2.b., you could write:</p>
+<p>
+<code class="i2">
+-P [-omyoutput1.dat]  -F[myoutput1.dat|outputfiles/myoutput1.dat]
+</code>
+</p>
+</li>
+
+<li>You could do as with input files, assuming that the program
+will be run from &quot;scripts&quot;, and that the parameter should
+be rewritten to redirect the output up to ../outputs/outputfilename
+
+<p>Example:</p>
+<p class="i1">Suppose your program foo opens and writes to an output file,
+and this file is specified in a parameter -o&lt;outputfile&gt;,
+and suppose for one of the tests of foo you want it to
+use a file &quot;myoutput1.dat&quot;.</p>
+
+<p class="i1">Suppose you want to put &quot;myoutput1.dat&quot; in a subdirectory
+of &quot;foo/outputs&quot; called &quot;outputfiles&quot;.</p>
+
+<p class="i1">Now, if you were running this program by hand on this
+test from the scripts directory you'd type:</p>
+<code class="i2">
+../source/foo.exe -o../outputs/outputfiles/myoutput1.dat
+</code>
+<p class="i1">So, in your STImpL file spec for this you'd write:</p>
+<code class="i2">
+-P [-o../outputs/outputfiles/myoutput1.dat]
+</code>
+<p class="i1">But NOTE, as mentioned above, we can't write Runall-and-Diff
+scripts easily that will use output files written in this manner, 
+so unless there's a good reason, you shouldn't use this approach,
+and we mention it here only for historical reasons.</p>
+</li>
+</ol>
+</ol>
+</ol>
+</li>
+
+<li>Types of scripts created from the above STImpL lines.
+
+<p>There are several types of scripts that could be created from a
+STImpL file, we describe each here.</p>
+<ol style="list-style-type:upper-alpha">
+<li>&quot;Runall&quot; script.
+
+<p>The purpose of a &quot;runall&quot; script is to execute every test listed
+in a STImpL file, saving outputs in the outputs directory.
+To illustrate the possibilities, we provide examples of the
+various parameters, with STImpL files and the scripts that
+get created from them if those parameters are used.</p>
+
+<p>Remember that the resulting script is expected to run from
+the &quot;scripts&quot; directory of the object program. Further,
+assume that the executable for the object program will
+be found in the &quot;source&quot; directory with the name foo.exe</p>
+
+<p>In the following, suppose the object program is &quot;foo.c&quot;.</p>
+
+<ol>
+
+<li>-P parameter.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1]
+-P [4 0 string2]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/t2
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name.</p>
+</li>
+
+<li>-I parameter.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-I [in17.dat]
+-I [idir/in16.dat]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  &lt; ../inputs/in17.dat &gt; ../outputs/t1
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  &lt; ../inputs/idir/in16.dat &gt; ../outputs/t2
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+no parameters are specified in the STImpL file, so none are in the script;<br>
+input is piped from input files in the inputs directory.</p>
+</li>
+
+<li>-O parameter with -P.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -O [out1.dat]
+-P [4 0 string2] -O [odir/out7.dat]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/out1.dat
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+</pre>
+
+<p>NOTES: -O causes standard output to go where specified;<br>
+parameters are put in place after the executable name.</p>
+</li>
+
+<li>-F parameter with -P.
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/t2
+mv ../scripts/lex.yy.c ../outputs/test2out
+</pre>
+
+<p>NOTES: since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name;<br>
+stdout output is still put into output files;<br>
+unix &quot;mv&quot; command does the requested file move.</p>
+</li>
+
+<li>-s and -x parameters with (possibly) -P
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [-Dvarname] -s [Sscript1] -x [Xscript1]
+-s [Sscript1] -x[Xscript1]
+</pre>
+
+<p>And suppose that files Sscript1 and Xscript1 contain the following:</p>
+<pre class="i1">
+Sscript1:
+---------
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+
+Xscript1:
+---------
+cd ..
+rm -r ./workingdir
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+../source/foo.exe  -Dvarname &gt; ../outputs/t1
+cd ..
+rm -r ./workingdir
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+cp -r ../inputs/setupdirs/sdir1 ./workingdir
+cd workingdir
+../source/foo.exe  &gt; ../outputs/t2
+cd ..
+rm -r ./workingdir
+</pre>
+
+<p>NOTES:  since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name on test 1;<br>
+text of startup and exit script files has been placed
+into the script before and after program foo.exe gets executed.</p>
+</li>
+
+<li>-S and -X parameters 
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-S [script1 p1] -X[script2]
+</pre>
+
+<p>A resulting runall script is:</p>
+<pre class="i1">
+The following is an R script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../testplans.alt/testscripts/script1 p1
+../source/foo.exe  &gt; ../outputs/t2
+../testplans.alt/testscripts/script2
+</pre>
+</li>
+</ol>
+</li>
+
+<li>&quot;Get-traces&quot; script.
+
+<p>The get-traces script is almost exactly like a runall script.
+The difference is that it is intended to run an instrumented
+executable, and after each run, save the trace file created
+for that executable.</p>
+
+<p>(These scripts depend on availability of Aristotle.  It should 
+be possible, however, to modify the mts code to cause it
+to create scripts utilizing some other coverage tool.)</p>
+
+<p>Because of the similarity of this script with the runall script,
+we give just one example, with the -P parameter. We assume
+that the instrumented executable is &quot;foo.int.exe&quot; in the 
+&quot;objects/foo/source&quot; subdirectory.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1]
+-P [4 0 string2]
+</pre>
+
+<p>A resulting get-traces script is:</p>
+<pre class="i1">
+The following is an T script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.int.exe  1 3 string1 &gt; ../outputs/t1
+cp $ARISTOTLE_DB_DIR/foo.c.tr ../traces/0.tr
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.int.exe  4 0 string2 &gt; ../outputs/t2
+cp $ARISTOTLE_DB_DIR/foo.c.tr ../traces/1.tr
+</pre>
+
+<p>NOTES:  since -O wasn't used, default output files are used;<br>
+parameters are put in place after the executable name;<br>
+the executable is foo.int.exe.<br>
+We have an extra line after each test copying the trace file to the traces subdirectory.<br>
+Trace files are numbered from 0 up; test case k generates trace file (k-1).tr
+(unfortunate but can't be helped)</p>
+</li>
+
+<li>&quot;Runall-and-Diff&quot; script.
+
+<p>The runall-and-diff script is also quite like a runall script.
+The difference is that after running each test, it compares results 
+of that test with results from a previous run.  As such, the script 
+is automating regression testing.</p>
+
+<p>What the script has to do is compare anything created as output
+by the program with saved versions of outputs. That means it
+must accomodate 1) files written to standard-output, 2) output
+files created by the program. It detects the need to do 
+comparisons with these, and the names of files to compare with,
+by looking in -O and -F parameters.</p>
+
+<p>Because of the similarity of this script with the runall script,
+we give just one example, with the -P parameter, -O, and -F used.   
+We assume that the executable is &quot;foo.exe&quot; in the&quot;objects/foo/source&quot;
+subdirectory, and that the outputs directory is 
+&quot;/nfs/spectre/u5/mydir/oldoutputs/&quot;.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -O [odir/out7.dat] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall-and-diff script is:</p>
+<pre class="i1">
+The following is an D script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+cmp -s ../outputs/t1 /nfs/spectre/u5/mydir/oldoutputs/t1
+cmp -s ../outputs/test1out /nfs/spectre/u5/mydir/oldoutputs/test1out
+
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+mv ../scripts/lex.yy.c ../outputs/test2out
+cmp -s ../outputs/out7.dat /nfs/spectre/u5/mydir/oldoutputs/out7.dat
+cmp -s ../outputs/test2out /nfs/spectre/u5/mydir/oldoutputs/test2out
+</pre>
+
+<p>NOTES:  -O causes standard output to go where specified;<br>
+parameters are put in place after the executable name;<br>
+the output file specifed with -O in the second test gets compared with a previous one.<br>
+On the first test, where no -O appears, the &quot;default&quot; output file t1 gets compared with a previous one.<br>
+The output files listed in -F get compared with previous ones;<br>
+the location of old outputs in this example, /nfs/spectre/u5/mydir/oldoutputs/, is something that can be 
+specified when make-test-script is run to make the script, but it is assumed that that directory is
+a saved copy of an outputs directory created on some run of another script, and that the directory has
+the same structure and filenames in it as will be created by this run of this script.</p>
+
+<p>If the user runs make-test-script(see section III below) with &quot;-d&quot; 
+rather than &quot;-D&quot;, the program uses &quot;diff -r&quot; instead of &quot;cmp -s&quot; to 
+do the differencing. This allows comparison of entire output directories.</p>
+</li>
+
+<li>&quot;Runall-and-Diff-Time&quot; script.
+
+<p>The runall-and-diff time script is almost exactly like a runall script.
+The difference is that it is intended to collect the time taken by each
+test to run.</p>
+
+<p>Because of the similarity of this script with the runall-and-diff script,
+we give just one example, with the -P parameter, -O, and -F used.
+We assume that the instrumented executable is &quot;foo.exe&quot; in the
+&quot;objects/foo/source&quot; subdirectory, and that the outputs directory
+is &quot;/nfs/spectre/u5/mydir/oldoutputs/&quot;.</p>
+
+<p>Given STImpL file:</p>
+<pre class="i1">
+-P [1 3 string1] -F [lex.yy.c|test1out]
+-P [4 0 string2] -O [odir/out7.dat] -F [lex.yy.c|test2out]
+</pre>
+
+<p>A resulting runall-and-diff time script is:</p>
+<pre class="i1">
+The following is an D_t script type
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+set t=`mydate`
+echo &quot;Start time = ${t}&quot;
+../source/foo.exe  1 3 string1 &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1out
+cmp -s ../outputs/t1 /nfs/spectre/u5/mydir/oldoutputs/t1
+cmp -s ../outputs/test1out /nfs/spectre/u5/mydir/oldoutputs/test1out
+set t=`mydate`
+echo &quot;Finish time = ${t}&quot;
+
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+set t=`mydate`
+echo &quot;Start time = ${t}&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+mv ../scripts/lex.yy.c ../outputs/test2out
+cmp -s ../outputs/out7.dat /nfs/spectre/u5/mydir/oldoutputs/out7.dat
+cmp -s ../outputs/test2out /nfs/spectre/u5/mydir/oldoutputs/test2out
+set t=`mydate`
+echo &quot;Finish time = ${t}&quot;
+</pre>
+
+<p>Here <code>mydate</code> is the c program which returns sytem time in seconds 
+(elapsed from 1970) and in fractions of a second with resolution of
+1 microsecond.</p>
+
+<p>If the user runs make-test-script(see below section III) with &quot;-d_t&quot; 
+rather than &quot;-D_t&quot;, the program uses &quot;diff -r&quot; instead of &quot;cmp -s&quot; to 
+do the differencing.</p>
+</li>
+</ol>
+</li>
+
+<li>make-test-script specification.
+
+<p>make-test-script(mts) is the program that turns a STImpL file
+into one of the above types of scripts.</p>
+
+<p>To call make-test-script, type:</p>
+<pre class="i1">
+mts &lt;object-dir&gt; &lt;object-exe&gt; &lt;stimple-file&gt; &lt;script-type&gt;
+            &lt;script-name&gt; &lt;program-suffix&gt; &lt;compare-dir&gt; 
+</pre>
+
+<p>(The carriage return above is for readability only; all parameters 
+should be given on the single command line.)</p>
+
+<code class="i1">&lt;object-dir&gt;</code> : name of object directory for program under test<br>
+<code class="i1">&lt;object-exe&gt;</code> : name of executable to be executed,<br>
+<code class="i1">&lt;stimple-file&gt;</code> : name of STImpL file<br>
+<code class="i1">&lt;script-type&gt;</code> : R|D|d|T|d_t|D_t<br>
+<div style="margin-left:4em">For runall, runall-and-diff using cmp, runall-and-diff using diff,
+trace, runall-and-diff-time script using diff, or runall-and-diff-time script using cmp</div>
+<code class="i1">&lt;nameScript&gt;</code> : name of output script<br>
+<code class="i1">&lt;program-suffix&gt;</code> : suffix of program name, or NULL (case insensitive)<br>
+<div style="margin-left:4em">-- only for script type T.</div>
+<code class="i1">&lt;compare-dir&gt;</code> :  name of directory containing outputs to compare
+test outputs to, or NULL (case insensitive)<br>
+<div style="margin-left:4em">--only for script type D</div>
+
+<p>It's important to understand how make-test-script uses the first
+two parameters in creating a script. The executable name
+is the name of the executable that will be run, you could
+give its full path name, or give a path relative to where
+you'll be running the script from (the scripts directory).</p>
+
+<p>The contents of the first parameter are more complex: they are 
+prepended to names of input files, output files, scripts, 
+and files-to-be-copied, allowing the script to put things in
+or get them from the right place. What you put here depends
+on where you run the script from. Examples will illustrate.</p>
+
+<ol>
+<li>Example:
+
+<p>Suppose your STImpL file contains:</p>
+<pre class="i1">
+-P [1 3 string1] -I [infile] -F [lex.yy.c|test1out]  
+-P [4 0 string2] -O [odir/out7.dat] 
+</pre>
+
+<p>Suppose you have the object &quot;foo&quot; present under the directory structure
+&quot;/nfs/phantom/u8/goel2/objects/foo&quot; and suppose you'll be running the
+&quot;make-test-script&quot; program from the scripts directory, i.e at path 
+&quot;/nfs/phantom/u8/goel2/objects/foo/scripts&quot;.</p>
+
+<p>You type:</p>
+<pre class="i1">
+mts .. ../source/foo.exe ../testplans.alt/universe sc.sh R NULL NULL
+</pre>
+
+<p>This causes make-test-script to look for STImpL file
+&quot;universe&quot; at path &quot;../testplans.alt/universe&quot; relative to the script
+directory path which is at &quot;/nfs/phantom/u8/goel2/objects/foo/scripts&quot;,
+so mts finds the STImpL file at
+&quot;/nfs/phantom/u8/goel2/objects/foo/testplans.alt/universe,
+and writes a runall script sc.sh looking like this:</p>
+<pre class="i1">
+echo script type: R
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+../source/foo.exe  1 3 string1 &lt; ../inputs/infile &gt; ../outputs/t1
+mv ../scripts/lex.yy.c ../outputs/test1.out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+../source/foo.exe  4 0 string2 &gt; ../outputs/odir/out7.dat
+</pre>
+
+<p>NOTES: make-test-script has taken your first parameter, &quot;..&quot;,
+and used it in writing where infile and outputs are
+(e.g. writing &quot;../inputs/infile&quot; on test 1)</p>
+</li>
+
+<li style="padding-bottom:2em">Example:
+
+<p>Suppose you have the same STImpL file, and you type:</p>
+<pre class="i1">
+mts /nfs/phantom/u8/goel2/objects/foo 
+  /nfs/phantom/u8/goel2/objects/foo/source/foo.exe
+  ../testplans.alt/universe sc.sh R NULL NULL
+</pre>
+
+<p>This causes make-test-script to look for STImpL file
+&quot;universe&quot;, and write a runall script looking like this:</p>
+<pre class="i1">
+echo script type: R
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 1&quot;
+/nfs/phantom/u8/goel2/objects/foo/source/foo.exe  1 3 string1 &lt;
+/nfs/phantom/u8/goel2/objects/foo/inputs/infile &gt;
+/nfs/phantom/u8/goel2/objects/foo/outputs/t1
+mv /nfs/phantom/u8/goel2/objects/foo/scripts/lex.yy.c /nfs/phantom/u8/goel2/objects/foo/outputs/test1.out
+echo &quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;running test 2&quot;
+/nfs/phantom/u8/goel2/objects/foo/source/foo.exe  4 0 string2 &gt;
+/nfs/phantom/u8/goel2/objects/foo/outputs/odir/out7.dat
+</pre>
+</li>
+</ol>
+</ol>
+
+</body>
+</html>
+

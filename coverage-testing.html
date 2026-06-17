@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+            "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15">
+<!-- <meta id="meta" name="viewport" content="width=device-width, initial-scale=1.0" > -->
+<title>Software-artifact Infrastructure Repository: Handbook of C Object Preparation: Coverage Testing</title>
+<link rel="stylesheet" href="https://sir-public.github.io/SIR/sir-main.css" type="text/css">
+<style type="text/css" media="screen">
+/** Cut things down to work with the whole canvas. */
+body {
+  margin:0px;
+}
+/** Fixed frames, works in CSS 2.1 standards-compliant browsers. */
+#banner {
+  position:fixed;
+  top:0px;
+  left:0px;
+  right:0px;
+  height:80px;
+  overflow:hidden;
+  background-color:#999999;
+  color:white;
+  border-bottom:thin solid red;
+}
+#nav {
+  position:fixed;
+  width:230px;
+  top:81px;
+  left:0px;
+  bottom:0px;
+  overflow:auto;
+  color:black;
+  background-color:#EEEEEE;
+  border-right:thin solid red;
+}
+#nav #links {
+  padding:0px 5px 2px 6px;
+}
+#content {
+  position:fixed;
+  top:81px;
+  left:231px;
+  right:0px;
+  bottom:0px;
+  overflow:auto;
+  padding:0px 6px 2px 10px;
+  color:black;
+  background-color:#CCCCFF;
+}
+#footr {
+   clear:both;
+}
+</style>
+</head>
+<body style="" ><div id="banner">
+<h1 style="font-size:x-large; line-height:80px; margin:0px; padding-left:10px">Software-artifact&nbsp;Infrastructure&nbsp;Repository</h1>
+</div>
+<div id="nav">
+<ul id="links" style="list-style:none; margin:1em; padding:0; text-indent:0;">
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/sir.html" class="small">Home</a></li>
+<li><a href="https://sir-public.github.io/SIR/usage.html" class="small">SIR&nbsp;Users&nbsp;and Publications</a></li>
+<li><a href="https://sir-public.github.io/SIR/faq.html" class="small">Frequently&nbsp;Asked&nbsp;Questions</a></li>
+<li><a href="https://sir-public.github.io/SIR/sir-license.html" class="small">Repository&nbsp;License</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/validity.html" class="small">Reporting&nbsp;Experimental&nbsp;Results</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/other_resources.html" class="small">Related&nbsp;Resources</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/acks.html" class="small">Acknowledgments</a></li>
+<li><a href="https://sir-public.github.io/SIR/showfiles.html" class="small">Download Objects</a></li>
+<li><a href="https://sir-public.github.io/SIR/tools.html" class="small">Download&nbsp;Tools</a></li>
+<li><a href="https://sir-public.github.io/SIR/oldfiles.html" class="small">Archived Objects</a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/cite.html" class="small">Citing&nbsp;SIR</a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall.html" class="small">C&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall.html" class="small">Java&nbsp;Object&nbsp;Handbook</a></li>
+<li><a href="https://sir-public.github.io/SIR/InvariantCheckingJavaExampleHandbook.html" class="small">Java&nbsp;Invariant Checking<br><span style="margin-left:1em">Examples&nbsp;Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-desc.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/c-overall-full.html" class="small">C&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/java-overall-full.html" class="small">Java&nbsp;Object&nbsp;Preparer's<br><span style="margin-left:1em">Handbook</span></a></li>
+<li><a href="https://sir-public.github.io/SIR/spl-overall-full.html" class="small">SPL&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/concise-overall-full.html" class="small">Concise&nbsp;Object<br><span style="margin-left:1em">Preparer's&nbsp;Handbook</span></a></li>
+<li style="padding-bottom:16px"><a href="https://sir-public.github.io/SIR/docs.html" class="small">Related Documents</a></li>
+</ul>
+</div>
+<div id="content">
+<h2 style="text-align:center">Coverage-based Testing of C Objects</h2>
+<p>After all spec-based tests have been created and encoded in STImpL
+specifications, and all script details have been worked out, it is time to
+proceed with code-based testing.</p>
+
+<p>To do this, begin with your base version. Create a branch trace instrumented 
+version of it, create a trace script for your STImpL test suite(s) for it, and obtain
+the traces for all tests in the STImpL test suite(s). Use the th_builder to construct
+a test history for those traces.</p>
+
+<p>Now, run the Aristotle tool <code>coverage</code> to see what has been covered 
+or remains to be covered in your program. To run this you type:</p>
+<p>
+<code class="i1">
+coverage &lt;test-history-file&gt; &lt;prog-name&gt; [ALL|UNCOV]
+</code>
+</p>
+<p>where the first argument names your test history file, and the second names 
+your program with the .c suffix. The third argument is optional, if present 
+and <code>ALL</code> the tool reports coverage data on all branches, if absent or 
+<code>UNCOV</code> the tool reports on just branches not yet covered.</p>
+
+<p>When you type:</p>
+<p>
+<code class="i1">
+coverage tracedir/th calc.c ALL
+</code>
+</p>
+<p>here is a portion of what you see:</p>
+<pre>
+__________________________________________________
+
+Function: pop
+
+ edgeid  coverage status   sourceline,edgelabel
+---------------------------------------------------
+     1        HIT                 107,
+     4        HIT                 110,T
+     5        NOT HIT             110,F
+
+
+Function: push
+
+ edgeid  coverage status   sourceline,edgelabel
+---------------------------------------------------
+     1        HIT                  94,
+     3        HIT                  95,T
+     4        NOT HIT              95,F
+__________________________________________________
+</pre>
+
+<p>If you had left out the <code>ALL</code> or typed <code>UNCOV</code>.
+the lines labeled <code>HIT</code> would be absent from this.</p>
+
+<p>The information lists edge ids, the coverage status of the edge, and the
+<code>sourceline,edgelabel</code> corresponding to that edge.</p>
+
+<p>Using the <code>src_printer</code> tool, typing <code>src_printer calc.c</code>,
+you can get a print out of the calc program listing line numbers, which you can
+cross-reference with the above information. Here's a portion of it:</p>
+<pre>
+92     void push(f)
+93     double f;
+94     {
+95          if (sp &lt; MAXVAL)
+96          {
+97             val[sp++] = f;
+98          }
+99          else
+100         {
+101             printf("error: stack full\n");
+102             clear();
+103         }
+104    }
+105
+</pre>
+<p>You can see that the coverage information tells you where the branches are
+relative to this source listing, with labels indicating which direction
+of flow from the branch is involved. Edge labels out of cases are listed too.</p>
+
+<p>Using this tool you should be able to accomplish the next task. That task 
+is to find test cases to cover all executable branches, with some exceptions.
+As you find test cases, start creating them, make a new STImpL file to
+contain them (universe.cov) so we know which tests are which. You'll need
+to reexecute your tests occasionally to see whether a test case covers more
+than just the branch you were aiming at.</p>
+
+<p>In addition to new test cases, this process will also yield a list of branches
+that are not and will not be covered by us. Keep a listing of these, with
+information on why they won't be covered. Save this information in a file called
+&quot;Uncovered_Branches.info&quot; and save this file in the &quot;info&quot;
+directory of the object directory structure.</p>
+
+<p>Reasons to not cover a branch:</p>
+<ol>
+<li>If a branch cannot be executed by any input to the
+program, then it is nonexecutable. Reason = &quot;nonexecutable&quot;.</li>
+<li>If a branch can be executed only with great difficulty
+by making some error happen (e.g. making a malloc fail)
+we'll choose to leave it unexecuted.
+Reason = &quot;requires failure of xxx, decided not to cover.&quot;</li>
+<li>If we have made some decision about your program of
+the form &quot;we will ignore that functionality in our
+testing&quot;, and the branch can only be executed if we
+do not ignore that functionality. Reason = &quot;left
+uncovered due to decision not to address this portion
+of the program's functionality.&quot;</li>
+</ol>
+
+<p>Finding inputs to execute branches is difficult. Determining non-executability
+is difficult. In general doing this will require you to become more familiar 
+with the program and its code. Suggestion: start with code near the &quot;top&quot; 
+and &quot;beginning&quot; of execution, where conditions for execution are easier to 
+determine. Executing some of this code will also cover code later down.</p>
+
+<p>Note that the TSL tests for our medium-size C objects are functional tests.
+and these objects do not contain enormous numbers of coverage tests.
+In this sense the objects are not un-realistic since in practice full
+coverage is often not achieved.   But our process faced the same cost-benefits
+tradeoffs faced in practice: tester time versus test effectiveness.
+Our object creators worked on coverage testing for a time limited
+by our budget.</p>
+
+</body>
+</html>
+
